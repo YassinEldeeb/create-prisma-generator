@@ -5,3 +5,4 @@ build
 pnpm-debug.log
 .env*
 .yalc
+my-gen

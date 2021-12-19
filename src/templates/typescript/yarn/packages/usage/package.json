@@ -13,7 +13,6 @@
   "devDependencies": {
     "@types/node": "^16.11.7",
     "prisma": "^3.6.0",
-    "test_package": "file:.yalc/test_package",
     "typescript": "^4.5.2"
   }
 }

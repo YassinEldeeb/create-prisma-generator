@@ -1,0 +1,35 @@
+name: Publish
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: ['*']
+
+jobs:
+  Publish:
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/main' }}
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.13.0
+
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install dependencies
+        working-directory: ./packages/generator
+        run: yarn install
+
+      - name: Publish 🚀
+        working-directory: ./packages/generator
+        run: yarn semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
