@@ -1,0 +1,15 @@
+{
+  "name": "create-prisma-generator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "npx ts-node src/index.ts"
+  },
+  "dependencies": {
+    "inquirer": "^8.2.0"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^8.1.3"
+  }
+}

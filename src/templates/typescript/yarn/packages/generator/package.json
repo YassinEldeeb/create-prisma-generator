@@ -1,0 +1,47 @@
+{
+  "name": "test_package",
+  "description": "Provide a description about your generator",
+  "version": "1.0.0",
+  "main": "dist/generator.js",
+  "license": "MIT",
+  "bin": {
+    "test_package": "dist/bin.js"
+  },
+  "engines": {
+    "node": ">=12.0"
+  },
+  "scripts": {
+    "start": "ts-node",
+    "dev": "tsc-watch --onSuccess \"yarn publish-locally\"",
+    "build": "npx tsc",
+    "prepack": "yarn build",
+    "test": "jest",
+    "publish-locally": "yalc push"
+  },
+  "dependencies": {
+    "@prisma/client": "^3.6.0",
+    "@prisma/generator-helper": "^3.6.0",
+    "@prisma/sdk": "^3.6.0",
+    "prettier": "^2.5.0"
+  },
+  "devDependencies": {
+    "tsc-watch": "^4.5.0",
+    "@types/node": "^17.0.0",
+    "@types/prettier": "^2.4.2",
+    "jest": "^27.4.3",
+    "prisma": "^3.6.0",
+    "typescript": "^4.5.2",
+    "ts-node": "^10.4.0"
+  },
+  "homepage": "Link to your homepage or your github readme here",
+  "repository": {
+    "type": "git",
+    "url": "Repo link here"
+  },
+  "author": "Your Name <Your Email>",
+  "keywords": [
+    "prisma",
+    "prisma2",
+    "generator"
+  ]
+}

@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator PrismaTypeGraphQLTypesGenerator {
+  provider   = "node .yalc/test_package"
+  outputPath = "./types"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
+}
+
+enum NotificationType {
+  newPosts
+  newComments
+  newFollowers
+  reply
+  heartOnPost
+  heartOnComment
+  heartOnReply
+}
+
+enum Language {
+  Typescript
+  Javascript
+  Rust
+  Go
+  Python
+  Cpp
+}
