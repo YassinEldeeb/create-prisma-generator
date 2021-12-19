@@ -3808,7 +3808,7 @@ test-exclude@^6.0.0:
     glob "^7.1.4"
     minimatch "^3.0.4"
 
-"test_package@file:packages/playground/.yalc/test_package":
+"test_package@file:packages/usage/.yalc/test_package":
   version "1.0.0"
   dependencies:
     "@prisma/client" "^3.6.0"
