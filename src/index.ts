@@ -44,15 +44,16 @@ const main = async () => {
   // }
 
   if (answers.typescript && answers.packageManager === 'yarn') {
+    console.log(path.join(__dirname, './templates/typescript/yarn'))
     fse.copySync(
       path.join(__dirname, './templates/typescript/yarn'),
       path.join(process.cwd(), pkgName),
       {
         filter: (src, dest) => {
           return (
-            !src.includes('node_modules') &&
-            !src.includes('yalc') &&
-            !src.includes('yarn.lock')
+            !dest.includes('node_modules') &&
+            !dest.includes('yalc') &&
+            !dest.includes('yarn.lock')
           )
         },
       },

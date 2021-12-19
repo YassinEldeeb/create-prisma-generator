@@ -1,0 +1,13 @@
+{
+  "name": "usage",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "node .yalc/create-prisma-generator"
+  },
+  "dependencies": {
+    "create-prisma-generator": "file:.yalc/create-prisma-generator",
+    "create-react-app": "^5.0.0"
+  }
+}
