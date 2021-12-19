@@ -72,6 +72,7 @@ const main = async () => {
     './packages/generator/package.json',
     './packages/generator/README.md',
     './packages/generator/src/constants.ts',
+    './packages/usage/package.json',
     './packages/usage/prisma/schema.prisma',
   ]
 
@@ -85,7 +86,6 @@ const main = async () => {
     )
   })
 
-  // Install packages
   let installCommand = ''
   switch (answers.packageManager) {
     case 'npm':
@@ -98,7 +98,7 @@ const main = async () => {
       installCommand = 'pnpm i'
       break
   }
-
+  // Install packages
   const workingDir = `cd ${pkgName}`
 
   spawn(`${workingDir} && ${installCommand}`, {

@@ -1,9 +1,0 @@
-{
-  "version": "v1",
-  "packages": {
-    "test_package": {
-      "signature": "76e2496d4822ce474f00a5a513f4f1e2",
-      "file": true
-    }
-  }
-}

@@ -12,7 +12,7 @@
   },
   "scripts": {
     "start": "ts-node",
-    "dev": "tsc-watch --onSuccess \"yarn publish-locally\"",
+    "dev": "npx tsc -w",
     "build": "npx tsc",
     "prepack": "yarn build",
     "test": "jest",

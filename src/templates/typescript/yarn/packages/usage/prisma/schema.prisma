@@ -3,7 +3,7 @@ generator client {
 }
 
 generator PrismaTypeGraphQLTypesGenerator {
-  provider   = "node .yalc/test_package"
+  provider   = "node ../../node_modules/test_package"
   outputPath = "./types"
 }
 

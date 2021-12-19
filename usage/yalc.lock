@@ -2,7 +2,7 @@
   "version": "v1",
   "packages": {
     "create-prisma-generator": {
-      "signature": "4e5414590b9b9738892976e78adff98c",
+      "signature": "5c85d9f4e3b39d9e1799e6ce13a8d808",
       "file": true
     }
   }
