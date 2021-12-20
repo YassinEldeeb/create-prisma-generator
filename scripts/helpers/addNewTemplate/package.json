@@ -1,0 +1,16 @@
+{
+  "name": "@cpg/$PKG_NAME",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "$PKG_BIN": "index.js"
+  },
+  "files": [
+    "template"
+  ],
+  "dependencies": {
+    "@cpg/common": "1.0.0"
+  }
+}

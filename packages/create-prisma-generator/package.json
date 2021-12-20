@@ -11,7 +11,8 @@
   ],
   "scripts": {
     "start": "npx ts-node src/index.ts",
-    "dev": "npx tsc -w",
+    "dev": "tsc -w",
+    "build": "tsc",
     "prepack": "yarn build",
     "test": "jest"
   },

@@ -7,4 +7,4 @@ pnpm-debug.log
 .yalc
 my-gen
 cli-usage
-packages/**/yarn.lock
+.turbo

@@ -1,13 +1,15 @@
 {
   "name": "@cpg/common",
   "version": "1.0.0",
-  "main": "index.js",
-  "typings": "./types/index.d.ts",
+  "main": "dist/index.js",
   "license": "MIT",
-  "type": "module",
   "files": [
     "template"
   ],
+  "scripts": {
+    "build": "tsc",
+    "prepack": "yarn build"
+  },
   "dependencies": {
     "fs-extra": "^10.0.0"
   }
