@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "src/app.js",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "dev": "ts-node ./src/app.ts"
+  },
   "dependencies": {
     "@prisma/client": "^3.6.0",
     "ts-node": "^10.4.0"

@@ -10,11 +10,13 @@
     "dist/**/*"
   ],
   "scripts": {
+    "start": "ts-node src/index.ts",
     "dev": "tsc-watch --onSuccess \"yarn afterBuild\"",
     "afterBuild": "yarn copy-files && yarn publish-locally",
     "publish-locally": "yalc push",
     "prepack": "yarn build",
-    "copy-files": "npx ts-node ./scripts/copyFiles.ts src/templates dist/templates"
+    "copy-files": "npx ts-node ./scripts/copyFiles.ts src/templates dist/templates",
+    "test": "jest"
   },
   "dependencies": {
     "@types/fs-extra": "^9.0.13",

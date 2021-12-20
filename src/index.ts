@@ -1,40 +1,12 @@
-import inquirer from 'inquirer'
-import fse from 'fs-extra'
-import fs from 'fs'
-import path from 'path'
-import { spawn, execSync } from 'child_process'
+import { execSync, spawn } from 'child_process'
 import colors from 'colors'
+import fs from 'fs'
+import fse from 'fs-extra'
+import path from 'path'
+import { promptQuestions } from './utils/promptQuestions'
 
-const main = async () => {
-  const answers = (await inquirer.prompt([
-    {
-      type: 'input',
-      name: 'generatorName',
-      message: "What's your generator name",
-    },
-    {
-      type: 'confirm',
-      name: 'typescript',
-      message: 'Do you want to use Typescript',
-    },
-    {
-      type: 'list',
-      name: 'packageManager',
-      message: 'Which package manager do you want to use',
-      choices: ['npm', 'yarn', 'pnpm'],
-      default: false,
-    },
-    {
-      type: 'confirm',
-      name: 'githubAction',
-      message: 'Using github? Can I automate some stuff for you',
-    },
-  ])) as {
-    generatorName: string
-    typescript: boolean
-    packageManager: 'yarn' | 'npm' | 'pnpm'
-    githubAction: true
-  }
+export const main = async () => {
+  const answers = await promptQuestions()
 
   const pkgName = answers.generatorName.toLowerCase()
 
@@ -44,7 +16,6 @@ const main = async () => {
   // }
 
   if (answers.typescript && answers.packageManager === 'yarn') {
-    console.log(path.join(__dirname, './templates/typescript/yarn'))
     fse.copySync(
       path.join(__dirname, './templates/typescript/yarn'),
       path.join(process.cwd(), pkgName),
@@ -98,6 +69,7 @@ const main = async () => {
       installCommand = 'pnpm i'
       break
   }
+
   // Install packages
   const workingDir = `cd ${pkgName}`
 

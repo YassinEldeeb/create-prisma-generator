@@ -2,8 +2,8 @@ generator client {
   provider = "prisma-client-js"
 }
 
-generator custom_generator {
-  provider   = "node ../../node_modules/test_package"
+generator PrismaTypeGraphQLTypesGenerator {
+  provider   = "node ./node_modules/test_package"
   outputPath = "./types"
 }
 
