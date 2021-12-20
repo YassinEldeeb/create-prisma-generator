@@ -1,3 +1,3 @@
-# test_package
+# $PACKAGE
 
 [Visit the repository readme to Learn more](LINK-HERE)
