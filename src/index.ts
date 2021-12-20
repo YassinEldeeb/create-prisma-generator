@@ -10,10 +10,10 @@ export const main = async () => {
 
   const pkgName = answers.generatorName.toLowerCase()
 
-  // if (fs.existsSync(path.join(process.cwd(), pkgName))) {
-  //   console.log(colors.red(`${pkgName} directory already exists!`))
-  //   return
-  // }
+  if (fs.existsSync(path.join(process.cwd(), pkgName))) {
+    console.log(colors.red(`${pkgName} directory already exists!`))
+    return
+  }
 
   if (answers.typescript && answers.packageManager === 'yarn') {
     fse.copySync(

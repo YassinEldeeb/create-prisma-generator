@@ -1,1 +1,1 @@
-export const GENERATOR_NAME = '$PACKAGE'
+export const GENERATOR_NAME = '$PACKAGE_NAME'

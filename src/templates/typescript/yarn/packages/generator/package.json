@@ -1,11 +1,11 @@
 {
-  "name": "$PACKAGE",
+  "name": "$PACKAGE_NAME",
   "description": "Provide a description about your generator",
   "version": "1.0.0",
   "main": "dist/generator.js",
   "license": "MIT",
   "bin": {
-    "$PACKAGE": "dist/bin.js"
+    "$PACKAGE_NAME": "dist/bin.js"
   },
   "engines": {
     "node": ">=12.0"
