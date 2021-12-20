@@ -1,9 +1,0 @@
-{
-  "version": "v1",
-  "packages": {
-    "create-prisma-generator": {
-      "signature": "69c9805247c6cbc2b2a47a2dcdd2a2bf",
-      "file": true
-    }
-  }
-}

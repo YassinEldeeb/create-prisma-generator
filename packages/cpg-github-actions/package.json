@@ -1,0 +1,16 @@
+{
+  "name": "@cpg/github-actions",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "cpg-github-actions": "index.js"
+  },
+  "files": [
+    "template"
+  ],
+  "dependencies": {
+    "@cpg/common": "1.0.0"
+  }
+}

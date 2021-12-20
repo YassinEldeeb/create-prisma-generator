@@ -1,0 +1,45 @@
+{
+  "name": "$PACKAGE_NAME",
+  "description": "Provide a description about your generator",
+  "version": "1.0.0",
+  "main": "dist/generator.js",
+  "license": "MIT",
+  "bin": {
+    "$PACKAGE_NAME": "dist/bin.js"
+  },
+  "engines": {
+    "node": ">=12.0"
+  },
+  "scripts": {
+    "dev": "babel src -d dist --watch",
+    "build": "babel src -d dist",
+    "prepack": "yarn build",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@prisma/client": "^3.6.0",
+    "@prisma/generator-helper": "^3.6.0",
+    "@prisma/sdk": "^3.6.0",
+    "prettier": "^2.5.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.5",
+    "@babel/node": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "babel-jest": "^27.4.5",
+    "jest": "^27.4.3",
+    "prisma": "^3.6.0"
+  },
+  "homepage": "Link to your homepage or your github readme here",
+  "repository": {
+    "type": "git",
+    "url": "Repo link here"
+  },
+  "author": "Your Name <Your Email>",
+  "keywords": [
+    "prisma",
+    "prisma2",
+    "generator"
+  ]
+}

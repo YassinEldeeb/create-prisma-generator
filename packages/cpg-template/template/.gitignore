@@ -4,6 +4,3 @@ yarn-error.log
 build
 pnpm-debug.log
 .env*
-.yalc
-my-gen
-cli-usage

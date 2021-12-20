@@ -1,0 +1,14 @@
+{
+  "name": "@cpg/common",
+  "version": "1.0.0",
+  "main": "index.js",
+  "typings": "./types/index.d.ts",
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "template"
+  ],
+  "dependencies": {
+    "fs-extra": "^10.0.0"
+  }
+}

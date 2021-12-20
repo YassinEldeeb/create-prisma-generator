@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`enum generation | Language 1`] = `
+"enum Language { 
+Typescript=\\"Typescript\\",
+Javascript=\\"Javascript\\",
+Rust=\\"Rust\\",
+Go=\\"Go\\",
+Python=\\"Python\\",
+Cpp=\\"Cpp\\"
+ }"
+`;
+
+exports[`enum generation | NotificationType 1`] = `
+"enum NotificationType { 
+newPosts=\\"newPosts\\",
+newComments=\\"newComments\\",
+newFollowers=\\"newFollowers\\",
+reply=\\"reply\\",
+heartOnPost=\\"heartOnPost\\",
+heartOnComment=\\"heartOnComment\\",
+heartOnReply=\\"heartOnReply\\"
+ }"
+`;

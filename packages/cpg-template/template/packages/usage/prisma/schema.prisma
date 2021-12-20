@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator custom_generator {
+  provider   = "node ../../node_modules/s"
+  outputPath = "./types"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
+}
+
+enum NotificationType {
+  newPosts
+  newComments
+  newFollowers
+  reply
+  heartOnPost
+  heartOnComment
+  heartOnReply
+}
+
+enum Language {
+  Typescript
+  Javascript
+  Rust
+  Go
+  Python
+  Cpp
+}
