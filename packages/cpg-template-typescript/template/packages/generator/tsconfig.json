@@ -19,5 +19,5 @@
     "newLine": "lf"
   },
   "include": ["src/**/*"],
-  "exclude": ["**/node_modules", "**/*.test.ts", "**/dest"]
+  "exclude": ["**/node_modules", "**/*.test.ts","**/__tests__", "**/dest"]
 }

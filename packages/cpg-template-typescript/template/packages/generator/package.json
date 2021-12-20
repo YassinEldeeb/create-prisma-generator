@@ -1,5 +1,5 @@
 {
-  "name": "$PACKAGE_NAME",
+  "name": "1",
   "description": "Provide a description about your generator",
   "version": "1.0.0",
   "main": "dist/generator.js",
