@@ -1,7 +1,10 @@
 #!/usr/bin/env node
-import { copyTemplate } from '@cpg-cli/common'
 import path, { dirname } from 'path'
 import { fileURLToPath } from 'url'
+import fse from 'fs-extra'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-copyTemplate(path.join(__dirname, `./template`), process.argv[2])
+fse.copySync(
+  path.join(path.join(__dirname, `./template`)),
+  path.join(process.cwd(), process.argv[2]),
+)

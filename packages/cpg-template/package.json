@@ -1,6 +1,6 @@
 {
   "name": "@cpg-cli/template",
-  "version": "1.0.0",
+  "version": "1.0.9",
   "main": "index.js",
   "license": "MIT",
   "type": "module",
@@ -10,15 +10,12 @@
   "files": [
     "template"
   ],
+  "dependencies": {
+    "fs-extra": "^10.0.0"
+  },
   "scripts": {
     "start": "node index.js",
     "publish": "yarn publish"
-  },
-  "dependencies": {
-    "@cpg-cli/common": "1.0.0"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.15"
   },
   "publishConfig": {
     "access": "public"

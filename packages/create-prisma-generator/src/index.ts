@@ -18,13 +18,13 @@ export const main = async () => {
 
   if (answers.typescript) {
     const templateName = 'Typescript Template'
-    const command = `npx @cpg-cli/template-typescript ${pkgName}`
+    const command = `npx @cpg-cli/template-typescript@latest ${pkgName}`
     runCommand(templateName, command)
   }
 
   if (answers.githubAction) {
     const templateName = 'Github action Template'
-    const command = `npx @cpg-cli/github-actions ${pkgName}`
+    const command = `npx @cpg-cli/github-actions@latest ${pkgName}`
     runCommand(templateName, command)
   }
 

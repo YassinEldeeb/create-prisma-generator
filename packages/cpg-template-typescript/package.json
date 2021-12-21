@@ -1,6 +1,6 @@
 {
   "name": "@cpg-cli/template-typescript",
-  "version": "1.0.1",
+  "version": "1.0.12",
   "main": "index.js",
   "license": "MIT",
   "type": "module",
@@ -15,7 +15,7 @@
     "publish": "yarn publish"
   },
   "dependencies": {
-    "@cpg-cli/common": "1.0.0"
+    "fs-extra": "^10.0.0"
   },
   "publishConfig": {
     "access": "public"
