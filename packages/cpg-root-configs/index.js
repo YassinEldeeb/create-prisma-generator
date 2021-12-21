@@ -5,17 +5,12 @@ import fse from 'fs-extra'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
-const gitIgnoreExists = fse.existsSync(
-  path.join(__dirname, './template/gitIgnoreConf.txt'),
-)
-if (gitIgnoreExists) {
-  fse.renameSync(
-    path.join(__dirname, './template/gitIgnoreConf.txt'),
-    path.join(__dirname, './template/.gitignore'),
-  )
-}
-
 fse.copySync(
   path.join(__dirname, `./template`),
   path.join(process.cwd(), process.argv[2]),
+)
+
+fse.renameSync(
+  path.join(process.cwd(), process.argv[2], 'gitIgnoreConf.txt'),
+  path.join(process.cwd(), process.argv[2], '.gitignore'),
 )

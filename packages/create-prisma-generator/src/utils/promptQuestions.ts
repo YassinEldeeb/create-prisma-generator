@@ -18,17 +18,19 @@ export const promptQuestions = async (): Promise<Answers> => {
       name: 'packageManager',
       message: 'Which package manager do you want to use',
       choices: ['yarn', 'pnpm', 'npm'],
-      default: false,
+      default: 'pnpm',
     },
     {
-      type: 'confirm',
-      name: 'githubAction',
-      message: 'Using github? Can I automate some stuff for you',
+      type: 'list',
+      name: 'setupCI',
+      message: 'Automate publishing the generator with which CI',
+      choices: ['None, Thank you', 'Github Actions', 'Circle CI', 'Travis CI'],
+      default: 'None, Thank you',
     },
     {
       type: 'confirm',
       name: 'usageTemplate',
-      message: 'Want an environment to test the generator',
+      message: 'Setup workspace for testing the generator',
     },
   ]
   const answers = (await inquirer.prompt(questions)) as Answers

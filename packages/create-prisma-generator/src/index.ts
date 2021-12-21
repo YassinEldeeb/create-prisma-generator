@@ -21,6 +21,8 @@ export const main = async () => {
     validPkgName.errors?.forEach((e) => console.log(colors.cyan(e)))
     return
   }
+
+  // Reused variables
   const projectWorkdir = path.join(process.cwd(), pkgName)
   const pkgManager = answers.packageManager
 
@@ -67,7 +69,7 @@ export const main = async () => {
     runBlockingCommand(templateName, command)
   }
 
-  if (answers.githubAction) {
+  if (answers.setupCI === 'Github Actions') {
     const templateName = 'Github actions Template'
     const command = `npx @cpg-cli/github-actions@latest ${pkgName}`
     runBlockingCommand(templateName, command)
@@ -151,7 +153,7 @@ export const main = async () => {
     console.log(`We suggest that you begin by typing:\n`)
     console.log(colors.cyan('cd'), pkgName)
     console.log(colors.cyan('code .'))
-    console.log(`\nStart hacking 😉`)
+    console.log(`\nStart generating!`)
   })
 }
 main()

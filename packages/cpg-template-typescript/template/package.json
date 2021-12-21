@@ -8,7 +8,7 @@
     "$PACKAGE_NAME": "dist/bin.js"
   },
   "engines": {
-    "node": ">=12.0"
+    "node": ">=14.0"
   },
   "scripts": {
     "dev": "npx tsc -w",
