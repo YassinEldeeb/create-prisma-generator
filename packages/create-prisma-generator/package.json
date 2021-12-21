@@ -1,6 +1,6 @@
 {
   "name": "create-prisma-generator",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "main": "dist/index.js",
   "license": "MIT",
   "bin": {
@@ -22,21 +22,24 @@
     "colors": "^1.4.0",
     "fs-extra": "^10.0.0",
     "inquirer": "^8.2.0",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "validate-npm-package-name": "^3.0.0"
   },
   "devDependencies": {
+    "@cpg-cli/github-actions": "1.0.9",
+    "@cpg-cli/template-gen-usage": "1.0.0",
+    "@cpg-cli/template": "1.0.9",
+    "@cpg-cli/template-typescript": "1.0.12",
     "@types/colors": "^1.2.1",
     "@types/inquirer": "^8.1.3",
     "@types/rimraf": "^3.0.2",
     "@types/typescript": "^2.0.0",
-    "copyfiles": "^2.4.1",
-    "tsc-watch": "^4.5.0",
-    "typescript": "^4.5.4",
-    "nodemon": "^2.0.15",
+    "@types/validate-npm-package-name": "^3.0.3",
     "concurrently": "^6.5.1",
-    "@cpg-cli/github-actions": "1.0.0",
-    "@cpg-cli/template": "1.0.0",
-    "@cpg-cli/template-typescript": "1.0.0"
+    "copyfiles": "^2.4.1",
+    "nodemon": "^2.0.15",
+    "tsc-watch": "^4.5.0",
+    "typescript": "^4.5.4"
   },
   "homepage": "https://github.com/YassinEldeeb/create-prisma-generator",
   "repository": {

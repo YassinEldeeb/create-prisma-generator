@@ -1,6 +1,6 @@
 {
   "name": "@cpg-cli/github-actions",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "main": "index.js",
   "license": "MIT",
   "type": "module",

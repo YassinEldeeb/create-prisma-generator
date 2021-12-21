@@ -1,11 +1,11 @@
 {
-  "name": "@cpg-cli/template",
-  "version": "1.0.10",
+  "name": "@cpg-cli/template-gen-usage",
+  "version": "1.0.2",
   "main": "index.js",
   "license": "MIT",
   "type": "module",
   "bin": {
-    "cpg-template": "dist/index.js"
+    "cpg-template-gen-usage": "index.js"
   },
   "files": [
     "template"
@@ -14,7 +14,6 @@
     "fs-extra": "^10.0.0"
   },
   "scripts": {
-    "start": "node index.js",
     "publish": "yarn publish"
   },
   "publishConfig": {

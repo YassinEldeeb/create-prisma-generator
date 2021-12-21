@@ -2,12 +2,31 @@
 # yarn lockfile v1
 
 
-"@cpg-cli/template-typescript@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@cpg-cli/template-typescript/-/template-typescript-1.0.0.tgz#dbf957debb8bc1f1e97f710643b48211c3ddeae1"
-  integrity sha512-dv6/eXYa3FfhY65I9zcPtlLtJUlSY9O57zJrIvyQ7kfTkGJmUKZYrP5MiHsPe5PpdX64xjn7/aOuImmlZ+ng2Q==
+"@cpg-cli/github-actions@1.0.9":
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/@cpg-cli/github-actions/-/github-actions-1.0.9.tgz#4d002685968c25a4887a2161e279a15addee1f25"
+  integrity sha512-FVd+eoSPqL4cisDmLljftSwQiqHsdA7zWGGLkAX6Pyh9LiXtMxl1oZxb7S1tbJ/fzadgrOYzyAxoGZJvUmRVig==
   dependencies:
-    "@cpg-cli/common" "1.0.0"
+    fs-extra "^10.0.0"
+
+"@cpg-cli/template-gen-usage@1.0.0":
+  version "1.0.2"
+  dependencies:
+    fs-extra "^10.0.0"
+
+"@cpg-cli/template-typescript@1.0.12":
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/@cpg-cli/template-typescript/-/template-typescript-1.0.12.tgz#af5876d9cbbc8125a19a337d292246e35d75f0e2"
+  integrity sha512-u+6e9xXc1TZxfGqO7BPbdtAba8R5+IBpF7bjc5l5qgpvnkPmQT8YYLZHog1NHKLlQLxe+woVujsP5bGJjY0nxA==
+  dependencies:
+    fs-extra "^10.0.0"
+
+"@cpg-cli/template@1.0.9":
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/@cpg-cli/template/-/template-1.0.9.tgz#947d0332ac676081aa68e30f4fe503a897a27a90"
+  integrity sha512-r8N2Bl7O0NWe+6ZiOQYNAXtkRGO3aoDR1wLGRKLpDfzPJa3+Oe1Mde6avUkpKESbDc35XvT2XJK+1qN54KZB8w==
+  dependencies:
+    fs-extra "^10.0.0"
 
 "@cspotcode/source-map-consumer@0.8.0":
   version "0.8.0"
@@ -114,6 +133,11 @@
   integrity sha1-xDNTnJi64oaCswfqp6D9IRW4PCg=
   dependencies:
     typescript "*"
+
+"@types/validate-npm-package-name@^3.0.3":
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/@types/validate-npm-package-name/-/validate-npm-package-name-3.0.3.tgz#970c1949b0b677e970aa6e60db4e0f6aaf5fb293"
+  integrity sha512-dLhCHEIjf9++/vHaHCo/ngJzGqGGbPh/f7HKwznEk3WFL64t/VKuRiVpyQH4afX93YkCV94I9M0Cx+DBLk1Dsg==
 
 abbrev@1:
   version "1.1.1"
@@ -229,6 +253,11 @@ buffer@^5.5.0:
   dependencies:
     base64-js "^1.3.1"
     ieee754 "^1.1.13"
+
+builtins@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/builtins/-/builtins-1.0.3.tgz#cb94faeb61c8696451db36534e1422f94f0aee88"
+  integrity sha1-y5T662HIaWRR2zZTThQi+U8K7og=
 
 cacheable-request@^6.0.0:
   version "6.1.0"
@@ -1484,6 +1513,13 @@ util-deprecate@^1.0.1, util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
+
+validate-npm-package-name@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/validate-npm-package-name/-/validate-npm-package-name-3.0.0.tgz#5fa912d81eb7d0c74afc140de7317f0ca7df437e"
+  integrity sha1-X6kS2B630MdK/BQN5zF/DKffQ34=
+  dependencies:
+    builtins "^1.0.3"
 
 wcwidth@^1.0.1:
   version "1.0.1"

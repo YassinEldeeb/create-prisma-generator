@@ -25,6 +25,11 @@ export const promptQuestions = async (): Promise<Answers> => {
       name: 'githubAction',
       message: 'Using github? Can I automate some stuff for you',
     },
+    {
+      type: 'confirm',
+      name: 'usageTemplate',
+      message: 'Want an environment to test the generator',
+    },
   ]
   const answers = (await inquirer.prompt(questions)) as Answers
 

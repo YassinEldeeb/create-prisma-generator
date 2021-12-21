@@ -5,6 +5,8 @@ import path from 'path'
 import { runCommand } from './utils/runCommand'
 import { promptQuestions } from './utils/promptQuestions'
 import { replacePlaceholders } from './utils/replacePlaceholders'
+import { yarnWorkspaceJSON } from './config/yarn-workspace'
+import { pnpmWorkspaceYML } from './config/pnpm-workspace'
 
 export const main = async () => {
   const answers = await promptQuestions()
@@ -15,40 +17,52 @@ export const main = async () => {
     console.log(colors.red(`${pkgName} directory already exists!`))
     return
   }
+  // Identify a Workspace
+  const usingWorkspaces = answers.usageTemplate
+
+  if (answers.usageTemplate) {
+    const templateName = 'Usage Template'
+    const command = `npx @cpg-cli/template-gen-usage@latest ${pkgName}/packages`
+    runCommand(templateName, command)
+  }
 
   if (answers.typescript) {
     const templateName = 'Typescript Template'
-    const command = `npx @cpg-cli/template-typescript@latest ${pkgName}`
+    const outputLocation = usingWorkspaces
+      ? `${pkgName}/packages/generator`
+      : pkgName
+    const command = `npx @cpg-cli/template-typescript@latest ${outputLocation}`
     runCommand(templateName, command)
   }
 
   if (answers.githubAction) {
-    const templateName = 'Github action Template'
+    const templateName = 'Github actions Template'
     const command = `npx @cpg-cli/github-actions@latest ${pkgName}`
     runCommand(templateName, command)
   }
 
   replacePlaceholders(answers, pkgName)
 
-  if (answers.packageManager === 'yarn') {
-    const yarnWorkspaceJSON = {
-      private: true,
-      workspaces: ['packages/*'],
+  // Setup Workspaces based on pkg manager
+  if (usingWorkspaces) {
+    if (answers.packageManager === 'yarn') {
+      fs.writeFileSync(
+        path.join(process.cwd(), pkgName, 'package.json'),
+        yarnWorkspaceJSON,
+      )
+    } else if (answers.packageManager === 'pnpm') {
+      fs.writeFileSync(
+        path.join(process.cwd(), pkgName, 'pnpm-workspace.yaml'),
+        pnpmWorkspaceYML,
+      )
     }
-    fs.writeFileSync(
-      path.join(process.cwd(), pkgName, 'package.json'),
-      JSON.stringify(yarnWorkspaceJSON, null, 2),
-    )
-  } else if (answers.packageManager === 'pnpm') {
-    const pnpmWorkspaceYML = `packages:
-  # all packages in subdirs of packages/
-  - 'packages/**'
-  # exclude packages that are inside test directories
-  - '!**/test/**'`
 
+    // Simulating a dist folder
+    // to make pnpm happy
+    fs.mkdirSync(path.join(process.cwd(), pkgName, 'packages/generator/dist'))
     fs.writeFileSync(
-      path.join(process.cwd(), pkgName, 'pnpm-workspace.yaml'),
-      pnpmWorkspaceYML,
+      path.join(process.cwd(), pkgName, 'packages/generator/dist/bin.js'),
+      '',
     )
   }
 
@@ -65,14 +79,6 @@ export const main = async () => {
       break
   }
 
-  // Simulating a dist folder
-  // to make pnpm happy
-  fs.mkdirSync(path.join(process.cwd(), pkgName, 'packages/generator/dist'))
-  fs.writeFileSync(
-    path.join(process.cwd(), pkgName, 'packages/generator/dist/bin.js'),
-    '',
-  )
-
   // Install packages
   const workingDir = `cd ${pkgName}`
 
@@ -80,9 +86,12 @@ export const main = async () => {
     shell: true,
     stdio: 'inherit',
   }).on('exit', () => {
+    const generatorLocation = usingWorkspaces
+      ? `${workingDir}/packages/generator`
+      : pkgName
     runCommand(
       'Generator',
-      `${workingDir}/packages/generator && ${answers.packageManager} build`,
+      `${generatorLocation} && ${answers.packageManager} build`,
       'Building',
     )
     console.log(colors.green(`Your boilerplate is ready!`))
