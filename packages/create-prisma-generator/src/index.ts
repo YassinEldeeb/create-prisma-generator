@@ -22,6 +22,7 @@ export const main = async () => {
     return
   }
   const projectWorkdir = path.join(process.cwd(), pkgName)
+  const pkgManager = answers.packageManager
 
   // Validate if folder with the same name doesn't exist
   if (fs.existsSync(path.join(projectWorkdir))) {
@@ -78,12 +79,12 @@ export const main = async () => {
 
   // Setup Workspaces based on pkg manager
   if (usingWorkspaces) {
-    if (answers.packageManager === 'yarn') {
+    if (pkgManager === 'yarn' || pkgManager === 'npm') {
       fs.writeFileSync(
         path.join(projectWorkdir, 'package.json'),
         yarnWorkspaceJSON,
       )
-    } else if (answers.packageManager === 'pnpm') {
+    } else if (pkgManager === 'pnpm') {
       fs.writeFileSync(
         path.join(projectWorkdir, 'pnpm-workspace.yaml'),
         pnpmWorkspaceYML,
@@ -97,10 +98,15 @@ export const main = async () => {
       path.join(projectWorkdir, 'packages/generator/dist/bin.js'),
       '',
     )
+
+    console.log(
+      colors.cyan(`${pkgManager} Workspace`),
+      'configured correctly\n',
+    )
   }
 
   let installCommand = ''
-  switch (answers.packageManager) {
+  switch (pkgManager) {
     case 'npm':
       installCommand = 'npm i'
       break
@@ -124,9 +130,13 @@ export const main = async () => {
     const generatorLocation = usingWorkspaces
       ? `${workingDir}/packages/generator`
       : workingDir
+
+    const buildCommand = `${
+      pkgManager === 'npm' ? 'npm run' : pkgManager
+    } build`
     runBlockingCommand(
       'Generator',
-      `${generatorLocation} && ${answers.packageManager} build`,
+      `${generatorLocation} && ${buildCommand}`,
       'Building',
     )
 

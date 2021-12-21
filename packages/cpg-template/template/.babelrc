@@ -12,9 +12,5 @@
   "plugins": [
     "@babel/plugin-proposal-class-properties",
     "@babel/plugin-proposal-object-rest-spread"
-  ],
-  "ignore": [
-    "**/__tests__", // ignore the whole test directory
-    "**/*.test.js" // ignore test files only
   ]
 }

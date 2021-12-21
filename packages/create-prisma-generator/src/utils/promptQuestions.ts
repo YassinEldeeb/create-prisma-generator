@@ -17,7 +17,7 @@ export const promptQuestions = async (): Promise<Answers> => {
       type: 'list',
       name: 'packageManager',
       message: 'Which package manager do you want to use',
-      choices: ['npm', 'yarn', 'pnpm'],
+      choices: ['yarn', 'pnpm', 'npm'],
       default: false,
     },
     {

@@ -38,6 +38,14 @@ if (!templateName) {
         ),
       )
       fs.writeFileSync(
+        path.join(process.cwd(), 'packages', templateName, '.npmignore'),
+        fs.readFileSync(
+          path.join(__dirname, 'helpers/addNewTemplate/.npmignore'),
+          'utf-8',
+        ),
+      )
+
+      fs.writeFileSync(
         path.join(process.cwd(), 'packages', templateName, 'package.json'),
         fs
           .readFileSync(
