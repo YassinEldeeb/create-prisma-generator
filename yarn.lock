@@ -9,11 +9,6 @@
   dependencies:
     fs-extra "^10.0.0"
 
-"@cpg-cli/template-gen-usage@1.0.0":
-  version "1.0.2"
-  dependencies:
-    fs-extra "^10.0.0"
-
 "@cpg-cli/template-typescript@1.0.12":
   version "1.0.12"
   resolved "https://registry.yarnpkg.com/@cpg-cli/template-typescript/-/template-typescript-1.0.12.tgz#af5876d9cbbc8125a19a337d292246e35d75f0e2"
@@ -21,10 +16,10 @@
   dependencies:
     fs-extra "^10.0.0"
 
-"@cpg-cli/template@1.0.9":
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/@cpg-cli/template/-/template-1.0.9.tgz#947d0332ac676081aa68e30f4fe503a897a27a90"
-  integrity sha512-r8N2Bl7O0NWe+6ZiOQYNAXtkRGO3aoDR1wLGRKLpDfzPJa3+Oe1Mde6avUkpKESbDc35XvT2XJK+1qN54KZB8w==
+"@cpg-cli/template@1.0.10":
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/@cpg-cli/template/-/template-1.0.10.tgz#7d47a8aa30fb074aa6e68e37d1409b6645ad37fa"
+  integrity sha512-eNupbBimZi7kS0cbP6kMXIjFlfwXUQj9Pxc9o8+3F6IzQuUC8GfhEeL6ZCilJoPMC+KhoPtewRg7vfmnVz/zsA==
   dependencies:
     fs-extra "^10.0.0"
 
@@ -418,6 +413,16 @@ core-util-is@~1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.3.tgz#a6042d3634c2b27e9328f837b965fac83808db85"
   integrity sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==
+
+create-prisma-generator@1.0.13:
+  version "1.0.14"
+  dependencies:
+    "@types/fs-extra" "^9.0.13"
+    colors "^1.4.0"
+    fs-extra "^10.0.0"
+    inquirer "^8.2.0"
+    rimraf "^3.0.2"
+    validate-npm-package-name "^3.0.0"
 
 create-require@^1.1.0:
   version "1.1.1"

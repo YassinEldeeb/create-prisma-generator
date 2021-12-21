@@ -14,9 +14,6 @@
     "start": "node index.js",
     "publish": "yarn publish"
   },
-  "dependencies": {
-    "publish": "yarn publish"
-  },
   "publishConfig": {
     "access": "public"
   }

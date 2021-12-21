@@ -1,11 +1,11 @@
 {
   "name": "@cpg-cli/template",
-  "version": "1.0.10",
+  "version": "1.0.12",
   "main": "index.js",
   "license": "MIT",
   "type": "module",
   "bin": {
-    "cpg-template": "dist/index.js"
+    "cpg-template": "index.js"
   },
   "files": [
     "template"
