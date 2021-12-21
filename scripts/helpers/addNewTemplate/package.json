@@ -1,5 +1,5 @@
 {
-  "name": "@cpg/$PKG_NAME",
+  "name": "@cpg-cli/$PKG_NAME",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -11,6 +11,9 @@
     "template"
   ],
   "dependencies": {
-    "@cpg/common": "1.0.0"
+    "@cpg-cli/common": "1.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

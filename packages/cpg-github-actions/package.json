@@ -1,5 +1,5 @@
 {
-  "name": "@cpg/github-actions",
+  "name": "@cpg-cli/github-actions",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -7,10 +7,16 @@
   "bin": {
     "cpg-github-actions": "index.js"
   },
+  "scripts": {
+    "publish": "yarn publish"
+  },
   "files": [
     "template"
   ],
   "dependencies": {
-    "@cpg/common": "1.0.0"
+    "@cpg-cli/common": "1.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

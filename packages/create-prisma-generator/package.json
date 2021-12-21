@@ -14,6 +14,7 @@
     "dev": "tsc -w",
     "build": "tsc",
     "prepack": "yarn build",
+    "publish": "yarn publish",
     "test": "jest"
   },
   "dependencies": {
@@ -32,7 +33,10 @@
     "tsc-watch": "^4.5.0",
     "typescript": "^4.5.4",
     "nodemon": "^2.0.15",
-    "concurrently": "^6.5.1"
+    "concurrently": "^6.5.1",
+    "@cpg-cli/github-actions": "1.0.0",
+    "@cpg-cli/template": "1.0.0",
+    "@cpg-cli/template-typescript": "1.0.0"
   },
   "homepage": "https://github.com/YassinEldeeb/create-prisma-generator",
   "repository": {

@@ -1,19 +1,23 @@
 {
-  "name": "@cpg/template-typescript",
-  "version": "1.0.0",
+  "name": "@cpg-cli/template-typescript",
+  "version": "1.0.1",
   "main": "index.js",
   "license": "MIT",
   "type": "module",
   "bin": {
-    "cpg-template-typescript": "dist/index.js"
+    "cpg-template-typescript": "index.js"
   },
   "files": [
     "template"
   ],
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "publish": "yarn publish"
   },
   "dependencies": {
-    "@cpg/common": "1.0.0"
+    "@cpg-cli/common": "1.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

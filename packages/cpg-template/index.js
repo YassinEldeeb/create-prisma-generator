@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { copyTemplate } from '@cpg/common'
+import { copyTemplate } from '@cpg-cli/common'
 import path, { dirname } from 'path'
 import { fileURLToPath } from 'url'
 

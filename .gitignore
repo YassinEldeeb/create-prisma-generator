@@ -6,5 +6,4 @@ pnpm-debug.log
 .env*
 .yalc
 my-gen
-cli-usage
 .turbo

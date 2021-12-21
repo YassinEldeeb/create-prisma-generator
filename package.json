@@ -4,7 +4,8 @@
     "packages/*"
   ],
   "scripts": {
-    "new-template": "ts-node ./scripts/addNewTemplate.ts"
+    "new-template": "ts-node ./scripts/addNewTemplate.ts",
+    "build": "turbo run build"
   },
   "devDependencies": {
     "ts-node": "^10.4.0",
@@ -26,6 +27,11 @@
       },
       "dev": {
         "cache": false
+      },
+      "publish": {
+        "dependsOn": [
+          "^build"
+        ]
       }
     }
   }

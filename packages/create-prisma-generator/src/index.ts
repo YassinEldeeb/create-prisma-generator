@@ -1,9 +1,10 @@
 import { execSync, spawn } from 'child_process'
 import colors from 'colors'
 import fs from 'fs'
-import fse from 'fs-extra'
 import path from 'path'
+import { runCommand } from './utils/runCommand'
 import { promptQuestions } from './utils/promptQuestions'
+import { replacePlaceholders } from './utils/replacePlaceholders'
 
 export const main = async () => {
   const answers = await promptQuestions()
@@ -15,47 +16,41 @@ export const main = async () => {
     return
   }
 
-  if (answers.typescript && answers.packageManager === 'yarn') {
-    fse.copySync(
-      path.join(__dirname, './templates/typescript/yarn'),
-      path.join(process.cwd(), pkgName),
-      {
-        filter: (src, dest) => {
-          return (
-            !dest.includes('node_modules') &&
-            !dest.includes('yalc') &&
-            !dest.includes('yarn.lock')
-          )
-        },
-      },
-    )
+  if (answers.typescript) {
+    const templateName = 'Typescript Template'
+    const command = `npx @cpg-cli/template-typescript ${pkgName}`
+    runCommand(templateName, command)
   }
 
   if (answers.githubAction) {
-    fse.copySync(
-      path.join(__dirname, './templates/common/.github'),
-      path.join(process.cwd(), `./${pkgName}/.github`),
-    )
+    const templateName = 'Github action Template'
+    const command = `npx @cpg-cli/github-actions ${pkgName}`
+    runCommand(templateName, command)
   }
 
-  const filesContainingPkgName = [
-    './README.md',
-    './packages/generator/package.json',
-    './packages/generator/README.md',
-    './packages/generator/src/constants.ts',
-    './packages/usage/package.json',
-    './packages/usage/prisma/schema.prisma',
-  ]
+  replacePlaceholders(answers, pkgName)
 
-  filesContainingPkgName.forEach((filePath) => {
-    const fullPath = path.join(process.cwd(), pkgName, filePath)
-    const file = fs.readFileSync(fullPath, { encoding: 'utf-8' })
+  if (answers.packageManager === 'yarn') {
+    const yarnWorkspaceJSON = {
+      private: true,
+      workspaces: ['packages/*'],
+    }
+    fs.writeFileSync(
+      path.join(process.cwd(), pkgName, 'package.json'),
+      JSON.stringify(yarnWorkspaceJSON, null, 2),
+    )
+  } else if (answers.packageManager === 'pnpm') {
+    const pnpmWorkspaceYML = `packages:
+  # all packages in subdirs of packages/
+  - 'packages/**'
+  # exclude packages that are inside test directories
+  - '!**/test/**'`
 
     fs.writeFileSync(
-      fullPath,
-      file.replace(/\$PACKAGE_NAME/g, pkgName.toLowerCase()),
+      path.join(process.cwd(), pkgName, 'pnpm-workspace.yaml'),
+      pnpmWorkspaceYML,
     )
-  })
+  }
 
   let installCommand = ''
   switch (answers.packageManager) {
@@ -70,6 +65,14 @@ export const main = async () => {
       break
   }
 
+  // Simulating a dist folder
+  // to make pnpm happy
+  fs.mkdirSync(path.join(process.cwd(), pkgName, 'packages/generator/dist'))
+  fs.writeFileSync(
+    path.join(process.cwd(), pkgName, 'packages/generator/dist/bin.js'),
+    '',
+  )
+
   // Install packages
   const workingDir = `cd ${pkgName}`
 
@@ -77,6 +80,11 @@ export const main = async () => {
     shell: true,
     stdio: 'inherit',
   }).on('exit', () => {
+    runCommand(
+      'Generator',
+      `${workingDir}/packages/generator && ${answers.packageManager} build`,
+      'Building',
+    )
     console.log(colors.green(`Your boilerplate is ready!`))
     console.log(`Start hacking 😉`)
     console.log(workingDir)

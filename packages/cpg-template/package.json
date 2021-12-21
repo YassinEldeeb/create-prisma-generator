@@ -1,5 +1,5 @@
 {
-  "name": "@cpg/template",
+  "name": "@cpg-cli/template",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -11,12 +11,16 @@
     "template"
   ],
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "publish": "yarn publish"
   },
   "dependencies": {
-    "@cpg/common": "1.0.0"
+    "@cpg-cli/common": "1.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
