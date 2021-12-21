@@ -69,7 +69,7 @@ export const main = async () => {
     runBlockingCommand(templateName, command)
   }
 
-  if (answers.setupCI === 'Github Actions') {
+  if (answers.githubActions) {
     const templateName = 'Github actions Template'
     const command = `npx @cpg-cli/github-actions@latest ${pkgName}`
     runBlockingCommand(templateName, command)

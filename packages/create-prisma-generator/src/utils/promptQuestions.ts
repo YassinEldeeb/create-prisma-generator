@@ -21,11 +21,9 @@ export const promptQuestions = async (): Promise<Answers> => {
       default: 'pnpm',
     },
     {
-      type: 'list',
-      name: 'setupCI',
-      message: 'Automate publishing the generator with which CI',
-      choices: ['None, Thank you', 'Github Actions', 'Circle CI', 'Travis CI'],
-      default: 'None, Thank you',
+      type: 'confirm',
+      name: 'githubActions',
+      message: 'Automate publishing the generator with Github Actions',
     },
     {
       type: 'confirm',
