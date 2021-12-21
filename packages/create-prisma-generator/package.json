@@ -26,11 +26,11 @@
     "validate-npm-package-name": "^3.0.0"
   },
   "devDependencies": {
-    "@cpg-cli/github-actions": "1.0.9",
-    "@cpg-cli/template": "1.0.10",
-    "@cpg-cli/template-gen-usage": "1.0.2",
-    "@cpg-cli/template-typescript": "1.0.12",
-    "@cpg-cli/root-configs": "1.0.2",
+    "@cpg-cli/github-actions": "workspace:*",
+    "@cpg-cli/template": "workspace:*",
+    "@cpg-cli/template-gen-usage": "workspace:*",
+    "@cpg-cli/template-typescript": "workspace:*",
+    "@cpg-cli/root-configs": "workspace:*",
     "@types/colors": "^1.2.1",
     "@types/inquirer": "^8.1.3",
     "@types/rimraf": "^3.0.2",

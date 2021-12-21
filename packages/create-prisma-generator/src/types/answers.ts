@@ -3,5 +3,6 @@ export interface Answers {
   typescript: boolean
   packageManager: 'yarn' | 'npm' | 'pnpm'
   githubActions: boolean
+  semanticRelease: boolean
   usageTemplate: boolean
 }

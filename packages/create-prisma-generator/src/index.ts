@@ -14,17 +14,14 @@ export const main = async () => {
 
   const pkgName = answers.generatorName.toLowerCase()
 
-  // Validate Package Name
-  const validPkgName = validatePkgName(pkgName)
-  if (!validPkgName.validForNewPackages) {
-    console.log(colors.red(`"${pkgName}" isn't a valid package name!`))
-    validPkgName.errors?.forEach((e) => console.log(colors.cyan(e)))
-    return
-  }
-
   // Reused variables
   const projectWorkdir = path.join(process.cwd(), pkgName)
   const pkgManager = answers.packageManager
+  const usingWorkspaces = answers.usageTemplate
+  const workingDir = `cd ${pkgName}`
+  const generatorLocation = usingWorkspaces
+    ? `${workingDir}/packages/generator`
+    : workingDir
 
   // Validate if folder with the same name doesn't exist
   if (fs.existsSync(path.join(projectWorkdir))) {
@@ -41,9 +38,6 @@ export const main = async () => {
   const templateName = 'root default configs'
   const command = `npx @cpg-cli/root-configs@latest ${pkgName}`
   runBlockingCommand(templateName, command)
-
-  // Identify a Workspace
-  const usingWorkspaces = answers.usageTemplate
 
   if (answers.usageTemplate) {
     const templateName = 'Usage Template'
@@ -73,6 +67,28 @@ export const main = async () => {
     const templateName = 'Github actions Template'
     const command = `npx @cpg-cli/github-actions@latest ${pkgName}`
     runBlockingCommand(templateName, command)
+
+    // Replace placeholders
+    const workflowPath = path.join(projectWorkdir, '.github/workflows/CI.yml')
+    fs.writeFileSync(
+      workflowPath,
+      fs
+        .readFileSync(workflowPath, 'utf-8')
+        .replace(
+          /\$WORKING_DIR/g,
+          usingWorkspaces ? './packages/generator' : '.',
+        ),
+    )
+    const dependabotPath = path.join(projectWorkdir, '.github/dependabot.yml')
+    fs.writeFileSync(
+      dependabotPath,
+      fs
+        .readFileSync(dependabotPath, 'utf-8')
+        .replace(
+          /\$GENERATOR_DIR/g,
+          usingWorkspaces ? '/packages/generator/' : '/',
+        ),
+    )
   }
 
   // Replace placeholders like $PACKAGE_NAME with actual pkgName
@@ -94,7 +110,7 @@ export const main = async () => {
     }
 
     // Simulating a dist folder
-    // to make pnpm happy
+    // to make pnpm happy :)
     fs.mkdirSync(path.join(projectWorkdir, 'packages/generator/dist'))
     fs.writeFileSync(
       path.join(projectWorkdir, 'packages/generator/dist/bin.js'),
@@ -121,7 +137,6 @@ export const main = async () => {
   }
 
   // Install packages
-  const workingDir = `cd ${pkgName}`
 
   spawn(`${workingDir} && ${installCommand}`, {
     shell: true,
@@ -129,10 +144,6 @@ export const main = async () => {
   }).on('exit', () => {
     // Build the generator package to start
     // testing the generator output
-    const generatorLocation = usingWorkspaces
-      ? `${workingDir}/packages/generator`
-      : workingDir
-
     const buildCommand = `${
       pkgManager === 'npm' ? 'npm run' : pkgManager
     } build`

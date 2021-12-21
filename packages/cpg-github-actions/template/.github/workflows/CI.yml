@@ -28,11 +28,11 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
       - name: Install dependencies 📦
-        working-directory: ./packages/generator
+        working-directory: $WORKING_DIR
         run: yarn --frozen-lockfile
 
       - name: Run Tests 🧪
-        working-directory: ./packages/generator
+        working-directory: $WORKING_DIR
         run: yarn test
 
   Publish:
@@ -54,11 +54,11 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
       - name: Install dependencies 📦
-        working-directory: ./packages/generator
+        working-directory: $WORKING_DIR
         run: yarn install
 
       - name: Publish 🚀
-        working-directory: ./packages/generator
+        working-directory: $WORKING_DIR
         run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
