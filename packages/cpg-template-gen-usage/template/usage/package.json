@@ -1,6 +1,6 @@
 {
   "name": "usage",
-  "private": "true",
+  "private": true,
   "version": "1.0.0",
   "main": "src/app.js",
   "license": "MIT",

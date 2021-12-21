@@ -42,7 +42,8 @@ export const promptQuestions = async (): Promise<Answers> => {
     {
       type: 'confirm',
       name: 'semanticRelease',
-      message: '(Github Actions) Setup semantic release',
+      message:
+        "(Github Actions) Setup automatic semantic release (haven't been implemented yet)",
       when: (answers: Answers) => {
         return answers.githubActions
       },
