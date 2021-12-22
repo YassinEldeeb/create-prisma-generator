@@ -7,7 +7,6 @@ import { promptQuestions } from './utils/promptQuestions'
 import { replacePlaceholders } from './utils/replacePlaceholders'
 import { yarnWorkspaceJSON } from './config/yarn-workspace'
 import { pnpmWorkspaceYML } from './config/pnpm-workspace'
-import validatePkgName from 'validate-npm-package-name'
 
 export const main = async () => {
   const answers = await promptQuestions()
@@ -136,8 +135,8 @@ export const main = async () => {
       break
   }
 
+  console.log(colors.cyan(`Installing dependencies using ${pkgManager}`))
   // Install packages
-
   spawn(`${workingDir} && ${installCommand}`, {
     shell: true,
     stdio: 'inherit',
@@ -160,11 +159,10 @@ export const main = async () => {
 
     // Success Messages
     console.log(colors.green(`Success!`), `Created ${projectWorkdir}`)
-    console.log('\n')
     console.log(`We suggest that you begin by typing:\n`)
     console.log(colors.cyan('cd'), pkgName)
     console.log(colors.cyan('code .'))
-    console.log(`\nStart generating!`)
+    console.log(`\nStart generating ;)`)
   })
 }
 main()

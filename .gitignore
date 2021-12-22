@@ -7,3 +7,4 @@ pnpm-debug.log
 .yalc
 my-gen
 .turbo
+.pnpm-debug.log

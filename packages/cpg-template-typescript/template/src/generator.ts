@@ -17,9 +17,7 @@ generatorHandler({
     options.dmmf.datamodel.enums.forEach(async (enumInfo) => {
       const tsEnum = genEnum(enumInfo)
 
-      const outputPath =
-        path.join(process.cwd(), options.generator.config.outputPath) ||
-        options.generator.output?.value!
+      const outputPath = options.generator.output?.value!
 
       await writeFileSafely(
         path.join(outputPath, `${enumInfo.name}.ts`),

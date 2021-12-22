@@ -8,6 +8,7 @@ export const replacePlaceholders = (answers: Answers, pkgName: string) => {
     './README.md',
     './packages/generator/package.json',
     './packages/generator/README.md',
+    './packages/generator/src/constants.js',
     './packages/generator/src/constants.ts',
     './packages/usage/package.json',
     './packages/usage/prisma/schema.prisma',
@@ -15,6 +16,7 @@ export const replacePlaceholders = (answers: Answers, pkgName: string) => {
     './package.json',
     './README.md',
     './src/constants.ts',
+    './src/constants.js',
   ]
 
   filesContainingPkgName.forEach((filePath) => {

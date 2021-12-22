@@ -3,8 +3,8 @@ generator client {
 }
 
 generator custom_generator {
-  provider   = "$CUSTOM_GENERATOR_PROVIDER"
-  outputPath = "./types"
+  provider = "$CUSTOM_GENERATOR_PROVIDER"
+  output   = "../types"
 }
 
 datasource db {
