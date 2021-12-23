@@ -163,7 +163,7 @@ export const main = async () => {
 
     // Initialize git
     execSync(
-      `${workingDir} && git checkout -b main && git init && git add . && git commit -m"init"`,
+      `${workingDir} && git init && git checkout -b main && git add . && git commit -m"init"`,
     )
     console.log(colors.cyan('\nInitialized a git repository.'))
     console.log(colors.cyan('Created git commit.\n'))
