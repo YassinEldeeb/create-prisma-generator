@@ -53,6 +53,7 @@ export const main = async () => {
     runBlockingCommand(templateName, command)
   }
 
+  // AKA: Javascript
   if (!answers.typescript) {
     const templateName = 'Javascript Template'
     const outputLocation = usingWorkspaces
@@ -88,6 +89,14 @@ export const main = async () => {
           usingWorkspaces ? '/packages/generator/' : '/',
         ),
     )
+  }
+
+  if (answers.semanticRelease) {
+    const templateName = 'Automatic Semantic Release'
+    const command = `npx @cpg-cli/semantic-releases@latest ${pkgName} ${
+      usingWorkspaces ? 'workspace' : ''
+    }`
+    runBlockingCommand(templateName, command, 'Configuring')
   }
 
   // Replace placeholders like $PACKAGE_NAME with actual pkgName
@@ -135,7 +144,7 @@ export const main = async () => {
       break
   }
 
-  console.log(colors.cyan(`Installing dependencies using ${pkgManager}`))
+  console.log(colors.cyan(`Installing dependencies using ${pkgManager}\n`))
   // Install packages
   spawn(`${workingDir} && ${installCommand}`, {
     shell: true,
@@ -153,7 +162,9 @@ export const main = async () => {
     )
 
     // Initialize git
-    execSync(`${workingDir} && git init && git add . && git commit -m"init"`)
+    execSync(
+      `${workingDir} && git checkout -b main && git init && git add . && git commit -m"init"`,
+    )
     console.log(colors.cyan('\nInitialized a git repository.'))
     console.log(colors.cyan('Created git commit.\n'))
 

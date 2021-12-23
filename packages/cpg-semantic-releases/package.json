@@ -1,11 +1,11 @@
 {
-  "name": "@cpg-cli/root-configs",
-  "version": "1.0.14",
+  "name": "@cpg-cli/semantic-releases",
+  "version": "1.0.1",
   "main": "index.js",
   "license": "MIT",
   "type": "module",
   "bin": {
-    "cpg-root-configs": "index.js"
+    "cpg-semantic-releases": "index.js"
   },
   "files": [
     "template"
@@ -15,7 +15,8 @@
     "publish": "yarn publish"
   },
   "dependencies": {
-    "fs-extra": "^10.0.0"
+    "fs-extra": "^10.0.0",
+    "yaml": "^1.10.2"
   },
   "publishConfig": {
     "access": "public"

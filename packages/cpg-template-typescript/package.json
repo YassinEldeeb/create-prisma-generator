@@ -1,6 +1,6 @@
 {
   "name": "@cpg-cli/template-typescript",
-  "version": "1.0.17",
+  "version": "1.0.22",
   "main": "index.js",
   "license": "MIT",
   "type": "module",

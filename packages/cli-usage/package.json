@@ -8,6 +8,7 @@
     "cli": "create-prisma-generator"
   },
   "devDependencies": {
-    "create-prisma-generator": "workspace:*"
+    "create-prisma-generator": "workspace:*",
+    "@cpg-cli/semantic-releases": "workspace:*"
   }
 }
