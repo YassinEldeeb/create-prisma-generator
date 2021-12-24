@@ -90,3 +90,22 @@ runBlockingCommand(templateName, command)
 
 so now It just depends on what you're setting up, you're now equiped with all of the tools/utilities to support other things like other CIs as an example cause currently 
 `Github Actions` is the only supported CI.
+
+# How to Test create-prisma-generator?
+
+The setup I would recommend is running `pnpm dev` in `packages/create-prisma-generator` in a terminal and open another one and `cd packages/cli-usage` where you can find an empty package that has a single purpose of testing your changes to all of the other `packages`.
+
+So if you opened `packages/cli-usage/package.json` you'll see all of the packages linked locally from the workspace **which you'll have to add your own there as well**
+```json
+"devDependencies": {
+    "create-prisma-generator": "workspace:*",
+    "@cpg-cli/semantic-releases": "workspace:*",
+    "@cpg-cli/github-actions": "workspace:*",
+    "@cpg-cli/template": "workspace:*",
+    "@cpg-cli/template-gen-usage": "workspace:*",
+    "@cpg-cli/template-typescript": "workspace:*",
+    "@cpg-cli/root-configs": "workspace:*"
+  }
+```
+
+so after you make changes to any of the listed packages you just run `pnpm cli` to test the main `create-prisma-generator` cli that would execute all of the other tiny CLIs.
