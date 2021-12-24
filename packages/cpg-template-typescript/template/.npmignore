@@ -5,6 +5,5 @@ README.md
 jest.config.js
 yarn.lock
 yarn-error.log
-pnpm-debug.log
-.turbo
+.pnpm-debug.log
 dist

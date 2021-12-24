@@ -1,7 +1,8 @@
 #!/usr/bin/env node
-import path from 'path'
+import path, { dirname } from 'path'
 import fse from 'fs-extra'
 import YAML from 'yaml'
+import { fileURLToPath } from 'url'
 
 // Modify CI.yml Publish workflow
 // To use semantic release
@@ -75,5 +76,37 @@ const releaseConfig = {
 }
 
 PkgJSONFile.release = releaseConfig
-
 fse.writeFileSync(PKGJSONPath, JSON.stringify(PkgJSONFile, null, 2))
+
+// Copy template configs
+const __dirname = dirname(fileURLToPath(import.meta.url))
+fse.copyFileSync(
+  path.join(path.join(__dirname, `./template/commitlint.config.js`)),
+  path.join(workingDir, 'commitlint.config.js'),
+)
+const rootPkgJSONPath = path.join(workingDir, 'package.json')
+const templatePkgJSON = fse.readFileSync(
+  path.join(__dirname, `./template/package.json`),
+  'utf-8',
+)
+
+if (!fse.existsSync(rootPkgJSONPath)) {
+  fse.writeFileSync(rootPkgJSONPath, templatePkgJSON)
+} else {
+  const existingRootPkgJSON = JSON.parse(
+    fse.readFileSync(rootPkgJSONPath, 'utf-8'),
+  )
+
+  // Merge the two package.json(s)
+  fse.writeFileSync(
+    rootPkgJSONPath,
+    JSON.stringify(
+      {
+        ...existingRootPkgJSON,
+        ...JSON.parse(templatePkgJSON),
+      },
+      null,
+      2,
+    ),
+  )
+}

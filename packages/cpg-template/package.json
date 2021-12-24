@@ -1,6 +1,6 @@
 {
   "name": "@cpg-cli/template",
-  "version": "1.0.15",
+  "version": "1.0.17",
   "main": "index.js",
   "license": "MIT",
   "type": "module",

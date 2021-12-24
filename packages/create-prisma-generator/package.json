@@ -1,6 +1,6 @@
 {
   "name": "create-prisma-generator",
-  "version": "1.2.25",
+  "version": "1.2.26",
   "main": "dist/index.js",
   "license": "MIT",
   "bin": {
@@ -26,12 +26,6 @@
     "validate-npm-package-name": "^3.0.0"
   },
   "devDependencies": {
-    "@cpg-cli/github-actions": "workspace:*",
-    "@cpg-cli/template": "workspace:*",
-    "@cpg-cli/template-gen-usage": "workspace:*",
-    "@cpg-cli/template-typescript": "workspace:*",
-    "@cpg-cli/root-configs": "workspace:*",
-    "@cpg-cli/semantic-releases": "workspace:*",
     "@types/colors": "^1.2.1",
     "@types/inquirer": "^8.1.3",
     "@types/rimraf": "^3.0.2",

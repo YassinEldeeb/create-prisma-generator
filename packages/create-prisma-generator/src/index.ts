@@ -1,4 +1,4 @@
-import { execSync, spawn } from 'child_process'
+import { execSync, spawn, spawnSync } from 'child_process'
 import colors from 'colors'
 import fs from 'fs'
 import path from 'path'
@@ -7,6 +7,7 @@ import { promptQuestions } from './utils/promptQuestions'
 import { replacePlaceholders } from './utils/replacePlaceholders'
 import { yarnWorkspaceJSON } from './config/yarn-workspace'
 import { pnpmWorkspaceYML } from './config/pnpm-workspace'
+import { huskyCommitMsgHook } from './config/husky-commit-msg-hook'
 
 export const main = async () => {
   const answers = await promptQuestions()
@@ -32,6 +33,13 @@ export const main = async () => {
     '\nCreating a new Prisma generator in',
     colors.cyan(path.join(projectWorkdir)) + '.\n',
   )
+
+  // Initialize git
+  //! This needs to be at the top cause `husky` won't run
+  //! if there was no repository
+  fs.mkdirSync(projectWorkdir)
+  execSync(`${workingDir} && git init`)
+  console.log(colors.cyan('\nInitialized a git repository.\n'))
 
   // Adding default root configs
   const templateName = 'root default configs'
@@ -91,14 +99,6 @@ export const main = async () => {
     )
   }
 
-  if (answers.semanticRelease) {
-    const templateName = 'Automatic Semantic Release'
-    const command = `npx @cpg-cli/semantic-releases@latest ${pkgName} ${
-      usingWorkspaces ? 'workspace' : ''
-    }`
-    runBlockingCommand(templateName, command, 'Configuring')
-  }
-
   // Replace placeholders like $PACKAGE_NAME with actual pkgName
   // In places where It's needed
   replacePlaceholders(answers, pkgName)
@@ -131,6 +131,17 @@ export const main = async () => {
     )
   }
 
+  //! Should be after initializing the workspace
+  //! to prevent overwritting the package.json
+  //! at the root and merge it instead
+  if (answers.semanticRelease) {
+    const templateName = 'Automatic Semantic Release'
+    const command = `npx @cpg-cli/semantic-releases@latest ${pkgName} ${
+      usingWorkspaces ? 'workspace' : ''
+    }`
+    runBlockingCommand(templateName, command, 'Configuring')
+  }
+
   let installCommand = ''
   switch (pkgManager) {
     case 'npm':
@@ -145,11 +156,30 @@ export const main = async () => {
   }
 
   console.log(colors.cyan(`Installing dependencies using ${pkgManager}\n`))
+
   // Install packages
-  spawn(`${workingDir} && ${installCommand}`, {
+  spawn(installCommand, {
     shell: true,
     stdio: 'inherit',
+    cwd: projectWorkdir,
   }).on('exit', () => {
+    // Switch to 'main' and Commit files
+    execSync(
+      `${workingDir} && git checkout -b main && git add . && git commit -m"init"`,
+    )
+    console.log(colors.cyan('Created git commit.\n'))
+
+    // Add commit-msg husky hook to lint commits
+    // using commitlint before they are created
+    //! must be added after initilizing a git repo
+    //! and after commiting `init` to skip validation
+    if (answers.semanticRelease) {
+      fs.writeFileSync(
+        path.join(projectWorkdir, './.husky/commit-msg'),
+        huskyCommitMsgHook,
+      )
+    }
+
     // Build the generator package to start
     // testing the generator output
     const buildCommand = `${
@@ -160,13 +190,6 @@ export const main = async () => {
       `${generatorLocation} && ${buildCommand}`,
       'Building',
     )
-
-    // Initialize git
-    execSync(
-      `${workingDir} && git init && git checkout -b main && git add . && git commit -m"init"`,
-    )
-    console.log(colors.cyan('\nInitialized a git repository.'))
-    console.log(colors.cyan('Created git commit.\n'))
 
     // Success Messages
     console.log(colors.green(`Success!`), `Created ${projectWorkdir}`)
