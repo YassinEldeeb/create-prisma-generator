@@ -4,9 +4,11 @@ importers:
 
   .:
     specifiers:
+      husky: ^7.0.0
       ts-node: ^10.4.0
       turbo: ^1.0.19
     devDependencies:
+      husky: 7.0.4
       ts-node: 10.4.0
       turbo: 1.0.19
 

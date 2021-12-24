@@ -7,11 +7,13 @@
     "new-template": "ts-node ./scripts/addNewTemplate.ts",
     "guide-dependabot": "ts-node ./scripts/guideDependabot.ts",
     "simulate-dist": "node ./scripts/simulateDist.js",
-    "build": "turbo run build"
+    "build": "turbo run build",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "ts-node": "^10.4.0",
-    "turbo": "^1.0.19"
+    "turbo": "^1.0.19",
+    "husky": "^7.0.0"
   },
   "turbo": {
     "baseBranch": "origin/main",
