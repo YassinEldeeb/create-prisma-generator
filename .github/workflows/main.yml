@@ -38,6 +38,9 @@ jobs:
       - name: Simulate CLI build
         run: pnpm simulate-dist
 
+      - name: Disable husky in CI
+        run: npm ci --omit=dev --ignore-scripts
+
       - name: Install deps
         run: pnpm install --frozen-lockfile
 
