@@ -163,6 +163,17 @@ export const main = async () => {
     stdio: 'inherit',
     cwd: projectWorkdir,
   }).on('exit', () => {
+    // Build the generator package to start
+    // testing the generator output
+    const buildCommand = `${
+      pkgManager === 'npm' ? 'npm run' : pkgManager
+    } build`
+    runBlockingCommand(
+      'Generator',
+      `${generatorLocation} && ${buildCommand}`,
+      'Building',
+    )
+
     // Switch to 'main' and Commit files
     execSync(
       `${workingDir} && git checkout -b main && git add . && git commit -m"init"`,
@@ -180,15 +191,8 @@ export const main = async () => {
       )
     }
 
-    // Build the generator package to start
-    // testing the generator output
-    const buildCommand = `${
-      pkgManager === 'npm' ? 'npm run' : pkgManager
-    } build`
-    runBlockingCommand(
-      'Generator',
-      `${generatorLocation} && ${buildCommand}`,
-      'Building',
+    execSync(
+      `${workingDir} && git add . && git commit -m"feat: added husky for safety commit-msg"`,
     )
 
     // Success Messages
