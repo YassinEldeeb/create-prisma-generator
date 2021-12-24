@@ -8,9 +8,10 @@ we're excited to have you on board!
 
 ## Architecture
 
-Look at the [`Architecture.md`](https://github.com/YassinEldeeb/create-prisma-generator/new/main) to understand how everything is working.
+Look at the [`ARCHITECTURE.md`](https://github.com/YassinEldeeb/create-prisma-generator/new/main) to understand how everything is working.
 
 ## Prerequisites
+
 1. Node.js version installed, [latest LTS is recommended](https://nodejs.org/en/about/releases/)
 2. Install [pnpm](https://pnpm.io) (for installing npm dependencies, using pnpm workspaces)
 
@@ -25,11 +26,15 @@ pnpm i
 ```
 
 ## Add a new template
+
 To make a new template, You need to setup a new package simply by running the following command:
+
 ```sh
 pnpm new-template ${template-name}
 ```
+
 This script will make a new package at `packages/${template-name}` with all of the boilerplate for you to start adding your template
+
 ```diff
 packages
 +└── cpg-new-template
@@ -37,6 +42,7 @@ packages
 +    ├── package.json
 +    └── template
 ```
+
 The generated package contains `index.js` and that acts like a tiny CLI that takes a path as the first argument to identify where to copy the template to.
 
 ```js
@@ -53,7 +59,7 @@ fse.copySync(
 )
 ```
 
-now you can place whatever configs, files, ..etc in the template directory and then PR me so I can review it and gratefully accept 
+now you can place whatever configs, files, ..etc in the template directory and then PR me so I can review it and gratefully accept
 it where It can be published to npm as a scoped package under [`@cpg-cli`](https://www.npmjs.com/org/cpg-cli)
 organization by a [`Github Actions`](https://github.com/features/actions) workflow.
 
@@ -64,12 +70,14 @@ That's a really good question, I'm glad you've asked it
 ## Use Templates in `create-prisma-generate`
 
 In `packages/create-prisma-generator` is where everything takes place, It's the CLI that's responsible for:
+
 1. prompting the questions
 2. validating answers
 3. configuring the boilerplate
 4. executing shell commands to run certain **Tiny CLIs** to do setup things based on the project's information
 
 ### So first:
+
 open `packages/create-prisma-generator/src/utils/promptQuestions.ts` this file contains all of the questions that are prompt to the developers to setup their customized
 project.
 
@@ -88,7 +96,7 @@ const command = `npx @cpg-cli/root-configs@latest ${pkgName}`
 runBlockingCommand(templateName, command)
 ```
 
-so now It just depends on what you're setting up, you're now equiped with all of the tools/utilities to support other things like other CIs as an example cause currently 
+so now It just depends on what you're setting up, you're now equiped with all of the tools/utilities to support other things like other CIs as an example cause currently
 `Github Actions` is the only supported CI.
 
 # How to Test create-prisma-generator?
@@ -96,6 +104,7 @@ so now It just depends on what you're setting up, you're now equiped with all of
 The setup I would recommend is running `pnpm dev` in `packages/create-prisma-generator` in a terminal and open another one and `cd packages/cli-usage` where you can find an empty package that has a single purpose of testing your changes to all of the other `packages`.
 
 So if you opened `packages/cli-usage/package.json` you'll see all of the packages linked locally from the workspace **which you'll have to add your own there as well**
+
 ```json
 "devDependencies": {
     "create-prisma-generator": "workspace:*",
@@ -112,4 +121,4 @@ so after you make changes to any of the listed packages you just run `pnpm cli` 
 
 ## Notes
 
-1. Remember that any commits you'll make has to be named [conventionally](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#-commit-message-format) so that [semantic-release](https://github.com/semantic-release/semantic-release) can pick up the type of change you've made to the packages and bump the packages respectively, but don't worry to much, [Husky](https://github.com/typicode/husky) is setup with [Commitlint](https://github.com/conventional-changelog/commitlint) to validate your commit messages before they're commited and give you some hints to help you write  better commit messages.
+1. Remember that any commits you'll make has to be named [conventionally](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#-commit-message-format) so that [semantic-release](https://github.com/semantic-release/semantic-release) can pick up the type of change you've made to the packages and bump the packages respectively, but don't worry to much, [Husky](https://github.com/typicode/husky) is setup with [Commitlint](https://github.com/conventional-changelog/commitlint) to validate your commit messages before they're commited and give you some hints to help you write better commit messages.
