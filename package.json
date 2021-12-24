@@ -5,7 +5,7 @@
   ],
   "scripts": {
     "new-template": "ts-node ./scripts/addNewTemplate.ts",
-    "simulate-dist": "npx ts-node ./scripts/simulateDist.ts",
+    "simulate-dist": "node ./scripts/simulateDist.js",
     "build": "turbo run build"
   },
   "devDependencies": {
