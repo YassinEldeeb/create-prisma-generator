@@ -109,3 +109,7 @@ So if you opened `packages/cli-usage/package.json` you'll see all of the package
 ```
 
 so after you make changes to any of the listed packages you just run `pnpm cli` to test the main `create-prisma-generator` cli that would execute all of the other tiny CLIs.
+
+## Notes
+
+1. Remember that any commits you'll make has to be named [conventionally](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#-commit-message-format) so that semantic-release can pick up the type of change you've made to the packages, but don't worry to much, [Husky](https://github.com/typicode/husky) is setup with [Commitlint](https://github.com/conventional-changelog/commitlint) to validate your commit messages before they're commited and give you some hints to help you write  better commit messages.
