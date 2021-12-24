@@ -30,7 +30,6 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
       - name: Publish 🚀
-        working-directory: ./packages/generator
         run: npx turbo run semantic-release -e semantic-release-monorepo
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
