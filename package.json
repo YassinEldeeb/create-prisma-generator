@@ -13,6 +13,11 @@
     "ts-node": "^10.4.0",
     "turbo": "^1.0.19"
   },
+  "release": {
+    "branches": [
+      "main"
+    ]
+  },
   "turbo": {
     "baseBranch": "origin/main",
     "pipeline": {
