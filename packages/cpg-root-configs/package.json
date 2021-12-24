@@ -25,10 +25,12 @@
   "publishConfig": {
     "access": "public"
   },
+  "homepage": "https://github.com/YassinEldeeb/create-prisma-generator",
   "repository": {
     "type": "git",
     "url": "https://github.com/YassinEldeeb/create-prisma-generator.git"
   },
+  "author": "Yassin Eldeeb <yassineldeeb94@gmail.com>",
   "release": {
     "branches": [
       "main"
