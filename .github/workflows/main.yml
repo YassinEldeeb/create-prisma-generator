@@ -35,6 +35,9 @@ jobs:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
+      - name: Install deps
+        run: pnpm install
+
       - name: Publish 🚀
         run: npx turbo run publish
         env:
