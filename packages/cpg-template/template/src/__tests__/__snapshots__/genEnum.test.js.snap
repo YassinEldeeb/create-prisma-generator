@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`enum generation | Language 1`] = `
+exports[`enum generation: Language 1`] = `
 "enum Language { 
 Typescript=\\"Typescript\\",
 Javascript=\\"Javascript\\",
@@ -11,7 +11,7 @@ Cpp=\\"Cpp\\"
  }"
 `;
 
-exports[`enum generation | NotificationType 1`] = `
+exports[`enum generation: NotificationType 1`] = `
 "enum NotificationType { 
 newPosts=\\"newPosts\\",
 newComments=\\"newComments\\",
@@ -20,5 +20,13 @@ reply=\\"reply\\",
 heartOnPost=\\"heartOnPost\\",
 heartOnComment=\\"heartOnComment\\",
 heartOnReply=\\"heartOnReply\\"
+ }"
+`;
+
+exports[`enum generation: State 1`] = `
+"enum State { 
+Active=\\"Active\\",
+Pending=\\"Pending\\",
+Banned=\\"Banned\\"
  }"
 `;
