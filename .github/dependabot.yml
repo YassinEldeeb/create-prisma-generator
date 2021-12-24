@@ -5,7 +5,44 @@
 
 version: 2
 updates:
-  - package-ecosystem: 'npm' # See documentation for possible values
-    directory: '/packages/create-prisma-generator' # Location of package manifests
+  - package-ecosystem: 'npm'
+    directory: '/packages/create-prisma-generator'
     schedule:
       interval: 'daily'
+
+  # Checking for dependencies in templates *weekly*
+  - package-ecosystem: 'npm'
+    directory: '/packages/create-prisma-generator'
+    schedule:
+      interval: 'daily'
+
+  # ADDED PROGRAMATICALLY
+  - package-ecosystem: 'npm'
+    directory: '/packages/cpg-github-actions/template'
+    schedule:
+      interval: 'weekly'
+
+  - package-ecosystem: 'npm'
+    directory: '/packages/cpg-root-configs/template'
+    schedule:
+      interval: 'weekly'
+
+  - package-ecosystem: 'npm'
+    directory: '/packages/cpg-semantic-releases/template'
+    schedule:
+      interval: 'weekly'
+
+  - package-ecosystem: 'npm'
+    directory: '/packages/cpg-template/template'
+    schedule:
+      interval: 'weekly'
+
+  - package-ecosystem: 'npm'
+    directory: '/packages/cpg-template-gen-usage/template'
+    schedule:
+      interval: 'weekly'
+
+  - package-ecosystem: 'npm'
+    directory: '/packages/cpg-template-typescript/template'
+    schedule:
+      interval: 'weekly'

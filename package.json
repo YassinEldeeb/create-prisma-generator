@@ -5,6 +5,7 @@
   ],
   "scripts": {
     "new-template": "ts-node ./scripts/addNewTemplate.ts",
+    "guide-dependabot": "ts-node ./scripts/guideDependabot.ts",
     "simulate-dist": "node ./scripts/simulateDist.js",
     "build": "turbo run build"
   },
