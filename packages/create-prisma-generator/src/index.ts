@@ -200,7 +200,7 @@ export const main = async () => {
     console.log(`We suggest that you begin by typing:\n`)
     console.log(colors.cyan('cd'), pkgName)
     console.log(colors.cyan('code .'))
-    console.log(`\nStart Generating ;)`)
+    console.log(`\nStart generating ;)`)
   })
 }
 main()
