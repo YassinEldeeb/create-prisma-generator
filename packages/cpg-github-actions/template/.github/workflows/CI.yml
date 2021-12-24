@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 15.x, 16.x]
+        node-version: [16.x]
         os: [ubuntu-latest, windows-latest]
 
     steps:
@@ -34,12 +34,6 @@ jobs:
       - name: Run Tests 🧪
         working-directory: $WORKING_DIR
         run: yarn test
-
-      - name: Upload tests coverage to Codecov
-        uses: codecov/codecov-action@v2
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          working-directory: $WORKING_DIR
 
   Publish:
     runs-on: ubuntu-latest
