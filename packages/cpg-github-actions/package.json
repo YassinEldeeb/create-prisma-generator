@@ -14,7 +14,7 @@
     "fs-extra": "^10.0.0"
   },
   "devDependencies": {
-    "publish": "^18.0.1",
+    "semantic-release": "^18.0.1",
     "semantic-release-monorepo": "^7.0.5"
   },
   "files": [
