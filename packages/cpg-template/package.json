@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "publish": "yarn publish"
+    "publish": "semantic-release -e semantic-release-monorepo"
   },
   "publishConfig": {
     "access": "public"

@@ -18,7 +18,7 @@
     "semantic-release-monorepo": "^7.0.5"
   },
   "scripts": {
-    "publish": "yarn publish"
+    "publish": "semantic-release -e semantic-release-monorepo"
   },
   "publishConfig": {
     "access": "public"
