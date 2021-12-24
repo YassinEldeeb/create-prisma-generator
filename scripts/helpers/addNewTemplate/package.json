@@ -22,9 +22,6 @@
     "start": "node index.js",
     "publish": "semantic-release -e semantic-release-monorepo"
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/YassinEldeeb/create-prisma-generator.git"

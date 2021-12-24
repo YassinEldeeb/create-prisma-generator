@@ -23,9 +23,6 @@
     "semantic-release-monorepo": "^7.0.5",
     "@semantic-release/git": "^10.0.1"
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "homepage": "https://github.com/YassinEldeeb/create-prisma-generator",
   "repository": {
     "type": "git",
