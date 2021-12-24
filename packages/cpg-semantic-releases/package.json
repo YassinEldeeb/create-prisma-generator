@@ -20,7 +20,8 @@
   },
   "devDependencies": {
     "semantic-release": "^18.0.1",
-    "semantic-release-monorepo": "^7.0.5"
+    "semantic-release-monorepo": "^7.0.5",
+    "@semantic-release/git": "^10.0.1"
   },
   "publishConfig": {
     "access": "public"
@@ -28,6 +29,17 @@
   "release": {
     "branches": [
       "main"
+    ],
+    "plugins": [
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "package.json"
+          ],
+          "message": "chore(release): set `package.json` to ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ]
     ]
   }
 }

@@ -37,7 +37,8 @@
     "tsc-watch": "^4.5.0",
     "typescript": "^4.5.4",
     "semantic-release": "^18.0.1",
-    "semantic-release-monorepo": "^7.0.5"
+    "semantic-release-monorepo": "^7.0.5",
+    "@semantic-release/git": "^10.0.1"
   },
   "homepage": "https://github.com/YassinEldeeb/create-prisma-generator",
   "repository": {
@@ -58,6 +59,17 @@
   "release": {
     "branches": [
       "main"
+    ],
+    "plugins": [
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "package.json"
+          ],
+          "message": "chore(release): set `package.json` to ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ]
     ]
   }
 }
