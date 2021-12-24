@@ -6,8 +6,8 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
-    
+    branches: [main]
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -31,7 +31,7 @@ jobs:
 
       - name: Publish 🚀
         working-directory: ./packages/generator
-        run: yarn turbo run semantic-release -e semantic-release-monorepo
+        run: npx turbo run semantic-release -e semantic-release-monorepo
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

@@ -35,7 +35,9 @@
     "copyfiles": "^2.4.1",
     "nodemon": "^2.0.15",
     "tsc-watch": "^4.5.0",
-    "typescript": "^4.5.4"
+    "typescript": "^4.5.4",
+    "semantic-release": "^18.0.1",
+    "semantic-release-monorepo": "^7.0.5"
   },
   "homepage": "https://github.com/YassinEldeeb/create-prisma-generator",
   "repository": {
@@ -52,5 +54,10 @@
     "boilerplate",
     "setup",
     "development"
-  ]
+  ],
+  "release": {
+    "branches": [
+      "main"
+    ]
+  }
 }

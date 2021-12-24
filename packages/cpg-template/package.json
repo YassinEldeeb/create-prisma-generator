@@ -13,11 +13,20 @@
   "dependencies": {
     "fs-extra": "^10.0.0"
   },
+  "devDependencies": {
+    "semantic-release": "^18.0.1",
+    "semantic-release-monorepo": "^7.0.5"
+  },
   "scripts": {
     "start": "node index.js",
     "publish": "yarn publish"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
   }
 }
