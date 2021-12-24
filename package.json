@@ -8,6 +8,8 @@
     "build": "turbo run build"
   },
   "devDependencies": {
+    "semantic-release": "^18.0.1",
+    "semantic-release-monorepo": "^7.0.5",
     "ts-node": "^10.4.0",
     "turbo": "^1.0.19"
   },
