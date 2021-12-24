@@ -1,7 +1,12 @@
 {
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/cpg-github-actions",
+    "packages/cpg-root-configs",
+    "packages/cpg-semantic-releases",
+    "packages/cpg-template",
+    "packages/cpg-template-gen-usage",
+    "packages/create-prisma-generator"
   ],
   "scripts": {
     "new-template": "ts-node ./scripts/addNewTemplate.ts",

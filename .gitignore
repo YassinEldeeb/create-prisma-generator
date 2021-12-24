@@ -2,7 +2,7 @@ dist
 node_modules
 yarn-error.log
 build
-pnpm-debug.log
+.pnpm-debug.log
 .env*
 .yalc
 my-gen
