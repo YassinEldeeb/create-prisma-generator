@@ -1,4 +1,5 @@
-![Banner Image](https://github.com/YassinEldeeb/create-prisma-generator/blob/main/images/banner.png)
+![Banner Image](https://github.com/YassinEldeeb/create-prisma-generator/blob/main/images/cool-banner.png)
+
 <div align="center">
   <a href="https://www.npmjs.com/package/create-prisma-generator"><img src="https://img.shields.io/npm/v/create-prisma-generator.svg?style=flat" /></a>
   <a href="https://github.com/prisma/prisma/blob/main/CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" /></a>
