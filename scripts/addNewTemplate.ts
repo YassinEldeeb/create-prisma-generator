@@ -10,6 +10,7 @@ const kebabize = (str: string) =>
       /[A-Z]+(?![a-z])|[A-Z]/g,
       ($, ofs) => (ofs ? '-' : '') + $.toLowerCase(),
     )
+
 const templateName = kebabize(process.argv[2] || '')
 
 if (!templateName) {
@@ -56,12 +57,28 @@ if (!templateName) {
           .replace('$PKG_BIN', templateName),
       )
 
-      spawn(`cd packages/${templateName} && ls && yarn`, {
+      spawn(`cd packages/${templateName} && pnpm i`, {
         shell: true,
         stdio: 'inherit',
       }).on('exit', () => {
-        logger.success(`Your template is ready!`)
-        console.log(`Start hacking 😉`)
+        const cliUsagePkgJSONPath = path.join(
+          process.cwd(),
+          'packages/cli-usage',
+          'package.json',
+        )
+        const cliUsagePkgJSON = JSON.parse(
+          fs.readFileSync(cliUsagePkgJSONPath, 'utf-8'),
+        )
+        cliUsagePkgJSON.devDependencies[
+          `@cpg-cli/${templateName.replace('cpg-', '')}`
+        ] = 'workspace:*'
+        fs.writeFileSync(
+          cliUsagePkgJSONPath,
+          JSON.stringify(cliUsagePkgJSON, null, 2),
+        )
+
+        logger.success(`Your template is ready at 'packages/${templateName}'`)
+        console.log(`Start hacking`)
       })
     }
   }
