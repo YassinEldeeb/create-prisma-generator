@@ -35,6 +35,31 @@ export const CLIs = {
 
 Those folders contain scoped npm packages under [**@cpg-cli** organization](https://www.npmjs.com/org/cpg-cli) and those packages are basically **Tiny CLIs** that are responsible for configuring or copying templates(files/folders) to a desired location and are executed by the main CLI `create-prisma-generator` as shell commands.
 
+All of those Tiny CLIs packages are bootstrapped by [this script](https://github.com/YassinEldeeb/create-prisma-generator/blob/main/scripts/addNewTemplate.ts) which follow the same structure
+
+the template folder contains files/folders that are copied to the desired location as provided in the first argument when running the CLI.
+
+```
+packages
+└── cpg-new-template
+    ├── index.js
+    ├── package.json
+    └── template
+```
+
+## But hey why typescript/javascript templates use hardcoded versions for their dependencies?
+
+At first you might see this approach super wrong and think of why not installing the latest versions of the dependencies but this is the same approuch used in [create-react-app](https://github.com/facebook/create-react-app/blob/main/packages/cra-template-typescript/template.json) but why?
+
+This approuch called Locking dependencies which means to set hardcoded versions for external/untrusted packages that can break unexpectedly with any release.
+
+### but then, How those dependencies can be updated? manually?
+Dependabot is configured to watch dependencies in every `package.json` that's located under a template folder which run before committing using [Husky](https://github.com/typicode/husky).
+
+Dependabot is configured programmatically using [this script](https://github.com/YassinEldeeb/create-prisma-generator/blob/main/scripts/guideDependabot.ts), We're not doing anything manually here 😄.
+
+Dependabot is gonna PR me with the latest versions of the dependencies **weekly** so I can review and merge them which will update the templates' package.json(s) and publish them automatically using [this github action workflow](https://github.com/YassinEldeeb/create-prisma-generator/blob/main/.github/workflows/publish.yml)
+
 ## Why splitting templates/configs into different packages?
 
 1. This ensures that developers only download what they asked for.
@@ -47,7 +72,7 @@ Those folders contain scoped npm packages under [**@cpg-cli** organization](http
 
 This stores the blogs published to [dev.to/YassinEldeeb](https://dev.to/YassinEldeeb) where I explain more about the generated boilerplate and prisma generators.
 
-Those blogs are updated automatically via a github action workflow.
+Those blogs are updated automatically via [this github action workflow](https://github.com/YassinEldeeb/create-prisma-generator/blob/main/.github/workflows/update-blogs.yml).
 
 This enable a waterfall of features that couldn't be possible before:
 1. History of changes, compare when editing.
