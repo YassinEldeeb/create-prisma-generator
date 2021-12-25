@@ -45,7 +45,7 @@ Those folders contain scoped npm packages under [**@cpg-cli** organization](http
 
 ## What's the `dev.to` directory in the root?
 
-This stores the blogs published to [dev.to/YassinEldeeb](https://dev.to/YassinEldeeb) where I explain more about the generated boilerplate and prisma generators in general.
+This stores the blogs published to [dev.to/YassinEldeeb](https://dev.to/YassinEldeeb) where I explain more about the generated boilerplate and prisma generators.
 
 Those blogs are updated automatically via a github action workflow.
 
