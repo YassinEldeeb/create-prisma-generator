@@ -10,6 +10,8 @@
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://dev.to/yassineldeeb">Blog</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://github.com/YassinEldeeb/create-prisma-generator/blob/main/ARCHITECTURE.md">Architecture</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://twitter.com/YassinEldeeb7">Twitter</a>
   <br />
   <hr />
