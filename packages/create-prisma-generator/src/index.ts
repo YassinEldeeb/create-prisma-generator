@@ -1,4 +1,4 @@
-import { execSync, spawn, spawnSync } from 'child_process'
+import { execSync, spawn } from 'child_process'
 import colors from 'colors'
 import fs from 'fs'
 import path from 'path'
@@ -43,13 +43,11 @@ export const main = async () => {
 
   // Adding default root configs
   const templateName = 'root default configs'
-  const command = `npx @cpg-cli/root-configs@latest ${pkgName}`
-  runBlockingCommand(templateName, command)
+  runBlockingCommand(templateName, CLIs.rootConfigs(pkgName))
 
   if (answers.usageTemplate) {
     const templateName = 'Usage Template'
-    const command = `npx @cpg-cli/template-gen-usage@latest ${pkgName}/packages`
-    runBlockingCommand(templateName, command)
+    runBlockingCommand(templateName, CLIs.usageTemplate(pkgName))
   }
 
   if (answers.typescript) {
@@ -57,8 +55,7 @@ export const main = async () => {
     const outputLocation = usingWorkspaces
       ? `${pkgName}/packages/generator`
       : pkgName
-    const command = `npx @cpg-cli/template-typescript@latest ${outputLocation}`
-    runBlockingCommand(templateName, command)
+    runBlockingCommand(templateName, CLIs.typescriptTemplate(outputLocation))
   }
 
   // AKA: Javascript
@@ -67,14 +64,13 @@ export const main = async () => {
     const outputLocation = usingWorkspaces
       ? `${pkgName}/packages/generator`
       : pkgName
-    const command = `npx @cpg-cli/template@latest ${outputLocation}`
-    runBlockingCommand(templateName, command)
+
+    runBlockingCommand(templateName, CLIs.javascriptTemplate(outputLocation))
   }
 
   if (answers.githubActions) {
     const templateName = 'Github actions Template'
-    const command = `npx @cpg-cli/github-actions@latest ${pkgName}`
-    runBlockingCommand(templateName, command)
+    runBlockingCommand(templateName, CLIs.githubActionsTemplate(pkgName))
 
     // Replace placeholders
     const workflowPath = path.join(projectWorkdir, '.github/workflows/CI.yml')
@@ -136,10 +132,12 @@ export const main = async () => {
   //! at the root and merge it instead
   if (answers.semanticRelease) {
     const templateName = 'Automatic Semantic Release'
-    const command = `npx @cpg-cli/semantic-releases@latest ${pkgName} ${
-      usingWorkspaces ? 'workspace' : ''
-    }`
-    runBlockingCommand(templateName, command, 'Configuring')
+    const workspaceFlag = usingWorkspaces ? 'workspace' : ''
+    runBlockingCommand(
+      templateName,
+      CLIs.setupSemanticRelease(pkgName, workspaceFlag),
+      'Configuring',
+    )
   }
 
   let installCommand = ''
@@ -158,6 +156,9 @@ export const main = async () => {
   console.log(colors.cyan(`Installing dependencies using ${pkgManager}\n`))
 
   // Install packages
+  //? Using spawn and not spawnSync here so that
+  //? It's pretty obvious to me where the end
+  //? of the setup is
   spawn(installCommand, {
     shell: true,
     stdio: 'inherit',
