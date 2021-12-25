@@ -1,0 +1,26 @@
+name: Deploy Blogs
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        uses: bahmutov/npm-install@v1
+        with:
+          working-directory: packages/dev.to
+
+      - name: Run Prettier
+        run: yarn run prettier:check
+
+      - name: Run Embedme
+        run: yarn run embedme:check
+
+      - name: Deploy to dev.to
+        run: DEV_TO_GIT_TOKEN=${{ secrets.DEV_TO_GIT_TOKEN }} yarn run dev-to-git

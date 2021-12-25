@@ -1,0 +1,23 @@
+{
+  "name": "dev.to",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YassinEldeeb/create-prisma-generator.git"
+  },
+  "scripts": {
+    "prettier": "prettier",
+    "embedme": "embedme blog-posts/**/*.md",
+    "prettier:base": "yarn run prettier \"**/*.{js,json,scss,md,ts,html,component.html}\"",
+    "prettier:write": "yarn run prettier:base --write",
+    "prettier:check": "yarn run prettier:base --list-different",
+    "embedme:check": "yarn run embedme --verify",
+    "embedme:write": "yarn run embedme",
+    "dev-to-git": "dev-to-git"
+  },
+  "dependencies": {
+    "dev-to-git": "1.1.0",
+    "embedme": "1.11.0",
+    "prettier": "1.18.2"
+  }
+}
