@@ -6,7 +6,7 @@ description: 'Guide to make a prisma generator'
 tags: typescript, javascript, prisma, generator
 ---
 
-Usage:
+Usage1:
 
 ```ts
 // code/usage.ts
