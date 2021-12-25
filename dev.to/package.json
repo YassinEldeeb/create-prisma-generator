@@ -7,7 +7,7 @@
   },
   "scripts": {
     "prettier": "prettier",
-    "embedme": "embedme blog-posts/**/*.md",
+    "embedme": "embedme blogs/**/*.md",
     "prettier:base": "yarn run prettier \"**/*.{js,json,scss,md,ts,html,component.html}\"",
     "prettier:write": "yarn run prettier:base --write",
     "prettier:check": "yarn run prettier:base --list-different",
