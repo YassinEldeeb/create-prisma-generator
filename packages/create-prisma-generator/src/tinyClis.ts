@@ -1,6 +1,6 @@
 export const CLIs = {
   typescriptTemplate(path: string) {
-    return `npx @cpg-cli/template-gen-usage@latest ${path}`
+    return `npx @cpg-cli/template-typescript@latest ${path}`
   },
   rootConfigs(path: string) {
     return `npx @cpg-cli/root-configs@latest ${path}`
@@ -11,7 +11,6 @@ export const CLIs = {
   javascriptTemplate(path: string) {
     return `npx @cpg-cli/template@latest ${path}`
   },
-
   githubActionsTemplate(path: string) {
     return `npx @cpg-cli/github-actions@latest ${path}`
   },
