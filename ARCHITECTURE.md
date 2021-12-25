@@ -54,7 +54,7 @@ At first you might see this approach super wrong and think of why not installing
 This approuch called Locking dependencies which means to set hardcoded versions for external/untrusted packages that can break unexpectedly with any release.
 
 ### but then, How those dependencies can be updated? manually?
-Dependabot is configured to watch dependencies in every `package.json` that's located under a template folder which run before committing using [Husky](https://github.com/typicode/husky).
+Dependabot is [configured](https://github.com/YassinEldeeb/create-prisma-generator/blob/main/.github/dependabot.yml) to watch dependencies in every `package.json` that's located under a template folder which run before committing using [Husky](https://github.com/typicode/husky).
 
 Dependabot is configured programmatically using [this script](https://github.com/YassinEldeeb/create-prisma-generator/blob/main/scripts/guideDependabot.ts), We're not doing anything manually here 😄.
 
