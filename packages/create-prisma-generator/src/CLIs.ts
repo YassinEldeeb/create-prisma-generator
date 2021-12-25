@@ -1,4 +1,4 @@
-const CLIs = {
+export const CLIs = {
   typescriptTemplate(path: string) {
     return `npx @cpg-cli/template-gen-usage@latest ${path}`
   },
