@@ -1,4 +1,4 @@
-name: Publish
+name: Publish Packages
 
 on:
   push:
@@ -10,6 +10,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 100
       - name: Use Node.js
         uses: actions/setup-node@v2
         with:

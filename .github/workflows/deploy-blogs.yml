@@ -1,15 +1,16 @@
-name: Deploy Blogs
+name: Update Blogs
 
 on:
   push:
     branches: [main]
 
 jobs:
-  build:
-    name: Build
+  Update:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 100
       - name: Use Node.js
         uses: actions/setup-node@v2
         with:
@@ -27,6 +28,7 @@ jobs:
           version: 6.23.6
 
       - uses: actions/cache@v2
+        if: steps.haveBlogsChanged.outputs.changed == 'true'
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
