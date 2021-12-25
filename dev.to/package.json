@@ -8,16 +8,16 @@
   "scripts": {
     "prettier": "prettier",
     "embedme": "embedme blogs/**/*.md",
-    "prettier:base": "yarn run prettier \"**/*.{js,json,scss,md,ts,html,component.html}\"",
-    "prettier:write": "yarn run prettier:base --write",
-    "prettier:check": "yarn run prettier:base --list-different",
-    "embedme:check": "yarn run embedme --verify",
-    "embedme:write": "yarn run embedme",
+    "prettier:base": "pnpm prettier \"**/*.{js,json,scss,md,ts,html,component.html}\"",
+    "prettier:write": "pnpm prettier:base --write",
+    "prettier:check": "pnpm prettier:base --list-different",
+    "embedme:check": "pnpm embedme --verify",
+    "embedme:write": "pnpm embedme",
     "dev-to-git": "dev-to-git"
   },
   "dependencies": {
     "dev-to-git": "^1.4.8",
-    "embedme": "1.11.0",
-    "prettier": "1.18.2"
+    "embedme": "1.22.0",
+    "prettier": "2.5.1"
   }
 }

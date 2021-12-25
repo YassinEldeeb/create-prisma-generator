@@ -19,12 +19,12 @@ importers:
   dev.to:
     specifiers:
       dev-to-git: ^1.4.8
-      embedme: 1.11.0
-      prettier: 1.18.2
+      embedme: 1.22.0
+      prettier: 2.5.1
     dependencies:
       dev-to-git: 1.4.8
-      embedme: 1.11.0
-      prettier: 1.18.2
+      embedme: 1.22.0
+      prettier: 2.5.1
 
   packages/cli-usage:
     specifiers:
@@ -929,6 +929,14 @@ packages:
       escape-string-regexp: 1.0.5
       supports-color: 5.5.0
 
+  /chalk/3.0.0:
+    resolution: {integrity: sha512-4D3B6Wf41KOYRFdszmDqMCGq5VV/uMAB273JILmO+3jAlh8X4qDtdtgCR3fxtbLEMzSx22QdhnDcJvu2u1fVwg==}
+    engines: {node: '>=8'}
+    dependencies:
+      ansi-styles: 4.3.0
+      supports-color: 7.2.0
+    dev: false
+
   /chalk/4.1.2:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
     engines: {node: '>=10'}
@@ -1037,6 +1045,11 @@ packages:
 
   /commander/2.20.3:
     resolution: {integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==}
+    dev: false
+
+  /commander/5.1.0:
+    resolution: {integrity: sha512-P0CysNDQ7rtVw4QIQtm+MRxV66vKFSvlsQvGYXZWR3qFU0jlMKHZZZgw8e+8DSah4UDKMqnknRDQz+xuQXQ/Zg==}
+    engines: {node: '>= 6'}
     dev: false
 
   /compare-func/2.0.0:
@@ -1316,13 +1329,14 @@ packages:
   /duplexer3/0.1.4:
     resolution: {integrity: sha1-7gHdHKwO08vH/b6jfcCo8c4ALOI=}
 
-  /embedme/1.11.0:
-    resolution: {integrity: sha512-m5ywGngWOz74abc2uInIltnZzZ/Uo9iCOwih4weV+7pK/4y07GHygqwYsG0GqWE41q0erlFghphLwEHX1PdbcQ==}
+  /embedme/1.22.0:
+    resolution: {integrity: sha512-WBQnZkgFc/egR+KeC+f382f76dwlLRU6+h2MwWkogYX8lqZeHoYm67pvk6TCTs99W+tC6IiRqUJySwfvclAvYQ==}
     hasBin: true
     dependencies:
-      chalk: 2.4.2
-      commander: 2.20.3
+      chalk: 3.0.0
+      commander: 5.1.0
       gitignore-parser: 0.0.2
+      glob: 7.1.7
     dev: false
 
   /emoji-regex/8.0.0:
@@ -1588,6 +1602,17 @@ packages:
     dependencies:
       is-glob: 4.0.3
     dev: true
+
+  /glob/7.1.7:
+    resolution: {integrity: sha512-OvD9ENzPLbegENnYP5UUfJIirTg4+XwMWGaQfQTY0JenxNvvIKP3U3/tAQSPIu/lHxXYSZmpXlUHeqAIdKzBLQ==}
+    dependencies:
+      fs.realpath: 1.0.0
+      inflight: 1.0.6
+      inherits: 2.0.4
+      minimatch: 3.0.4
+      once: 1.4.0
+      path-is-absolute: 1.0.1
+    dev: false
 
   /glob/7.2.0:
     resolution: {integrity: sha512-lmLf6gtyrPq8tTjSmrO94wBeQbFR3HbLHbuyD69wuyQkImp2hWqMGB47OX65FBkPffO641IP9jWa1z4ivqG26Q==}
@@ -2688,9 +2713,9 @@ packages:
     resolution: {integrity: sha1-6SQ0v6XqjBn0HN/UAddBo8gZ2Jc=}
     engines: {node: '>=4'}
 
-  /prettier/1.18.2:
-    resolution: {integrity: sha512-OeHeMc0JhFE9idD4ZdtNibzY0+TPHSpSSb9h8FqtP+YnoZZ1sl8Vc9b1sasjfymH3SonAF4QcA2+mzHPhMvIiw==}
-    engines: {node: '>=4'}
+  /prettier/2.5.1:
+    resolution: {integrity: sha512-vBZcPRUR5MZJwoyi3ZoyQlc1rXeEck8KgeC9AwwOn+exuxLxq5toTRDTSaVrXHxelDMHy9zlicw8u66yxoSUFg==}
+    engines: {node: '>=10.13.0'}
     hasBin: true
     dev: false
 
