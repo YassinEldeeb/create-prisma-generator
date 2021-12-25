@@ -1,3 +1,1 @@
-# Create Prisma Generator
-
-Get started developing your own ◭ Prisma generator by running a single command.
+![Banner Image](https://github.com/YassinEldeeb/create-prisma-generator/blob/main/images/banner.png)
