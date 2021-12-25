@@ -50,4 +50,4 @@ jobs:
       - name: Deploy to dev.to
         if: steps.haveBlogsChanged.outputs.changed == 'true'
         working-directory: dev.to
-        run: DEV_TO_GIT_TOKEN=${{ secrets.DEV_TO_GIT_TOKEN }} pnpm dev-to-git
+        run: DEV_TO_GIT_TOKEN=${{ secrets.DEV_TOKEN }} pnpm dev-to-git
