@@ -99,7 +99,7 @@ runBlockingCommand(templateName, command)
 so now It just depends on what you're setting up, you're now equiped with all of the tools/utilities to support other things like other CIs as an example cause currently
 `Github Actions` is the only supported CI.
 
-# How to Test create-prisma-generator?
+# How to run create-prisma-generator in development?
 
 The setup I would recommend is running `pnpm dev` in `packages/create-prisma-generator` in a terminal and open another one and `cd packages/cli-usage` where you can find an empty package that has a single purpose of testing your changes to all of the other `packages`.
 
