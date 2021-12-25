@@ -5,7 +5,7 @@ This package is the `main CLI` that prompt questions to developers to know how t
 
 ![terminal screenshot](https://github.com/YassinEldeeb/create-prisma-generator/blob/main/images/npx-create-prisma-generator.png)
 
-And based on the answers It'll execute the other Tiny CLIs to setup & configure different things based on the answers.
+And based on the answers It'll execute the other Tiny CLIs to setup & configure different things.
 ```ts
 export const CLIs = {
   typescriptTemplate(path: string) {
@@ -51,6 +51,6 @@ Those blogs are updated automatically via a github action workflow.
 
 This enable a waterfall of features that couldn't be possible before:
 1. History of changes, compare when editing.
-2. Use [prettier](https://github.com/prettier/prettier) to format the markdown and all the code snippets.
-3. Let people contribute to the blogs by creating a PR against it.
+2. Using [prettier](https://github.com/prettier/prettier) to format the markdown and all the code snippets.
+3. Letting people contribute to the blogs by creating a PR against it.
 4. Managing code examples and update them easier, Thanks to [Embedme](https://github.com/zakhenry/embedme)
