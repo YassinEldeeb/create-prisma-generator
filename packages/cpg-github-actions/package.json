@@ -19,7 +19,7 @@
     "@semantic-release/git": "^10.0.1"
   },
   "files": [
-    "template"
+    "template/**/*"
   ],
   "homepage": "https://github.com/YassinEldeeb/create-prisma-generator",
   "repository": {

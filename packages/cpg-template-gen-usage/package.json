@@ -8,7 +8,7 @@
     "cpg-template-gen-usage": "index.js"
   },
   "files": [
-    "template"
+    "template/**/*"
   ],
   "dependencies": {
     "fs-extra": "^10.0.0"

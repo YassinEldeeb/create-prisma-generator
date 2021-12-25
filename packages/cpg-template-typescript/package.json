@@ -8,7 +8,7 @@
     "cpg-template-typescript": "index.js"
   },
   "files": [
-    "template"
+    "template/**/*"
   ],
   "scripts": {
     "start": "node index.js",

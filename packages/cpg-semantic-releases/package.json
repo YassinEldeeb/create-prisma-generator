@@ -8,7 +8,7 @@
     "cpg-semantic-releases": "index.js"
   },
   "files": [
-    "template"
+    "template/**/*"
   ],
   "scripts": {
     "start": "node index.js",

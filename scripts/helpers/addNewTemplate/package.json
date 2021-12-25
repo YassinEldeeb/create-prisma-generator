@@ -8,7 +8,7 @@
     "$PKG_BIN": "index.js"
   },
   "files": [
-    "template"
+    "template/**/*"
   ],
   "dependencies": {
     "fs-extra": "^10.0.0"
