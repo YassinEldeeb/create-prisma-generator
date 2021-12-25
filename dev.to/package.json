@@ -16,6 +16,7 @@
     "dev-to-git": "dev-to-git"
   },
   "dependencies": {
+    "axios": "^0.24.0",
     "dev-to-git": "^1.4.8",
     "embedme": "1.22.0",
     "prettier": "2.5.1"
