@@ -10,17 +10,39 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
-      - name: Install Dependencies
-        uses: bahmutov/npm-install@v1
+      - name: Use Node.js
+        uses: actions/setup-node@v2
         with:
-          working-directory: dev.to
+          node-version: 16.x
+
+      - uses: marceloprado/has-changed-path@v1
+        id: haveBlogsChanged
+        with:
+          paths: dev.to
+
+      - name: Setup PNPM
+        if: steps.haveBlogsChanged.outputs.changed == 'true'
+        uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.23.6
+
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
+
+      - name: Install deps
+        if: steps.haveBlogsChanged.outputs.changed == 'true'
+        run: pnpm install --frozen-lockfile --ignore-scripts
 
       - name: Run Prettier
+        if: steps.haveBlogsChanged.outputs.changed == 'true'
         run: yarn run prettier:check
 
       - name: Run Embedme
+        if: steps.haveBlogsChanged.outputs.changed == 'true'
         run: yarn run embedme:check
 
       - name: Deploy to dev.to
+        if: steps.haveBlogsChanged.outputs.changed == 'true'
         run: DEV_TO_GIT_TOKEN=${{ secrets.DEV_TO_GIT_TOKEN }} yarn run dev-to-git
