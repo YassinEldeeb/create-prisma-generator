@@ -8,7 +8,7 @@ import { replacePlaceholders } from './utils/replacePlaceholders'
 import { yarnWorkspaceJSON } from './config/yarn-workspace'
 import { pnpmWorkspaceYML } from './config/pnpm-workspace'
 import { huskyCommitMsgHook } from './config/husky-commit-msg-hook'
-import { CLIs } from './clis'
+import { CLIs } from './tinyClis'
 
 export const main = async () => {
   const answers = await promptQuestions()
