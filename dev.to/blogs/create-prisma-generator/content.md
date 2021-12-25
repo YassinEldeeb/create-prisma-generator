@@ -5,5 +5,3 @@ cover_image: 'https://raw.githubusercontent.com/YassinEldeeb/create-prisma-gener
 description: 'Guide to make a prisma generator'
 tags: typescript, javascript, prisma, generator
 ---
-
-Example Body
