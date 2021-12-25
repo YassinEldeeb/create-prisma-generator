@@ -5,3 +5,9 @@ cover_image: 'https://raw.githubusercontent.com/YassinEldeeb/create-prisma-gener
 description: 'Guide to make prisma generator'
 tags: typescript, javascript, prisma, generator
 ---
+
+See the Usage below 👇
+
+```ts
+// code/usage.ts
+```
