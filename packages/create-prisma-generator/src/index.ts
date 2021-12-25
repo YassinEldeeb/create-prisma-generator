@@ -189,11 +189,10 @@ export const main = async () => {
         path.join(projectWorkdir, './.husky/commit-msg'),
         huskyCommitMsgHook,
       )
+      execSync(
+        `${workingDir} && git add . && git commit -m"feat: added husky for safety commit-msg"`,
+      )
     }
-
-    execSync(
-      `${workingDir} && git add . && git commit -m"feat: added husky for safety commit-msg"`,
-    )
 
     // Success Messages
     console.log(colors.green(`Success!`), `Created ${projectWorkdir}`)
