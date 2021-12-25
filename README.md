@@ -5,7 +5,7 @@
   <a href="https://github.com/prisma/prisma/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" /></a>
   <br />
   <br />
-  <a href="https://github.com/YassinEldeeb/create-prisma-generator#Quickstart">Quickstart</a>
+  <a href="https://github.com/YassinEldeeb/create-prisma-generator#Usage">Usage</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://dev.to/yassineldeeb">Blog</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
