@@ -18,7 +18,11 @@ packages.forEach((pkg) => {
     .readdirSync(path.join(packagesPath, pkg.name), { withFileTypes: true })
     .filter((dirent) => dirent.isDirectory())
 
-  if (folders.find((e) => e.name === 'template')) {
+  if (
+    folders.find((e) => e.name === 'template') &&
+    // Check if the template folder contains package.json
+    fs.existsSync(path.join(packagesPath, `${pkg.name}/template/package.json`))
+  ) {
     dependabotConfig.push(
       dependabotTemplate('/packages/' + pkg.name + '/template'),
     )

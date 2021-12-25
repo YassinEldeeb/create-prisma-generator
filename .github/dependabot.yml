@@ -13,27 +13,12 @@ updates:
   # Checking for dependencies in templates *weekly*
   # ADDED PROGRAMATICALLY
   - package-ecosystem: 'npm'
-    directory: '/packages/cpg-github-actions/template'
-    schedule:
-      interval: 'weekly'
-
-  - package-ecosystem: 'npm'
-    directory: '/packages/cpg-root-configs/template'
-    schedule:
-      interval: 'weekly'
-
-  - package-ecosystem: 'npm'
     directory: '/packages/cpg-semantic-releases/template'
     schedule:
       interval: 'weekly'
 
   - package-ecosystem: 'npm'
     directory: '/packages/cpg-template/template'
-    schedule:
-      interval: 'weekly'
-
-  - package-ecosystem: 'npm'
-    directory: '/packages/cpg-template-gen-usage/template'
     schedule:
       interval: 'weekly'
 
