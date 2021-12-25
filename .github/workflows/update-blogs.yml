@@ -39,12 +39,15 @@ jobs:
 
       - name: Run Prettier
         if: steps.haveBlogsChanged.outputs.changed == 'true'
-        run: yarn run prettier:check
+        working-directory: dev.to
+        run: pnpm prettier:check
 
       - name: Run Embedme
         if: steps.haveBlogsChanged.outputs.changed == 'true'
-        run: yarn run embedme:check
+        working-directory: dev.to
+        run: pnpm embedme:check
 
       - name: Deploy to dev.to
         if: steps.haveBlogsChanged.outputs.changed == 'true'
-        run: DEV_TO_GIT_TOKEN=${{ secrets.DEV_TO_GIT_TOKEN }} yarn run dev-to-git
+        working-directory: dev.to
+        run: DEV_TO_GIT_TOKEN=${{ secrets.DEV_TO_GIT_TOKEN }} pnpm dev-to-git
