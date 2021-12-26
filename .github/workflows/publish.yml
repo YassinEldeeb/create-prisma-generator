@@ -41,11 +41,11 @@ jobs:
 
       - name: Install deps
         if: steps.havePackagesChanged.outputs.changed == 'true'
-        run: pnpm install --frozen-lockfile --ignore-scripts
+        run: pnpm install --frozen-lockfile
 
       - name: Publish 🚀
         if: steps.havePackagesChanged.outputs.changed == 'true'
-        run: pnpm turbo run publish
+        run: npx turbo run publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
