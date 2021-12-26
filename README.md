@@ -68,7 +68,7 @@ Your environment will have everything you need to build your prisma generator li
 - Dependabot for keeping dependencies up to date.
 
 # Architecture
-Read [Architecture.md](https://github.com/YassinEldeeb/prisma-tgql-types-gen/blob/main/ARCHITECTURE.md) to understand how everything is working.
+Read [Architecture.md](https://github.com/YassinEldeeb/create-prisma-generator/blob/main/ARCHITECTURE.md) to understand how everything is working.
 
 # Community
 The Create Prisma Generator community can be found on [GitHub Discussions](https://github.com/YassinEldeeb/create-prisma-generator/discussions), where you can ask questions, suggest ideas, and share your projects.
@@ -76,4 +76,4 @@ The Create Prisma Generator community can be found on [GitHub Discussions](https
 # Contributing
 We'll be very thankful for all your contributions, whether it's for helping us find issues in our code, highlighting features that're missing, writing tests for uncovered cases, or contributing to the codebase.
 
-Read the [Contributing guide](https://github.com/YassinEldeeb/prisma-tgql-types-gen/blob/main/CONTRIBUTING.md) to get started.
+Read the [Contributing guide](https://github.com/YassinEldeeb/create-prisma-generator/blob/main/CONTRIBUTING.md) to get started.
