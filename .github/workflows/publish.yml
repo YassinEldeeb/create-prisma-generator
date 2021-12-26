@@ -41,7 +41,7 @@ jobs:
 
       - name: Install deps
         if: steps.havePackagesChanged.outputs.changed == 'true'
-        run: pnpm install --frozen-lockfile --ignore-scripts
+        run: pnpm install --frozen-lockfile
 
       - name: Publish 🚀
         if: steps.havePackagesChanged.outputs.changed == 'true'
