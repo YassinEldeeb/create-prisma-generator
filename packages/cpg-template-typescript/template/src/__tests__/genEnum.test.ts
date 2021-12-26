@@ -1,6 +1,6 @@
 import { DMMF } from '@prisma/generator-helper'
 import { genEnum } from '../helpers/genEnum'
-import { getSampleDMMF } from './__fixures__/writeSampleDMMF'
+import { getSampleDMMF } from './__fixtures__/writeSampleDMMF'
 
 let sampleDMMF: DMMF.Document
 beforeAll(async () => {
