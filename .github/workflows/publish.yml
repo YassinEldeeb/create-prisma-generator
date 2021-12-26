@@ -24,22 +24,27 @@ jobs:
           paths: packages
 
       - name: Setup PNPM
+        if: steps.havePackagesChanged.outputs.changed == 'true'
         uses: pnpm/action-setup@v2.0.1
         with:
           version: 6.23.6
 
       - uses: actions/cache@v2
+        if: steps.havePackagesChanged.outputs.changed == 'true'
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - name: Simulate CLI build
+        if: steps.havePackagesChanged.outputs.changed == 'true'
         run: pnpm simulate-dist
 
       - name: Install deps
-        run: pnpm install --frozen-lockfile
+        if: steps.havePackagesChanged.outputs.changed == 'true'
+        run: pnpm install --frozen-lockfile --ignore-scripts
 
       - name: Publish 🚀
+        if: steps.havePackagesChanged.outputs.changed == 'true'
         run: npx turbo run publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
