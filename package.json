@@ -7,6 +7,7 @@
     "new-template": "ts-node ./scripts/addNewTemplate.ts",
     "guide-dependabot": "ts-node ./scripts/guideDependabot.ts",
     "simulate-dist": "node ./scripts/simulateDist.js",
+    "gen-tags": "ts-node ./scripts/generateTags.ts",
     "build": "turbo run build",
     "prepare": "husky install"
   },
