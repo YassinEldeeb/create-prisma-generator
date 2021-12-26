@@ -35,7 +35,7 @@ jobs:
 
       - name: Install deps
         if: steps.haveBlogsChanged.outputs.changed == 'true'
-        run: pnpm i --filter "dev.to" --frozen-lockfile --ignore-scripts
+        run: pnpm i --filter "dev.to" --frozen-lockfile
 
       - name: Run Prettier
         if: steps.haveBlogsChanged.outputs.changed == 'true'
