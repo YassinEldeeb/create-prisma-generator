@@ -92,8 +92,32 @@ that'll call `execSync` from node's child_process to execute a shell command tha
 
 ```ts
 const templateName = 'root default configs'
-const command = `npx @cpg-cli/root-configs@latest ${pkgName}`
-runBlockingCommand(templateName, command)
+runBlockingCommand(templateName, CLIs.rootConfigs(pkgName))
+```
+And `CLIs` is just an object that has a bunch of methods to execute the Tiny CLIs which you'll have to add your own here as well
+```ts
+// packages/create-prisma-generator/src/tinyClis.ts
+export const CLIs = {
+  typescriptTemplate(path: string) {
+    return `npx @cpg-cli/template-typescript@latest ${path}`
+  },
+  rootConfigs(path: string) {
+    return `npx @cpg-cli/root-configs@latest ${path}`
+  },
+  usageTemplate(path: string) {
+    return `npx @cpg-cli/template-gen-usage@latest ${path}`
+  },
+  javascriptTemplate(path: string) {
+    return `npx @cpg-cli/template@latest ${path}`
+  },
+  githubActionsTemplate(path: string) {
+    return `npx @cpg-cli/github-actions@latest ${path}`
+  },
+  setupSemanticRelease(path: string, workspaceFlag: string) {
+    return `npx @cpg-cli/semantic-releases@latest ${path} ${workspaceFlag}`
+  },
+}
+
 ```
 
 so now It just depends on what you're setting up, you're now equiped with all of the tools/utilities to support other things like other CIs as an example cause currently
@@ -118,7 +142,3 @@ So if you opened `packages/cli-usage/package.json` you'll see all of the package
 ```
 
 so after you make changes to any of the listed packages you just run `pnpm cli` to test the main `create-prisma-generator` cli that would execute all of the other tiny CLIs.
-
-## Notes
-
-1. Remember that any commits you'll make has to be named [conventionally](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#-commit-message-format) so that [semantic-release](https://github.com/semantic-release/semantic-release) can pick up the type of change you've made to the packages and bump the packages respectively, but don't worry to much, [Husky](https://github.com/typicode/husky) is setup with [Commitlint](https://github.com/conventional-changelog/commitlint) to validate your commit messages before they're commited and give you some hints to help you write better commit messages.
