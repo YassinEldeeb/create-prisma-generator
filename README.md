@@ -56,7 +56,7 @@ npx create-prisma-generator
 # What’s Included?
 
 Your environment will have everything you need to build your prisma generator like an elite open-source maintainer:
-- Hello World generator
+- Hello World Prisma Generator.
 - Typescript Support.
 - JavaScript setup with babel to enable the usage of the latest JS features.
 - Automatic publishing workflow with Github Actions.
