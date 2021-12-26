@@ -35,12 +35,12 @@ I'm really obsessed with this architecture that Prisma Client is built on and I 
 But unfortunately I didn't have a smooth experience developing [my prisma generator](https://github.com/YassinEldeeb/prisma-tgql-types-gen).
 
 So I created this CLI to help developers getting started developing their Prisma Generators smoothly with all of the annoying repetitive things carried away like:
-- Publishing the generator package to npm with semantic-releases.
-- Testing environment for the generator.
+- Publishing the generator to npm.
+- Testing environment.
 - Boilerplates for Typescript/Javascript W/Babel.
 - CI for Testing and Publishing.
-- Keeping dependencies up to date with dependabot.
-- Workspace for testing the generator locally with `prisma generate`.
+- Keeping dependencies up to date.
+- Workspace for testing the generator locally using `prisma generate`.
 - Best Practices for developing Prisma Generators.
 
 ### Also Created a blog on dev.to to help you with the undocumented APIs that I've talked about previously and to explain the setup that this CLI has setup for you, [Check It out here](https://dev.to/yassineldeeb/create-prisma-generator-2mdg)
@@ -55,15 +55,16 @@ npx create-prisma-generator
 
 # What’s Included?
 
-Your environment will have everything you need to build your prisma generator like an elite programmer:
+Your environment will have everything you need to build your prisma generator like an elite open-source maintainer:
 - Typescript Support.
 - JavaScript setup with babel to enable the usage of the latest JS features.
-- Automatic publishing process with Github Actions.
+- Automatic publishing workflow with Github Actions.
 - Workspace setup for testing the generator locally.
 - Scripts for development, building, packaging and testing.
 - Support for most package-managers `yarn`, `pnpm` and `npm`.
 - Automatic semantic release with safety in mind using [commitlint](https://github.com/conventional-changelog/commitlint) & [husky](https://github.com/typicode/husky) to validate your [commit messages](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#-commit-message-format).
 - Test environment using [Jest](https://github.com/facebook/jest) with an example & fixtures to help you get started.
+- Dependabot for keeping dependencies up to date.
 
 # Architecture
 Read [Architecture.md](https://github.com/YassinEldeeb/prisma-tgql-types-gen/blob/main/ARCHITECTURE.md) to understand how everything is working.
