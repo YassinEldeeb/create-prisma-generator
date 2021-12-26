@@ -14,7 +14,7 @@
     "dev": "tsc -w",
     "build": "tsc",
     "prepack": "yarn build",
-    "publish": "semantic-release -e semantic-release-monorepo",
+    "publish-pkg": "semantic-release -e semantic-release-monorepo",
     "test": "jest"
   },
   "dependencies": {

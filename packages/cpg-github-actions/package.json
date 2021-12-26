@@ -8,7 +8,7 @@
     "cpg-github-actions": "index.js"
   },
   "scripts": {
-    "publish": "semantic-release -e semantic-release-monorepo"
+    "publish-pkg": "semantic-release -e semantic-release-monorepo"
   },
   "dependencies": {
     "fs-extra": "^10.0.0"

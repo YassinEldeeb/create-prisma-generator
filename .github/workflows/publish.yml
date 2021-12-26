@@ -45,7 +45,7 @@ jobs:
 
       - name: Publish 🚀
         if: steps.havePackagesChanged.outputs.changed == 'true'
-        run: npx turbo run publish
+        run: npx turbo run publish-pkg
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

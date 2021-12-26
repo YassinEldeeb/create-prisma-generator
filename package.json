@@ -34,7 +34,7 @@
       "dev": {
         "cache": false
       },
-      "publish": {}
+      "publish-pkg": {}
     }
   }
 }
