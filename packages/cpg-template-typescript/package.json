@@ -1,6 +1,6 @@
 {
   "name": "@cpg-cli/template-typescript",
-  "version": "1.0.30",
+  "version": "1.0.31",
   "main": "index.js",
   "license": "MIT",
   "type": "module",
@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "start": "node index.js",
-    "publish-pkg": "semantic-release -e semantic-release-monorepo"
+    "publish-pkg": "yarn publish"
   },
   "dependencies": {
     "fs-extra": "^10.0.0"

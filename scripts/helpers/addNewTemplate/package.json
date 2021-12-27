@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "publish-pkg": "semantic-release -e semantic-release-monorepo"
+    "publish-pkg": "yarn publish"
   },
   "repository": {
     "type": "git",

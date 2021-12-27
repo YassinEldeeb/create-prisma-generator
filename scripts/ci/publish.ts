@@ -1,9 +1,8 @@
-// Sources:
-// https://github.com/semrel-extra/zx-semrel/blob/master/release.mjs
-// https://github.com/MarceloPrado/has-changed-path/blob/master/src/hasChanged.js
+// Source: https://github.com/semrel-extra/zx-semrel/blob/master/release.mjs
 import { execSync } from 'child_process'
 import fs from 'fs'
 import path from 'path'
+import { hasPkgChanged } from './utils/hasPkgChanged'
 
 const { GIT_COMMITTER_NAME, GIT_COMMITTER_EMAIL, GITHUB_TOKEN } = process.env
 if (!GITHUB_TOKEN || !GIT_COMMITTER_NAME || !GIT_COMMITTER_EMAIL) {
@@ -143,12 +142,20 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
           }
         }
 
-        console.log(pkgName, getNextVersion())
-        console.log(
-          execSync(`git diff --name-only --exit-code packages/${dirent.name}`)
-            .toString()
-            .trim(),
-        )
+        // Here Should do:
+        // 1. Publish package to npm
+        // 2. Add a tag with the version
+        // 3. Release with the tag version
+        // 4. Update package.json with the new versions
+
+        if (!lastTag) {
+          // Publish version 1.0.0 here
+        } else if (hasPkgChanged(`packages/${dirent.name}`, lastTag!)) {
+          console.log(
+            `Should bump package ${pkgName} to version`,
+            getNextVersion(),
+          )
+        }
         //
       }
     }

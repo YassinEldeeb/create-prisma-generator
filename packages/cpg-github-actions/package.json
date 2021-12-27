@@ -1,6 +1,6 @@
 {
   "name": "@cpg-cli/github-actions",
-  "version": "1.1.18",
+  "version": "1.1.19",
   "main": "index.js",
   "license": "MIT",
   "type": "module",
@@ -8,7 +8,7 @@
     "cpg-github-actions": "index.js"
   },
   "scripts": {
-    "publish-pkg": "semantic-release -e semantic-release-monorepo"
+    "publish-pkg": "yarn publish"
   },
   "dependencies": {
     "fs-extra": "^10.0.0"

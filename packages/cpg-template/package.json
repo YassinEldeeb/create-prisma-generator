@@ -1,6 +1,6 @@
 {
   "name": "@cpg-cli/template",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "main": "index.js",
   "license": "MIT",
   "type": "module",
@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "publish-pkg": "semantic-release -e semantic-release-monorepo"
+    "publish-pkg": "yarn publish"
   },
   "homepage": "https://github.com/YassinEldeeb/create-prisma-generator",
   "repository": {
