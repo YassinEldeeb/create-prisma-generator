@@ -1,4 +1,6 @@
-// Source: https://dev.to/antongolub/you-don-t-need-semantic-release-sometimes-3k6k
+// Sources:
+// https://github.com/semrel-extra/zx-semrel/blob/master/release.mjs
+// https://github.com/MarceloPrado/has-changed-path/blob/master/src/hasChanged.js
 import { execSync } from 'child_process'
 import fs from 'fs'
 import path from 'path'
@@ -45,12 +47,15 @@ const semanticRules = [
 ]
 
 const packagesPath = path.join(process.cwd(), 'packages')
+
 fs.readdirSync(packagesPath, { withFileTypes: true })
   .filter((dirent) => dirent.isDirectory())
   .map((dirent) => {
     const pkgJSONPath = path.join(packagesPath, dirent.name, 'package.json')
     if (fs.existsSync(pkgJSONPath)) {
       const pkgJSON = JSON.parse(fs.readFileSync(pkgJSONPath, 'utf-8'))
+      const pkgName = pkgJSON.name
+      const releasePrefix = pkgName + '-v'
 
       if (!pkgJSON.private) {
         // Get prev release tag
@@ -59,7 +64,7 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
           .split('\n')
           .map((tag) => tag.trim())
 
-        const lastTag = tags.find((tag) => tag.includes(pkgJSON.name + '-v'))
+        const lastTag = tags.find((tag) => tag.includes(releasePrefix))
         const commitsRange = lastTag
           ? `${execSync(`git rev-list -1 ${lastTag}`).toString().trim()}..HEAD`
           : 'HEAD'
@@ -110,6 +115,7 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
           [],
         )
 
+        //
         const nextReleaseType = releaseSeverityOrder.find((type) =>
           semanticChanges.find(({ releaseType }) => type === releaseType),
         )
@@ -117,30 +123,33 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
           console.log('No semantic changes - no semantic release.')
           return
         }
-        const nextVersion = ((lastTag, releaseType) => {
-          if (!releaseType) {
+        const getNextVersion = () => {
+          if (!nextReleaseType) {
             return
           }
           if (!lastTag) {
             return '1.0.0'
           }
 
-          const semanticTagPattern = /^(v?)(\d+)\.(\d+)\.(\d+)$/
-          const [, , c1, c2, c3] = semanticTagPattern.exec(
-            lastTag,
-          ) as RegExpExecArray
-          if (releaseType === 'major') {
+          const [c1, c2, c3] = lastTag.split(releasePrefix)[1].split('.')
+          if (nextReleaseType === 'major') {
             return `${-~c1}.0.0`
           }
-          if (releaseType === 'minor') {
+          if (nextReleaseType === 'minor') {
             return `${c1}.${-~c2}.0`
           }
-          if (releaseType === 'patch') {
+          if (nextReleaseType === 'patch') {
             return `${c1}.${c2}.${-~c3}`
           }
-        })(lastTag, nextReleaseType)
+        }
 
-        console.log(nextVersion)
+        console.log(pkgName, getNextVersion())
+        console.log(
+          execSync(`git diff --name-only --exit-code packages/${dirent.name}`)
+            .toString()
+            .trim(),
+        )
+        //
       }
     }
   })
