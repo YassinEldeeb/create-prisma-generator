@@ -38,7 +38,8 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Authenticate NPM with Access Token
-        run: //npm.pkg.github.com/:_authToken=${{secrets.NPM_TOKEN}}
+        if: steps.havePackagesChanged.outputs.changed == 'true'
+        run: echo '' >> ~/.npmrc && echo //npm.pkg.github.com/:_authToken=${{secrets.NPM_TOKEN}} >> ~/.npmrc
 
       - name: Publish 🚀
         if: steps.havePackagesChanged.outputs.changed == 'true'
