@@ -37,6 +37,9 @@ jobs:
         if: steps.havePackagesChanged.outputs.changed == 'true'
         run: pnpm install --frozen-lockfile
 
+      - name: Authenticate NPM with Access Token
+        run: //npm.pkg.github.com/:_authToken=${{secrets.NPM_TOKEN}}
+
       - name: Publish 🚀
         if: steps.havePackagesChanged.outputs.changed == 'true'
-        run: NODE_AUTH_TOKEN=${{ secrets.NPM_TOKEN }} GITHUB_TOKEN="${{secrets.GH_TOKEN}}" GIT_COMMITTER_EMAIL="${{secrets.GIT_COMMITTER_EMAIL}}" GIT_COMMITTER_NAME="${{secrets.GIT_COMMITTER_NAME}}" npx ts-node ./scripts/ci/publish.ts
+        run: GITHUB_TOKEN="${{secrets.GH_TOKEN}}" GIT_COMMITTER_EMAIL="${{secrets.GIT_COMMITTER_EMAIL}}" GIT_COMMITTER_NAME="${{secrets.GIT_COMMITTER_NAME}}" npx ts-node ./scripts/ci/publish.ts
