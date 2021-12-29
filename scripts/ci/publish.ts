@@ -2,7 +2,13 @@
 import { execSync } from 'child_process'
 import fs from 'fs'
 import path from 'path'
+import { generateReleaseNotes } from './utils/genReleaseNotes'
+import { getNextVersion } from './utils/getNextVersion'
+import { githubRelease } from './utils/githubRelease'
+import { gitRelease } from './utils/gitRelease'
 import { hasPkgChanged } from './utils/hasPkgChanged'
+import { npmPublish } from './utils/npmPublish'
+import { updatePackageVersion } from './utils/updatePackageVersion'
 
 const { GIT_COMMITTER_NAME, GIT_COMMITTER_EMAIL, GITHUB_TOKEN } = process.env
 if (!GITHUB_TOKEN || !GIT_COMMITTER_NAME || !GIT_COMMITTER_EMAIL) {
@@ -122,41 +128,43 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
           console.log('No semantic changes - no semantic release.')
           return
         }
-        const getNextVersion = () => {
-          if (!nextReleaseType) {
-            return
-          }
-          if (!lastTag) {
-            return '1.0.0'
-          }
-
-          const [c1, c2, c3] = lastTag.split(releasePrefix)[1].split('.')
-          if (nextReleaseType === 'major') {
-            return `${-~c1}.0.0`
-          }
-          if (nextReleaseType === 'minor') {
-            return `${c1}.${-~c2}.0`
-          }
-          if (nextReleaseType === 'patch') {
-            return `${c1}.${c2}.${-~c3}`
-          }
-        }
 
         // Here Should do:
         // 1. Publish package to npm
         // 2. Add a tag with the version
         // 3. Release with the tag version
         // 4. Update package.json with the new versions
-
+        let nextVersion = ''
         if (!lastTag) {
-          // Publish version 1.0.0 here
+          nextVersion = '1.0.0'
         } else if (hasPkgChanged(`packages/${dirent.name}`, lastTag!)) {
-          console.log(
-            `Should bump package ${pkgName} to version`,
-            getNextVersion(),
-          )
+          nextVersion = getNextVersion(nextReleaseType, lastTag, releasePrefix)!
+          console.log(`Should bump package ${pkgName} to version`, nextVersion)
         }
-        //
+
+        const pkgCWD = pkgJSONPath.replace('\\package.json', '')
+        updatePackageVersion(pkgCWD, nextVersion)
+
+        const nextTag = `${pkgName}-v` + nextVersion
+
+        // Generate release notes
+        const releaseNotes = generateReleaseNotes(
+          nextVersion,
+          repoPublicUrl,
+          lastTag!,
+          nextTag,
+          semanticChanges,
+        )
+
+        gitRelease(nextTag)
+        githubRelease(
+          nextTag,
+          releaseNotes,
+          repoName,
+          GIT_COMMITTER_NAME,
+          GITHUB_TOKEN,
+        )
+        npmPublish(pkgCWD)
       }
     }
   })
