@@ -31,9 +31,9 @@ const [_, __, repoHost, repoName] = originUrl
 const repoPublicUrl = `https://${repoHost}/${repoName}`
 const repoAuthedUrl = `https://${gitAuth}@${repoHost}/${repoName}`
 
-// execSync(`git config user.name ${GIT_COMMITTER_NAME}`)
-// execSync(`git config user.email ${GIT_COMMITTER_EMAIL}`)
-// execSync(`git remote set-url origin ${repoAuthedUrl}`)
+execSync(`git config user.name ${GIT_COMMITTER_NAME}`)
+execSync(`git config user.email ${GIT_COMMITTER_EMAIL}`)
+execSync(`git remote set-url origin ${repoAuthedUrl}`)
 
 // Commits analysis
 const releaseSeverityOrder = ['major', 'minor', 'patch']
