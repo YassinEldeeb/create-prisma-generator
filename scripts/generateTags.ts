@@ -23,3 +23,5 @@ packages.forEach((pkg) => {
     )
   }
 })
+
+execSync('git push --follow-tags origin main')
