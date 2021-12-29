@@ -142,7 +142,7 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
           console.log(`Should bump package ${pkgName} to version`, nextVersion)
         }
 
-        const pkgCWD = pkgJSONPath.replace('\\package.json', '')
+        const pkgCWD = pkgJSONPath.replace(`${path.sep}package.json`, '')
         updatePackageVersion(pkgCWD, nextVersion)
 
         const nextTag = `${pkgName}-v` + nextVersion
