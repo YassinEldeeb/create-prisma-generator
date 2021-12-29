@@ -39,4 +39,4 @@ jobs:
 
       - name: Publish 🚀
         if: steps.havePackagesChanged.outputs.changed == 'true'
-        run: GITHUB_TOKEN="${{secrets.GH_TOKEN}}" GIT_COMMITTER_EMAIL="${{secrets.GIT_COMMITTER_EMAIL}}" GIT_COMMITTER_NAME="${{secrets.GIT_COMMITTER_NAME}}" ts-node ./scripts/ci/publish.ts
+        run: GITHUB_TOKEN="${{secrets.GH_TOKEN}}" GIT_COMMITTER_EMAIL="${{secrets.GIT_COMMITTER_EMAIL}}" GIT_COMMITTER_NAME="${{secrets.GIT_COMMITTER_NAME}}" npx ts-node ./scripts/ci/publish.ts
