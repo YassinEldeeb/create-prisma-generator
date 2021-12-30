@@ -152,6 +152,8 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
           lastTag,
         )
 
+        console.log(releaseNotes)
+
         // npmPublish(pkgCWD)
         // gitRelease(nextTag)
         // githubRelease(
