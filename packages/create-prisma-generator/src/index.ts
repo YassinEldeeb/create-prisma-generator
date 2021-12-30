@@ -44,7 +44,7 @@ export const main = async () => {
 
   // Adding default root configs
   const templateName = 'root default configs'
-  runBlockingCommand(templateName, CLIs.rootConfigs(pkgName))
+  runBlockingCommand(templateName, CLIs.rootConfigs(`${pkgName}/packages`))
 
   if (answers.usageTemplate) {
     const templateName = 'Usage Template'
