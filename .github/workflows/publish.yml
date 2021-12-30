@@ -40,5 +40,5 @@ jobs:
       - name: Publish 🚀
         if: steps.havePackagesChanged.outputs.changed == 'true'
         run: |
-          npm config set _authToken=${{secrets.NPM_TOKEN}}
+          npm config set _auth ${{secrets.NPM_TOKEN}}
           GITHUB_TOKEN="${{secrets.GITHUB_TOKEN}}" GIT_COMMITTER_EMAIL="${{secrets.GIT_COMMITTER_EMAIL}}" GIT_COMMITTER_NAME="${{secrets.GIT_COMMITTER_NAME}}" npx ts-node ./scripts/ci/publish.ts
