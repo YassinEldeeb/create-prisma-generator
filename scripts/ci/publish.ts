@@ -32,13 +32,13 @@ const [_, __, repoHost, repoName] = originUrl
 const repoPublicUrl = `https://${repoHost}/${repoName}`
 const repoAuthedUrl = `https://${gitAuth}@${repoHost}/${repoName}`
 
+execSync(
+  `echo "changed" >> hello.txt && git add . && git commit -m"Am I authenticated automatically?" && git push`,
+)
+
 execSync(`git config user.name ${GIT_COMMITTER_NAME}`)
 execSync(`git config user.email ${GIT_COMMITTER_EMAIL}`)
 execSync(`git remote set-url origin ${repoAuthedUrl}`)
-
-execSync(
-  `echo "world" >> hello.txt && git add . && git commit -m"I can commit through github actions?" && git push`,
-)
 
 // Commits analysis
 const releaseSeverityOrder = ['major', 'minor', 'patch']
