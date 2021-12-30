@@ -21,7 +21,7 @@ if (!GITHUB_TOKEN || !GIT_COMMITTER_NAME || !GIT_COMMITTER_EMAIL) {
 }
 
 // Git configuration
-// const { repoPublicUrl, repoName } = AuthGithub()
+const { repoPublicUrl, repoName } = AuthGithub()
 execSync("git fetch origin 'refs/tags/*:refs/tags/*'")
 const tags = execSync(`git tag -l --sort=-v:refname`)
   .toString()
@@ -79,7 +79,7 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
           (acc: any[], { subj, body, short, hash }) => {
             semanticRules.forEach(
               ({ group, releaseType, prefixes, keywords }) => {
-                // Thanks to this regex shebang:
+                // Thanks for this regex shebang:
                 // https://gist.github.com/marcojahn/482410b728c31b221b70ea6d2c433f0c
                 const prefixMatcher =
                   prefixes &&
@@ -145,7 +145,7 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
         // Generate release notes
         const releaseNotes = generateReleaseNotes(
           nextVersion,
-          'repoPublicUrl',
+          repoPublicUrl,
           nextTag,
           semanticChanges,
           pkgName,
@@ -154,15 +154,15 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
 
         console.log(releaseNotes)
 
-        // npmPublish(pkgCWD)
-        // gitRelease(nextTag)
-        // githubRelease(
-        //   nextTag,
-        //   releaseNotes,
-        //   repoName,
-        //   GIT_COMMITTER_NAME,
-        //   GITHUB_TOKEN,
-        // )
+        npmPublish(pkgCWD)
+        gitRelease(nextTag)
+        githubRelease(
+          nextTag,
+          releaseNotes,
+          repoName,
+          GIT_COMMITTER_NAME,
+          GITHUB_TOKEN,
+        )
       }
     }
   })
