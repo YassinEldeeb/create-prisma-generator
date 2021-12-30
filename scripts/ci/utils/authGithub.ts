@@ -1,5 +1,5 @@
 import { execSync } from 'child_process'
-import { logger } from 'scripts/utils/logger'
+import { logger } from '../../utils/logger'
 
 export const AuthGithub = () => {
   const { GIT_COMMITTER_NAME, GIT_COMMITTER_EMAIL, GITHUB_TOKEN } = process.env

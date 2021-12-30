@@ -1,4 +1,4 @@
-import { logger } from 'scripts/utils/logger'
+import { logger } from '../../utils/logger'
 
 export const generateReleaseNotes = (
   nextVersion: string,

@@ -1,5 +1,5 @@
 import { execSync } from 'child_process'
-import { logger } from 'scripts/utils/logger'
+import { logger } from '../../utils/logger'
 
 export const gitRelease = (nextTag: string) => {
   const releaseMessage = `chore(release): ${nextTag} [skip ci]`

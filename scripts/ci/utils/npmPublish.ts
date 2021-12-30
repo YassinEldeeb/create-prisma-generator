@@ -1,5 +1,5 @@
 import { execSync } from 'child_process'
-import { logger } from 'scripts/utils/logger'
+import { logger } from '../../utils/logger'
 
 export const npmPublish = (cwd: string) => {
   execSync(`npm publish --no-git-tag-version`, { cwd })
