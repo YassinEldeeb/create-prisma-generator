@@ -19,7 +19,6 @@ if (!GITHUB_TOKEN || !GIT_COMMITTER_NAME || !GIT_COMMITTER_EMAIL) {
 
 // Git configuration
 const { repoPublicUrl, repoName } = AuthGithub()
-// Fetch tags
 execSync("git fetch origin 'refs/tags/*:refs/tags/*'")
 
 // Commits analysis
@@ -55,8 +54,6 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
           .toString()
           .split('\n')
           .map((tag) => tag.trim())
-
-        console.log(tags)
 
         const lastTag = tags.find((tag) => tag.includes(releasePrefix))
         const commitsRange = lastTag
@@ -135,6 +132,8 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
         updatePackageVersion(pkgCWD, nextVersion)
 
         const nextTag = `${pkgName}-v` + nextVersion
+
+        console.log(nextTag)
 
         // Generate release notes
         const releaseNotes = generateReleaseNotes(
