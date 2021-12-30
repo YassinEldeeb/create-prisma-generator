@@ -107,7 +107,6 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
           [],
         )
 
-        //
         const nextReleaseType = releaseSeverityOrder.find((type) =>
           semanticChanges.find(({ releaseType }) => type === releaseType),
         )
