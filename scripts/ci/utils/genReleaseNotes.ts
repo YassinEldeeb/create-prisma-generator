@@ -6,9 +6,15 @@ export const generateReleaseNotes = (
   pkgName: string,
   lastTag?: string,
 ) => {
+  const prettierPkgName = pkgName
+    .replace('@cpg-cli/', '')
+    .split('-')
+    .map((e) => e[0].toUpperCase() + e.substring(1))
+    .join(' ')
+
   const releaseHeader = lastTag
-    ? `## ${pkgName}-v${nextVersion} 🥳`
-    : `## ${pkgName} First Release 🎉`
+    ? `## ${prettierPkgName} v${nextVersion} 🥳`
+    : `## ${prettierPkgName} First Release 🎉`
 
   const releaseDetails = Object.values(
     semanticChanges.reduce((acc, { group, change, short, hash }) => {
