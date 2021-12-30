@@ -1,7 +1,7 @@
 import { execSync } from 'child_process'
 
-export const hasPkgChanged = (folder: string, lastTag: string) => {
-  return !!execSync(`git diff ${lastTag} HEAD --name-only`)
+export const hasPkgChanged = (folder: string) => {
+  return !!execSync(`git diff HEAD^ HEAD --name-only`)
     .toString()
     .trim()
     .split('\n')
