@@ -1,4 +1,5 @@
-// Source: https://github.com/semrel-extra/zx-semrel/blob/master/release.mjs
+// Used this as a starting point:
+// https://github.com/semrel-extra/zx-semrel/blob/master/release.mjs
 import { execSync } from 'child_process'
 import fs from 'fs'
 import path from 'path'
@@ -19,9 +20,9 @@ if (!GITHUB_TOKEN || !GIT_COMMITTER_NAME || !GIT_COMMITTER_EMAIL) {
 
 // Git configuration
 const gitAuth = `${GIT_COMMITTER_NAME}:${GITHUB_TOKEN}`
-const originUrl = 'git@github.com:YassinEldeeb/create-prisma-generator.git'
-
-console.log(originUrl)
+const originUrl = execSync(`git config --get remote.origin.url`)
+  .toString()
+  .trim()
 
 const [_, __, repoHost, repoName] = originUrl
   .replace(':', '/')
@@ -30,6 +31,9 @@ const [_, __, repoHost, repoName] = originUrl
 
 const repoPublicUrl = `https://${repoHost}/${repoName}`
 const repoAuthedUrl = `https://${gitAuth}@${repoHost}/${repoName}`
+
+console.log(repoPublicUrl)
+console.log(repoAuthedUrl)
 
 execSync(`git config user.name ${GIT_COMMITTER_NAME}`)
 execSync(`git config user.email ${GIT_COMMITTER_EMAIL}`)
