@@ -74,6 +74,8 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
             return { subj, body, short, hash }
           })
 
+        // Can't pick up scoped conventional messages
+        // like "fix(CI): some bugs"
         const semanticChanges = newCommits.reduce(
           (acc: any[], { subj, body, short, hash }) => {
             semanticRules.forEach(
