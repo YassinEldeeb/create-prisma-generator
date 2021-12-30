@@ -20,8 +20,11 @@ if (!GITHUB_TOKEN || !GIT_COMMITTER_NAME || !GIT_COMMITTER_EMAIL) {
 
 // Git configuration
 const { repoPublicUrl, repoName } = AuthGithub()
-console.log(repoName)
 execSync("git fetch origin 'refs/tags/*:refs/tags/*'")
+const tags = execSync(`git tag -l --sort=-v:refname`)
+  .toString()
+  .split('\n')
+  .map((tag) => tag.trim())
 
 // Commits analysis
 const releaseSeverityOrder = ['major', 'minor', 'patch']
@@ -52,11 +55,6 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
 
       if (!pkgJSON.private) {
         // Get prev release tag
-        const tags = execSync(`git tag -l --sort=-v:refname`)
-          .toString()
-          .split('\n')
-          .map((tag) => tag.trim())
-
         const lastTag = tags.find((tag) => tag.includes(releasePrefix))
         const commitsRange = lastTag
           ? `${execSync(`git rev-list -1 ${lastTag}`).toString().trim()}..HEAD`
@@ -88,6 +86,8 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
                 const keywordsMatcher =
                   keywords && new RegExp(`(${keywords.join('|')}):\\s(.+)`)
 
+                console.log(subj)
+                console.log(keywordsMatcher)
                 const change =
                   subj.match(prefixMatcher!)?.[0] ||
                   body.match(keywordsMatcher!)?.[2]
