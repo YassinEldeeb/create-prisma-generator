@@ -8,5 +8,7 @@ export const gitRelease = (nextTag: string) => {
   execSync(`git tag -a ${nextTag} HEAD -m"${releaseMessage}"`)
   execSync(`git push --no-verify --follow-tags origin main`)
 
-  logger.success('\nPushed the updated package.json and the new tags!\n')
+  console.log('\n')
+  logger.success('Pushed the updated package.json and the new tags!')
+  console.log('\n')
 }

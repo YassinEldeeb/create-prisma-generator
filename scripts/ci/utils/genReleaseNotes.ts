@@ -38,7 +38,9 @@ export const generateReleaseNotes = (
     '\n\n' +
     `[Compare changes](${repoPublicUrl}/compare/${lastTag}...${nextTag})`
 
-  logger.success('\nRelease notes generated successfully!\n')
+  console.log('\n')
+  logger.success('Release notes generated successfully!')
+  console.log('\n')
 
   return releaseNotes
 }

@@ -3,5 +3,8 @@ import { logger } from '../../utils/logger'
 
 export const npmPublish = (cwd: string) => {
   execSync(`npm publish --no-git-tag-version`, { cwd })
-  logger.success('\nPublished the package successfully!\n')
+
+  console.log('\n')
+  logger.success('Published the package successfully!')
+  console.log('\n')
 }
