@@ -40,7 +40,6 @@
   "keywords": [
     "prisma",
     "prisma2",
-    "generator",
-    "create-prisma-generator"
+    "generator"
   ]
 }
