@@ -1,3 +1,5 @@
+// Thanks for the nice guide:
+// https://dev.to/antongolub/you-don-t-need-semantic-release-sometimes-3k6k
 import { execSync } from 'child_process'
 import fs from 'fs'
 import path from 'path'
@@ -73,12 +75,12 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
             return { subj, body, short, hash }
           })
 
-        // Thanks to this regex shebang:
-        // https://gist.github.com/marcojahn/482410b728c31b221b70ea6d2c433f0c
         const semanticChanges = newCommits.reduce(
           (acc: any[], { subj, body, short, hash }) => {
             semanticRules.forEach(
               ({ group, releaseType, prefixes, keywords }) => {
+                // Thanks to this regex shebang:
+                // https://gist.github.com/marcojahn/482410b728c31b221b70ea6d2c433f0c
                 const prefixMatcher =
                   prefixes &&
                   new RegExp(
