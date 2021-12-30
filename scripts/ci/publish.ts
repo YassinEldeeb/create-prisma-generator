@@ -131,10 +131,6 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
           return
         }
 
-        console.log(
-          execSync(`git diff ${lastTag} HEAD --name-only`).toString().trim(),
-        )
-
         const pkgCWD = pkgJSONPath.replace(`${path.sep}package.json`, '')
         updatePackageVersion(pkgCWD, nextVersion)
 
