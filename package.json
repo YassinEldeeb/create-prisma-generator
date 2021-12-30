@@ -8,34 +8,12 @@
     "guide-dependabot": "ts-node ./scripts/guideDependabot.ts",
     "simulate-dist": "node ./scripts/simulateDist.js",
     "gen-tags": "ts-node ./scripts/generateTags.ts",
-    "build": "turbo run build",
     "prepare": "husky install"
   },
   "devDependencies": {
     "@commitlint/cli": "^15.0.0",
     "@commitlint/config-conventional": "^15.0.0",
     "husky": "^7.0.0",
-    "ts-node": "^10.4.0",
-    "turbo": "^1.0.19"
-  },
-  "turbo": {
-    "baseBranch": "origin/main",
-    "pipeline": {
-      "build": {
-        "dependsOn": [
-          "^build"
-        ]
-      },
-      "test": {
-        "dependsOn": [
-          "^build"
-        ],
-        "outputs": []
-      },
-      "dev": {
-        "cache": false
-      },
-      "publish-pkg": {}
-    }
+    "ts-node": "^10.4.0"
   }
 }

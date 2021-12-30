@@ -11,6 +11,7 @@ import { npmPublish } from './utils/npmPublish'
 import { updatePackageVersion } from './utils/updatePackageVersion'
 
 const { GIT_COMMITTER_NAME, GIT_COMMITTER_EMAIL, GITHUB_TOKEN } = process.env
+
 if (!GITHUB_TOKEN || !GIT_COMMITTER_NAME || !GIT_COMMITTER_EMAIL) {
   throw new Error(
     'env.GITHUB_TOKEN, env.GIT_COMMITTER_NAME & env.GIT_COMMITTER_EMAIL must be set',
