@@ -116,13 +116,8 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
           return
         }
 
-        // Here Should do:
-        // 1. Publish package to npm
-        // 2. Add a tag with the version
-        // 3. Release with the tag version
-        // 4. Update package.json with the new versions
         let nextVersion = ''
-        if (!lastTag) {
+        if (hasPkgChanged(`packages/${dirent.name}`, lastTag!)) {
           const lastVersion = execSync(`npm view ${pkgName} version`)
             .toString()
             .trim()
@@ -132,9 +127,6 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
             `${pkgName}-v${lastVersion}`,
             releasePrefix,
           )!
-        } else if (hasPkgChanged(`packages/${dirent.name}`, lastTag!)) {
-          nextVersion = getNextVersion(nextReleaseType, lastTag, releasePrefix)!
-          console.log(`Should bump package ${pkgName} to version`, nextVersion)
         } else {
           console.log(`${pkgName} didn't change --skipped`)
           return
@@ -156,6 +148,7 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
           semanticChanges,
         )
 
+        npmPublish(pkgCWD)
         gitRelease(nextTag)
         githubRelease(
           nextTag,
@@ -164,7 +157,6 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
           GIT_COMMITTER_NAME,
           GITHUB_TOKEN,
         )
-        npmPublish(pkgCWD)
       }
     }
   })
