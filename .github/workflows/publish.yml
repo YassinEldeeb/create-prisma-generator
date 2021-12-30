@@ -24,21 +24,17 @@ jobs:
           paths: packages
 
       - name: Setup PNPM
-        if: steps.havePackagesChanged.outputs.changed == 'true'
         uses: pnpm/action-setup@v2.0.1
         with:
           version: 6.23.6
 
       - name: Simulate CLI build
-        if: steps.havePackagesChanged.outputs.changed == 'true'
         run: pnpm simulate-dist
 
       - name: Install deps
-        if: steps.havePackagesChanged.outputs.changed == 'true'
         run: pnpm install --frozen-lockfile
 
       - name: Publish 🚀
-        if: steps.havePackagesChanged.outputs.changed == 'true'
         run: |
           GITHUB_TOKEN="${{secrets.GITHUB_TOKEN}}" GIT_COMMITTER_EMAIL="${{secrets.GIT_COMMITTER_EMAIL}}" GIT_COMMITTER_NAME="${{secrets.GIT_COMMITTER_NAME}}" npx ts-node ./scripts/ci/publish.ts
         env:
