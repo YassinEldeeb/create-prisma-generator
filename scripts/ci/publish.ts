@@ -112,12 +112,14 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
           semanticChanges.find(({ releaseType }) => type === releaseType),
         )
         if (!nextReleaseType) {
-          console.log('No semantic changes - no semantic release.')
+          console.log(`${pkgName} - no semantic release.`)
           return
         }
 
         let nextVersion = ''
-        if (hasPkgChanged(`packages/${dirent.name}`, lastTag!)) {
+        if (
+          lastTag ? hasPkgChanged(`packages/${dirent.name}`, lastTag!) : true
+        ) {
           const lastVersion = execSync(`npm view ${pkgName} version`)
             .toString()
             .trim()
@@ -143,9 +145,9 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
         const releaseNotes = generateReleaseNotes(
           nextVersion,
           repoPublicUrl,
-          lastTag!,
           nextTag,
           semanticChanges,
+          lastTag,
         )
 
         npmPublish(pkgCWD)
