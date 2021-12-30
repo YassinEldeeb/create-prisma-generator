@@ -7,7 +7,7 @@ export const generateReleaseNotes = (
   lastTag?: string,
 ) => {
   const releaseHeader = lastTag
-    ? `## ${pkgName}-v${nextVersion}`
+    ? `## ${pkgName}-v${nextVersion} 🥳`
     : `## ${pkgName} First Release 🎉`
 
   const releaseDetails = Object.values(
@@ -28,7 +28,7 @@ export const generateReleaseNotes = (
     '\n' +
     releaseDetails +
     '\n\n' +
-    `[See what changed since last release](${repoPublicUrl}/compare/${lastTag}...${nextTag})`
+    `[Compare changes with the previous release](${repoPublicUrl}/compare/${lastTag}...${nextTag})`
 
   return releaseNotes
 }
