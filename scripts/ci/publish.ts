@@ -122,7 +122,15 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
         // 4. Update package.json with the new versions
         let nextVersion = ''
         if (!lastTag) {
-          nextVersion = '1.0.0'
+          const lastVersion = execSync(`npm view ${pkgName} version`)
+            .toString()
+            .trim()
+
+          nextVersion = getNextVersion(
+            nextReleaseType,
+            `${pkgName}-v${lastVersion}`,
+            releasePrefix,
+          )!
         } else if (hasPkgChanged(`packages/${dirent.name}`, lastTag!)) {
           nextVersion = getNextVersion(nextReleaseType, lastTag, releasePrefix)!
           console.log(`Should bump package ${pkgName} to version`, nextVersion)
