@@ -13,10 +13,9 @@ export const githubRelease = (
     body: releaseNotes,
   })
 
-  execSync(
-    `curl -u ${GIT_COMMITTER_NAME}:${GITHUB_TOKEN} -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${repoName}/releases -d ${releaseData}`,
+  console.log(
+    execSync(
+      `curl -u ${GIT_COMMITTER_NAME}:${GITHUB_TOKEN} -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${repoName}/releases -d ${releaseData}`,
+    ).toString(),
   )
-
-  console.log(`Created a github release with tag ${nextTag}`)
-  console.log(releaseData)
 }
