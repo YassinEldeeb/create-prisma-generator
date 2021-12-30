@@ -23,6 +23,8 @@ const originUrl = execSync(`git config --get remote.origin.url`)
   .toString()
   .trim()
 
+console.log(originUrl)
+
 const [_, __, repoHost, repoName] = originUrl
   .replace(':', '/')
   .replace(/\.git/, '')
