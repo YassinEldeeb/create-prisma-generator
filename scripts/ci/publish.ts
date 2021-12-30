@@ -87,7 +87,7 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
                   keywords && new RegExp(`(${keywords.join('|')}):\\s(.+)`)
 
                 console.log(subj)
-                console.log(keywordsMatcher)
+                console.log(prefixMatcher)
                 const change =
                   subj.match(prefixMatcher!)?.[0] ||
                   body.match(keywordsMatcher!)?.[2]
