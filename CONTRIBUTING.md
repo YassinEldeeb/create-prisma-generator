@@ -2,9 +2,9 @@
 
 we're excited to have you on board!
 
-- Take a look at the existing [Issues](https://github.com/YassinEldeeb/prisma-tgql-types-gen/issues) or [create a new issue](https://github.com/YassinEldeeb/prisma-tgql-types-gen/issues/new/choose)!
+- Take a look at the existing [Issues](https://github.com/YassinEldeeb/create-prisma-generator/issues) or [create a new issue](https://github.com/YassinEldeeb/create-prisma-generator/issues/new)!
 - Fork the Repo. Then, create a branch for any issue that you are working on. Finally, commit your work.
-- Create a **[Pull Request](https://github.com/YassinEldeeb/prisma-tgql-types-gen/compare)**, which will be promptly reviewed and given suggestions for improvements.
+- Create a **[Pull Request](https://github.com/YassinEldeeb/create-prisma-generator/compare)**, which will be promptly reviewed and given suggestions for improvements.
 
 ## Architecture
 
