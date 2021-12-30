@@ -1,4 +1,5 @@
 import { execSync } from 'child_process'
+import { logger } from 'scripts/utils/logger'
 
 export const AuthGithub = () => {
   const { GIT_COMMITTER_NAME, GIT_COMMITTER_EMAIL, GITHUB_TOKEN } = process.env
@@ -18,6 +19,8 @@ export const AuthGithub = () => {
   execSync(`git config user.name ${GIT_COMMITTER_NAME}`)
   execSync(`git config user.email ${GIT_COMMITTER_EMAIL}`)
   execSync(`git remote set-url origin ${repoAuthedUrl}`)
+
+  logger.success('Github Authenticated!')
 
   return { repoPublicUrl, repoName }
 }

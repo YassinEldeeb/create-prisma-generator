@@ -73,8 +73,6 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
             return { subj, body, short, hash }
           })
 
-        // Can't pick up scoped conventional messages
-        // like "fix(CI): some bugs"
         const semanticChanges = newCommits.reduce(
           (acc: any[], { subj, body, short, hash }) => {
             semanticRules.forEach(
@@ -86,8 +84,6 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
                 const keywordsMatcher =
                   keywords && new RegExp(`(${keywords.join('|')}):\\s(.+)`)
 
-                console.log(subj)
-                console.log(prefixMatcher)
                 const change =
                   subj.match(prefixMatcher!)?.[0] ||
                   body.match(keywordsMatcher!)?.[2]
@@ -138,8 +134,6 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
         updatePackageVersion(pkgCWD, nextVersion)
 
         const nextTag = `${pkgName}-v` + nextVersion
-
-        console.log(nextTag)
 
         // Generate release notes
         const releaseNotes = generateReleaseNotes(

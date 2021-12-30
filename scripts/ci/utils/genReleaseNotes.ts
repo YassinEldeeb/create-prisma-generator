@@ -1,3 +1,5 @@
+import { logger } from 'scripts/utils/logger'
+
 export const generateReleaseNotes = (
   nextVersion: string,
   repoPublicUrl: string,
@@ -35,6 +37,8 @@ export const generateReleaseNotes = (
     releaseDetails +
     '\n\n' +
     `[Compare changes](${repoPublicUrl}/compare/${lastTag}...${nextTag})`
+
+  logger.success('Release notes generated successfully!')
 
   return releaseNotes
 }

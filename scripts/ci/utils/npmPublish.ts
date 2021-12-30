@@ -1,6 +1,7 @@
 import { execSync } from 'child_process'
+import { logger } from 'scripts/utils/logger'
 
 export const npmPublish = (cwd: string) => {
   execSync(`npm publish --no-git-tag-version`, { cwd })
-  console.log('Published the package successfully!')
+  logger.success('Published the package successfully!')
 }
