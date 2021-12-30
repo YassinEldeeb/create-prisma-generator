@@ -127,6 +127,9 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
           nextVersion = getNextVersion(nextReleaseType, lastTag, releasePrefix)!
           console.log(`Should bump package ${pkgName} to version`, nextVersion)
         }
+        console.log(
+          execSync(`git diff ${lastTag} HEAD --name-only`).toString().trim(),
+        )
 
         const pkgCWD = pkgJSONPath.replace(`${path.sep}package.json`, '')
         updatePackageVersion(pkgCWD, nextVersion)
