@@ -21,7 +21,7 @@ if (!GITHUB_TOKEN || !GIT_COMMITTER_NAME || !GIT_COMMITTER_EMAIL) {
 }
 
 // Git configuration
-const { repoPublicUrl, repoName } = AuthGithub()
+// const { repoPublicUrl, repoName } = AuthGithub()
 execSync("git fetch origin 'refs/tags/*:refs/tags/*'")
 const tags = execSync(`git tag -l --sort=-v:refname`)
   .toString()
@@ -145,22 +145,22 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
         // Generate release notes
         const releaseNotes = generateReleaseNotes(
           nextVersion,
-          repoPublicUrl,
+          'repoPublicUrl',
           nextTag,
           semanticChanges,
           pkgName,
           lastTag,
         )
 
-        npmPublish(pkgCWD)
-        gitRelease(nextTag)
-        githubRelease(
-          nextTag,
-          releaseNotes,
-          repoName,
-          GIT_COMMITTER_NAME,
-          GITHUB_TOKEN,
-        )
+        // npmPublish(pkgCWD)
+        // gitRelease(nextTag)
+        // githubRelease(
+        //   nextTag,
+        //   releaseNotes,
+        //   repoName,
+        //   GIT_COMMITTER_NAME,
+        //   GITHUB_TOKEN,
+        // )
       }
     }
   })
