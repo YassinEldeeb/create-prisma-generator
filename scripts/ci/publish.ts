@@ -20,6 +20,7 @@ if (!GITHUB_TOKEN || !GIT_COMMITTER_NAME || !GIT_COMMITTER_EMAIL) {
 
 // Git configuration
 const { repoPublicUrl, repoName } = AuthGithub()
+console.log(repoName)
 execSync("git fetch origin 'refs/tags/*:refs/tags/*'")
 
 // Commits analysis

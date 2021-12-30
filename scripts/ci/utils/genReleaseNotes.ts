@@ -21,12 +21,7 @@ export const generateReleaseNotes = (
       return acc
     }, {}),
   )
-    .map(
-      ({ group, commits }: any) => `
-              ### ${group}
-              ${commits.join('\n')}
-            `,
-    )
+    .map(({ group, commits }: any) => `### ${group}\n${commits.join('\n')}`)
     .join('\n')
 
   const releaseNotes = releaseDiffRef + '\n' + releaseDetails + '\n'
