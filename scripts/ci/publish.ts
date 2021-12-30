@@ -126,7 +126,11 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
         } else if (hasPkgChanged(`packages/${dirent.name}`, lastTag!)) {
           nextVersion = getNextVersion(nextReleaseType, lastTag, releasePrefix)!
           console.log(`Should bump package ${pkgName} to version`, nextVersion)
+        } else {
+          console.log(`${pkgName} didn't change --skipped`)
+          return
         }
+
         console.log(
           execSync(`git diff ${lastTag} HEAD --name-only`).toString().trim(),
         )
