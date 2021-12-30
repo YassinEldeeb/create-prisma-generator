@@ -11,7 +11,6 @@ export const githubRelease = (
     name: nextTag,
     tag_name: nextTag,
     body: releaseNotes,
-    owner: GIT_COMMITTER_NAME,
   })
 
   console.log(

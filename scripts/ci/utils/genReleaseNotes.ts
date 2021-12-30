@@ -34,7 +34,7 @@ export const generateReleaseNotes = (
     '\n' +
     releaseDetails +
     '\n\n' +
-    `[Compare changes with the previous release](${repoPublicUrl}/compare/${lastTag}...${nextTag})`
+    `[Compare changes](${repoPublicUrl}/compare/${lastTag}...${nextTag})`
 
   return releaseNotes
 }
