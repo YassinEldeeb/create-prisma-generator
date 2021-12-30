@@ -24,7 +24,7 @@ Prisma has a concept called "Generator". A generator is an executable program, w
 
 The most prominent generator is called [`prisma-client-js`](https://github.com/prisma/prisma/tree/main/packages/client). It's the ORM Client powering the main TypeScript and JavaScript usage of Prisma from Node.js.
 
-Generators will always be called when you run prisma generate. However, only the generators mentioned in the schema.prisma file are being run.
+Generators will always be called when you run `prisma generate`. However, only the generators mentioned in the schema.prisma file are being run.
 
 [See the full Article about Prisma Generators](https://prismaio.notion.site/Prisma-Generators-a2cdf262207a4e9dbcd0e362dfac8dc0)
 
