@@ -11,26 +11,15 @@
     "template/**/*"
   ],
   "scripts": {
-    "start": "node index.js",
-    "publish-pkg": "yarn publish"
+    "start": "node index.js"
   },
   "dependencies": {
     "fs-extra": "^10.0.0"
-  },
-  "devDependencies": {
-    "semantic-release": "^18.0.1",
-    "semantic-release-monorepo": "^7.0.5",
-    "@semantic-release/git": "^10.0.1"
   },
   "homepage": "https://github.com/YassinEldeeb/create-prisma-generator",
   "repository": {
     "type": "git",
     "url": "https://github.com/YassinEldeeb/create-prisma-generator.git"
   },
-  "author": "Yassin Eldeeb <yassineldeeb94@gmail.com>",
-  "release": {
-    "branches": [
-      "main"
-    ]
-  }
+  "author": "Yassin Eldeeb <yassineldeeb94@gmail.com>"
 }

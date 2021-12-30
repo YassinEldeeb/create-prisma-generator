@@ -58,6 +58,9 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
       if (!pkgJSON.private) {
         // Get prev release tag
         const lastTag = tags.find((tag) => tag.includes(releasePrefix))
+
+        // Todo: commit range should contain commit parents for merged commits
+
         const commitsRange = lastTag
           ? `${execSync(`git rev-list -1 ${lastTag}`).toString().trim()}..HEAD`
           : 'HEAD'

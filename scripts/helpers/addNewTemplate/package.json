@@ -13,22 +13,11 @@
   "dependencies": {
     "fs-extra": "^10.0.0"
   },
-  "devDependencies": {
-    "semantic-release": "^18.0.1",
-    "semantic-release-monorepo": "^7.0.5",
-    "@semantic-release/git": "^10.0.1"
-  },
   "scripts": {
-    "start": "node index.js",
-    "publish-pkg": "yarn publish"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/YassinEldeeb/create-prisma-generator.git"
-  },
-  "release": {
-    "branches": [
-      "main"
-    ]
   }
 }
