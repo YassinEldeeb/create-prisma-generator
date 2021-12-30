@@ -15,8 +15,6 @@ export const githubRelease = (
     owner: GIT_COMMITTER_NAME,
   })
 
-  console.log(releaseData)
-
   // Source: https://docs.github.com/en/rest/reference/releases#create-a-release
   execSync(
     `curl -X POST -u ${GIT_COMMITTER_NAME}:${GITHUB_TOKEN} -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${repoName}/releases -d '${releaseData}'`,
