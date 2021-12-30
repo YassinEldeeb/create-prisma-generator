@@ -19,9 +19,7 @@ if (!GITHUB_TOKEN || !GIT_COMMITTER_NAME || !GIT_COMMITTER_EMAIL) {
 
 // Git configuration
 const gitAuth = `${GIT_COMMITTER_NAME}:${GITHUB_TOKEN}`
-const originUrl = execSync(`git config --get remote.origin.url`)
-  .toString()
-  .trim()
+const originUrl = 'git@github.com:YassinEldeeb/create-prisma-generator.git'
 
 console.log(originUrl)
 
