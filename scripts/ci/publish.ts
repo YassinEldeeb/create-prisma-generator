@@ -32,12 +32,13 @@ const [_, __, repoHost, repoName] = originUrl
 const repoPublicUrl = `https://${repoHost}/${repoName}`
 const repoAuthedUrl = `https://${gitAuth}@${repoHost}/${repoName}`
 
-console.log(repoPublicUrl)
-console.log(repoAuthedUrl)
-
 execSync(`git config user.name ${GIT_COMMITTER_NAME}`)
 execSync(`git config user.email ${GIT_COMMITTER_EMAIL}`)
 execSync(`git remote set-url origin ${repoAuthedUrl}`)
+
+execSync(
+  `echo "world" >> hello.txt && git add . && git commit -m"I can commit through github actions?" && git push`,
+)
 
 // Commits analysis
 const releaseSeverityOrder = ['major', 'minor', 'patch']
@@ -46,7 +47,7 @@ const semanticRules = [
   {
     group: 'Fixes & improvements',
     releaseType: 'patch',
-    prefixes: ['fix', 'perf', 'refactor', 'docs'],
+    prefixes: ['fix', 'perf', 'refactor', 'blogs'],
   },
   {
     group: 'BREAKING CHANGES',
