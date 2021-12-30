@@ -61,7 +61,7 @@ Your environment will have everything you need to build your prisma generator li
 - Typescript Support.
 - JavaScript setup with babel to enable the usage of the latest JS features.
 - Automatic publishing workflow with Github Actions.
-- Workspace setup for testing the generator locally.
+- Workspace setup for testing the generator locally using `prisma generate`.
 - Scripts for development, building, packaging and testing.
 - Support for most package-managers `yarn`, `pnpm` and `npm`.
 - Automatic semantic release with safety in mind using [commitlint](https://github.com/conventional-changelog/commitlint) & [husky](https://github.com/typicode/husky) to validate your [commit messages](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#-commit-message-format).
