@@ -8,7 +8,7 @@ we're excited to have you on board!
 
 ## Architecture
 
-Look at the [`ARCHITECTURE.md`](https://github.com/YassinEldeeb/create-prisma-generator/new/main) to understand how everything is working.
+Look at the [`ARCHITECTURE.md`](https://github.com/YassinEldeeb/create-prisma-generator/blob/main/ARCHITECTURE.md) to understand how everything is working.
 
 ## Prerequisites
 
