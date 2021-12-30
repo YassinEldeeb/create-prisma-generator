@@ -20,7 +20,7 @@ export const AuthGithub = () => {
   execSync(`git config user.email ${GIT_COMMITTER_EMAIL}`)
   execSync(`git remote set-url origin ${repoAuthedUrl}`)
 
-  logger.success('Github Authenticated!')
+  logger.success('\nGithub Authenticated!\n')
 
   return { repoPublicUrl, repoName }
 }
