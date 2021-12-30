@@ -84,7 +84,7 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
                   new RegExp(
                     `^(${prefixes.join(
                       '|',
-                    )}){1}(\\([\\w-\\.]+\\))?(!)?: ([\w ])+([\s\S]*`,
+                    )}){1}(\\([\\w-\\.]+\\))?(!)?: ([\\w ])+([\\s\\S]*)`,
                   )
                 const keywordsMatcher =
                   keywords && new RegExp(`(${keywords.join('|')}):\\s(.+)`)
