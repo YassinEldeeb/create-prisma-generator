@@ -73,14 +73,19 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
             return { subj, body, short, hash }
           })
 
+        // Thanks to this regex shebang:
+        // https://gist.github.com/marcojahn/482410b728c31b221b70ea6d2c433f0c
         const semanticChanges = newCommits.reduce(
           (acc: any[], { subj, body, short, hash }) => {
             semanticRules.forEach(
               ({ group, releaseType, prefixes, keywords }) => {
                 const prefixMatcher =
                   prefixes &&
-                  new RegExp(`^(${prefixes.join('|')})(\\(\\w+\\))?:\\s.+$`)
-
+                  new RegExp(
+                    `^(${prefixes.join(
+                      '|',
+                    )}){1}(\\([\\w-\\.]+\\))?(!)?: ([\w ])+([\s\S]*`,
+                  )
                 const keywordsMatcher =
                   keywords && new RegExp(`(${keywords.join('|')}):\\s(.+)`)
 
