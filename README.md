@@ -2,6 +2,7 @@
 
 <div align="center">
   <a href="https://www.npmjs.com/package/create-prisma-generator"><img src="https://img.shields.io/npm/v/create-prisma-generator.svg?style=flat" /></a>
+  <a href="https://npmcharts.com/compare/create-prisma-generator?minimal=true"><img src="https://img.shields.io/npm/dm/create-prisma-generator.svg?style=flat"/></a>
   <a href="https://github.com/YassinEldeeb/create-prisma-generator/blob/main/CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" /></a>
   <a href="https://github.com/YassinEldeeb/create-prisma-generator/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" /></a>
   <br />
@@ -23,7 +24,7 @@ Prisma has a concept called "Generator". A generator is an executable program, w
 
 The most prominent generator is called [`prisma-client-js`](https://github.com/prisma/prisma/tree/main/packages/client). It's the ORM Client powering the main TypeScript and JavaScript usage of Prisma from Node.js.
 
-Generators will always be called when you run prisma generate. However, only the generators mentioned in the schema.prisma file are being run.
+Generators will always be called when you run `prisma generate`. However, only the generators mentioned in the schema.prisma file are being run.
 
 [See the full Article about Prisma Generators](https://prismaio.notion.site/Prisma-Generators-a2cdf262207a4e9dbcd0e362dfac8dc0)
 
