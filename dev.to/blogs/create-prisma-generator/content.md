@@ -7,3 +7,7 @@ tags: typescript, javascript, prisma, generator
 ---
 
 Edit this blog by making a PR to [this repo](https://github.com/YassinEldeeb/create-prisma-generator/tree/main/dev.to/blogs/create-prisma-generator)
+
+```ts
+// code/name.ts
+```
