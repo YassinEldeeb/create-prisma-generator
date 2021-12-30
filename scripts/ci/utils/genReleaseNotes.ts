@@ -3,13 +3,12 @@ export const generateReleaseNotes = (
   repoPublicUrl: string,
   nextTag: string,
   semanticChanges: any[],
+  pkgName: string,
   lastTag?: string,
 ) => {
-  const releaseDiffRef = lastTag
-    ? `## [${nextVersion}](${repoPublicUrl}/compare/${lastTag}...${nextTag}) (${new Date()
-        .toISOString()
-        .slice(0, 10)})`
-    : '## Init'
+  const releaseHeader = lastTag
+    ? `## ${pkgName}-v${nextVersion}`
+    : `## ${pkgName} First Release 🎉`
 
   const releaseDetails = Object.values(
     semanticChanges.reduce((acc, { group, change, short, hash }) => {
@@ -24,7 +23,12 @@ export const generateReleaseNotes = (
     .map(({ group, commits }: any) => `### ${group}\n${commits.join('\n')}`)
     .join('\n')
 
-  const releaseNotes = releaseDiffRef + '\n' + releaseDetails + '\n'
+  const releaseNotes =
+    releaseHeader +
+    '\n' +
+    releaseDetails +
+    '\n\n' +
+    `[See what changed since last release](${repoPublicUrl}/compare/${lastTag}...${nextTag})`
 
   return releaseNotes
 }

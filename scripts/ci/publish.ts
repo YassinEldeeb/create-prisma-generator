@@ -147,6 +147,7 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
           repoPublicUrl,
           nextTag,
           semanticChanges,
+          pkgName,
           lastTag,
         )
 
