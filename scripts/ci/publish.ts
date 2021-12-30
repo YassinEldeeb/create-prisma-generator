@@ -1,8 +1,7 @@
-// Used this as a starting point:
-// https://github.com/semrel-extra/zx-semrel/blob/master/release.mjs
 import { execSync } from 'child_process'
 import fs from 'fs'
 import path from 'path'
+import { AuthGithub } from './utils/authGithub'
 import { generateReleaseNotes } from './utils/genReleaseNotes'
 import { getNextVersion } from './utils/getNextVersion'
 import { githubRelease } from './utils/githubRelease'
@@ -19,26 +18,9 @@ if (!GITHUB_TOKEN || !GIT_COMMITTER_NAME || !GIT_COMMITTER_EMAIL) {
 }
 
 // Git configuration
-const gitAuth = `${GIT_COMMITTER_NAME}:${GITHUB_TOKEN}`
-const originUrl = execSync(`git config --get remote.origin.url`)
-  .toString()
-  .trim()
-
-const [_, __, repoHost, repoName] = originUrl
-  .replace(':', '/')
-  .replace(/\.git/, '')
-  .match(/.+(@|\/\/)([^/]+)\/(.+)$/) as RegExpMatchArray
-
-const repoPublicUrl = `https://${repoHost}/${repoName}`
-const repoAuthedUrl = `https://${gitAuth}@${repoHost}/${repoName}`
-
-execSync(
-  `echo "changed" >> hello.txt && git add . && git commit -m"Am I authenticated automatically?" && git push`,
-)
-
-execSync(`git config user.name ${GIT_COMMITTER_NAME}`)
-execSync(`git config user.email ${GIT_COMMITTER_EMAIL}`)
-execSync(`git remote set-url origin ${repoAuthedUrl}`)
+const { repoPublicUrl, repoName } = AuthGithub()
+// Fetch tags
+execSync("git fetch origin 'refs/tags/*:refs/tags/*'")
 
 // Commits analysis
 const releaseSeverityOrder = ['major', 'minor', 'patch']
