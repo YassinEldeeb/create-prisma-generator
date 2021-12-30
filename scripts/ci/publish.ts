@@ -69,6 +69,8 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
           .split('\n')
           .map((tag) => tag.trim())
 
+        console.log(tags)
+
         const lastTag = tags.find((tag) => tag.includes(releasePrefix))
         const commitsRange = lastTag
           ? `${execSync(`git rev-list -1 ${lastTag}`).toString().trim()}..HEAD`
