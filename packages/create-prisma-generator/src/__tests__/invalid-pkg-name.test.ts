@@ -4,7 +4,7 @@ import { answer } from './__helpers__/answer'
 import { clearInput } from './__helpers__/clearInput'
 import { delay } from './__helpers__/delay'
 import { skipQuestions } from './__helpers__/skipQuestions'
-import { spyConsole } from './__helpers__/spyConsole'
+import { spyConsole } from './__mocks__/console'
 
 // Mock stdin to send keystrokes to the CLI
 let io: MockSTDIN
