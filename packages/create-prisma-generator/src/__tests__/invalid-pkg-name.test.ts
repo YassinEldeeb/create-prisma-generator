@@ -1,10 +1,10 @@
 import { MockSTDIN, stdin } from 'mock-stdin'
-import { promptQuestions, questions } from '../utils/promptQuestions'
-import { keys } from './__helpers__/keyCodes'
-import { delay } from './__helpers__/delay'
+import { promptQuestions } from '../utils/promptQuestions'
+import { answer } from './__helpers__/answer'
 import { clearInput } from './__helpers__/clearInput'
-import { spyConsole } from './__helpers__/spyConsole'
+import { delay } from './__helpers__/delay'
 import { skipQuestions } from './__helpers__/skipQuestions'
+import { spyConsole } from './__helpers__/spyConsole'
 
 // Mock stdin to send keystrokes to the CLI
 let io: MockSTDIN
@@ -16,14 +16,12 @@ let spy = spyConsole()
 test("shouldn't accept invalid package name", async () => {
   const sendKeystrokes = async () => {
     const invalidPkgName = '#invalid@pkgname'
-    io.send(invalidPkgName)
-    io.send(keys.enter)
+    answer(io, { text: invalidPkgName })
 
     await delay(10)
 
     clearInput(io, invalidPkgName.length)
-    io.send('validname')
-    io.send(keys.enter)
+    answer(io, { text: 'validname' })
 
     // Skip the rest of the questions
     skipQuestions(-1, io)

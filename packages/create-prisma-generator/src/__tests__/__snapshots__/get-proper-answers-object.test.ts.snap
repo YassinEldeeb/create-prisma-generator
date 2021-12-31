@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should get proper answers object when answering using sample1 1`] = `
+Object {
+  "generatorName": "validname",
+  "githubActions": true,
+  "packageManager": "pnpm",
+  "semanticRelease": true,
+  "typescript": true,
+  "usageTemplate": true,
+}
+`;
+
+exports[`should get proper answers object when answering using sample2 1`] = `
+Object {
+  "generatorName": "validname",
+  "githubActions": false,
+  "packageManager": "pnpm",
+  "typescript": false,
+  "usageTemplate": false,
+}
+`;
+
+exports[`should get proper answers object when answering using sample3 1`] = `
+Object {
+  "generatorName": "validname",
+  "githubActions": true,
+  "packageManager": "pnpm",
+  "semanticRelease": false,
+  "typescript": false,
+  "usageTemplate": false,
+}
+`;
