@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`make sure tiny CLIs are listed 1`] = `
+Array [
+  Object {
+    "command": "npx @cpg-cli/template-typescript@latest path",
+    "key": "typescriptTemplate",
+  },
+  Object {
+    "command": "npx @cpg-cli/root-configs@latest path",
+    "key": "rootConfigs",
+  },
+  Object {
+    "command": "npx @cpg-cli/template-gen-usage@latest path",
+    "key": "usageTemplate",
+  },
+  Object {
+    "command": "npx @cpg-cli/template@latest path",
+    "key": "javascriptTemplate",
+  },
+  Object {
+    "command": "npx @cpg-cli/github-actions@latest path",
+    "key": "githubActionsTemplate",
+  },
+  Object {
+    "command": "npx @cpg-cli/semantic-releases@latest path workspace",
+    "key": "setupSemanticRelease",
+  },
+]
+`;
