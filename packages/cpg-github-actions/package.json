@@ -7,9 +7,6 @@
     "cpg-github-actions": "index.js"
   },
   "scripts": {},
-  "dependencies": {
-    "fs-extra": "^10.0.0"
-  },
   "files": [
     "template/**/*"
   ],

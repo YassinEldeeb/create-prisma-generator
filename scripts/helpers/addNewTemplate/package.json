@@ -9,9 +9,6 @@
   "files": [
     "template/**/*"
   ],
-  "dependencies": {
-    "fs-extra": "^10.0.0"
-  },
   "scripts": {
     "start": "node index.js"
   },

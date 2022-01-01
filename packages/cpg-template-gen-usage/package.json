@@ -9,9 +9,6 @@
   "files": [
     "template/**/*"
   ],
-  "dependencies": {
-    "fs-extra": "^10.0.0"
-  },
   "scripts": {},
   "homepage": "https://github.com/YassinEldeeb/create-prisma-generator",
   "repository": {
