@@ -6,11 +6,13 @@ importers:
     specifiers:
       '@commitlint/cli': ^15.0.0
       '@commitlint/config-conventional': ^15.0.0
+      fs-extra: ^10.0.0
       husky: ^7.0.0
       ts-node: ^10.4.0
     devDependencies:
       '@commitlint/cli': 15.0.0
       '@commitlint/config-conventional': 15.0.0
+      fs-extra: 10.0.0
       husky: 7.0.4
       ts-node: 10.4.0
 
@@ -45,42 +47,25 @@ importers:
       create-prisma-generator: link:../create-prisma-generator
 
   packages/cpg-github-actions:
-    specifiers:
-      fs-extra: ^10.0.0
-    dependencies:
-      fs-extra: 10.0.0
+    specifiers: {}
 
   packages/cpg-root-configs:
-    specifiers:
-      fs-extra: ^10.0.0
-    dependencies:
-      fs-extra: 10.0.0
+    specifiers: {}
 
   packages/cpg-semantic-releases:
     specifiers:
-      fs-extra: ^10.0.0
       yaml: ^1.10.2
     dependencies:
-      fs-extra: 10.0.0
       yaml: 1.10.2
 
   packages/cpg-template:
-    specifiers:
-      fs-extra: ^10.0.0
-    dependencies:
-      fs-extra: 10.0.0
+    specifiers: {}
 
   packages/cpg-template-gen-usage:
-    specifiers:
-      fs-extra: ^10.0.0
-    dependencies:
-      fs-extra: 10.0.0
+    specifiers: {}
 
   packages/cpg-template-typescript:
-    specifiers:
-      fs-extra: ^10.0.0
-    dependencies:
-      fs-extra: 10.0.0
+    specifiers: {}
 
   packages/create-prisma-generator:
     specifiers:

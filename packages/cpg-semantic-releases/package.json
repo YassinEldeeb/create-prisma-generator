@@ -13,7 +13,6 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "fs-extra": "^10.0.0",
     "yaml": "^1.10.2"
   },
   "homepage": "https://github.com/YassinEldeeb/create-prisma-generator",
