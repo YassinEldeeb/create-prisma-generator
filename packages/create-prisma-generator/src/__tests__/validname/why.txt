@@ -1,0 +1,2 @@
+This's for checking wether the CLI would overwrite this directory
+or throw an error when setting up a new project.

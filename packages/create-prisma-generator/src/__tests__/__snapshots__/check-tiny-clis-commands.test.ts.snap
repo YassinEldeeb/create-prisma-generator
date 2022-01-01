@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`make sure tiny CLIs are listed 1`] = `
+exports[`make sure tiny CLIs commands are configured properly 1`] = `
 Array [
   Object {
     "command": "npx @cpg-cli/template-typescript@latest path",

@@ -1,8 +1,7 @@
 #!/usr/bin/env node
-import path, { dirname } from 'path'
-import fse from 'fs-extra'
-import YAML from 'yaml'
-import { fileURLToPath } from 'url'
+const path = require('path')
+const fs = require('fs')
+const YAML = require('yaml')
 
 // Modify CI.yml Publish workflow
 // To use semantic release
@@ -11,7 +10,7 @@ const usingWorkspaces = process.argv[3]
 const workingDir = path.join(process.cwd(), pkgName)
 const CIPath = path.join(workingDir, '.github/workflows/CI.yml')
 
-const CIYMLFile = fse.readFileSync(CIPath, 'utf8')
+const CIYMLFile = fs.readFileSync(CIPath, 'utf8')
 const parsedCI = YAML.parse(CIYMLFile)
 
 const modifiedSteps = parsedCI.jobs.Publish.steps.map((e) => {
@@ -28,7 +27,7 @@ const modifiedSteps = parsedCI.jobs.Publish.steps.map((e) => {
 
 parsedCI.jobs.Publish.steps = modifiedSteps
 
-fse.writeFileSync(CIPath, YAML.stringify(parsedCI, { singleQuote: true }))
+fs.writeFileSync(CIPath, YAML.stringify(parsedCI, { singleQuote: true }))
 
 // Add needed dependencies for
 // semantic release
@@ -39,7 +38,7 @@ if (usingWorkspaces) {
   PKGJSONPath = path.join(workingDir, './package.json')
 }
 
-const PkgJSONFile = JSON.parse(fse.readFileSync(PKGJSONPath, 'utf8'))
+const PkgJSONFile = JSON.parse(fs.readFileSync(PKGJSONPath, 'utf8'))
 const semanticReleaseDeps = {
   '@semantic-release/changelog': '^6.0.1',
   '@semantic-release/git': '^10.0.1',
@@ -76,29 +75,28 @@ const releaseConfig = {
 }
 
 PkgJSONFile.release = releaseConfig
-fse.writeFileSync(PKGJSONPath, JSON.stringify(PkgJSONFile, null, 2))
+fs.writeFileSync(PKGJSONPath, JSON.stringify(PkgJSONFile, null, 2))
 
 // Copy template configs
-const __dirname = dirname(fileURLToPath(import.meta.url))
-fse.copyFileSync(
+fs.copyFileSync(
   path.join(path.join(__dirname, `./template/commitlint.config.js`)),
   path.join(workingDir, 'commitlint.config.js'),
 )
 const rootPkgJSONPath = path.join(workingDir, 'package.json')
-const templatePkgJSON = fse.readFileSync(
+const templatePkgJSON = fs.readFileSync(
   path.join(__dirname, `./template/package.json`),
   'utf-8',
 )
 
-if (!fse.existsSync(rootPkgJSONPath)) {
-  fse.writeFileSync(rootPkgJSONPath, templatePkgJSON)
+if (!fs.existsSync(rootPkgJSONPath)) {
+  fs.writeFileSync(rootPkgJSONPath, templatePkgJSON)
 } else {
   const existingRootPkgJSON = JSON.parse(
-    fse.readFileSync(rootPkgJSONPath, 'utf-8'),
+    fs.readFileSync(rootPkgJSONPath, 'utf-8'),
   )
 
   // Merge the two package.json(s)
-  fse.writeFileSync(
+  fs.writeFileSync(
     rootPkgJSONPath,
     JSON.stringify(
       {

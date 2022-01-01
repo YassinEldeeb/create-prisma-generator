@@ -38,6 +38,7 @@ export const main = async () => {
   // Initialize git
   //! This needs to be at the top cause `husky` won't run
   //! if there was no repository
+  fs.readdirSync(process.cwd())
   fs.mkdirSync(projectWorkdir)
   execSync(`${workingDir} && git init`)
   console.log(colors.cyan('\nInitialized a git repository.\n'))

@@ -3,7 +3,6 @@
   "version": "1.3.1",
   "main": "index.js",
   "license": "MIT",
-  "type": "module",
   "bin": {
     "cpg-template-typescript": "index.js"
   },

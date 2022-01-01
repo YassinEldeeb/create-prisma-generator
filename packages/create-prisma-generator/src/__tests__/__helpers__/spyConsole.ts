@@ -1,5 +1,7 @@
 export function spyConsole() {
-  let spy: any = {}
+  let spy: {
+    console: jest.SpyInstance<void, [message?: any, ...optionalParams: any[]]>
+  } = {} as any
 
   beforeEach(() => {
     spy.console = jest.spyOn(console, 'log')

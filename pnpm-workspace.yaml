@@ -1,5 +1,5 @@
 packages:
-  # all packages in subdirs of packages/ and components/
+  # all packages in subdirs of packages/ and dev.to/
   - 'packages/**'
   - dev.to
   # exclude packages that are inside template directories

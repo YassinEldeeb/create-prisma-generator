@@ -53,7 +53,7 @@ import fse from 'fs-extra'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
-fse.copySync(
+fse.copySync((
   path.join(path.join(__dirname, `./template`)),
   path.join(process.cwd(), process.argv[2]),
 )
@@ -94,7 +94,9 @@ that'll call `execSync` from node's child_process to execute a shell command tha
 const templateName = 'root default configs'
 runBlockingCommand(templateName, CLIs.rootConfigs(pkgName))
 ```
+
 And `CLIs` is just an object that has a bunch of methods to execute the Tiny CLIs which you'll have to add your own here as well
+
 ```ts
 // packages/create-prisma-generator/src/tinyClis.ts
 export const CLIs = {
@@ -117,7 +119,6 @@ export const CLIs = {
     return `npx @cpg-cli/semantic-releases@latest ${path} ${workspaceFlag}`
   },
 }
-
 ```
 
 so now It just depends on what you're setting up, you're now equiped with all of the tools/utilities to support other things like other CIs as an example cause currently
