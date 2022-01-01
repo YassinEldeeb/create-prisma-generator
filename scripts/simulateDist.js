@@ -1,4 +1,4 @@
-const fse = require('fs-extra')
+const fs = require('fs')
 const path = require('path')
 
 const cliPath = path.join(__dirname, '../packages/create-prisma-generator')
