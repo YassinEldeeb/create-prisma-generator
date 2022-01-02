@@ -24,10 +24,9 @@ Object {
 exports[`should get proper answers object when answering using sample3 1`] = `
 Object {
   "generatorName": "validname",
-  "githubActions": true,
-  "packageManager": "pnpm",
-  "semanticRelease": false,
+  "githubActions": false,
+  "packageManager": "npm",
   "typescript": false,
-  "usageTemplate": false,
+  "usageTemplate": true,
 }
 `;

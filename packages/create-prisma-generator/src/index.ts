@@ -1,4 +1,4 @@
-import { execSync, spawn } from 'child_process'
+import { execSync, spawn, spawnSync } from 'child_process'
 import colors from 'colors'
 import fs from 'fs'
 import path from 'path'
@@ -9,6 +9,7 @@ import { yarnWorkspaceJSON } from './config/yarn-workspace'
 import { pnpmWorkspaceYML } from './config/pnpm-workspace'
 import { huskyCommitMsgHook } from './config/husky-commit-msg-hook'
 import { CLIs } from './tinyClis'
+import { getInstallCommand } from './utils/getInstallCommands'
 
 export const main = async () => {
   const answers = await promptQuestions()
@@ -142,67 +143,55 @@ export const main = async () => {
     )
   }
 
-  let installCommand = ''
-  switch (pkgManager) {
-    case 'npm':
-      installCommand = 'npm i'
-      break
-    case 'yarn':
-      installCommand = 'yarn'
-      break
-    case 'pnpm':
-      installCommand = 'pnpm i'
-      break
-  }
-
   console.log(colors.cyan(`Installing dependencies using ${pkgManager}\n`))
 
   // Install packages
-  //? Using spawn and not spawnSync here so that
-  //? It's pretty obvious to me where the end
-  //? of the setup is
-  spawn(installCommand, {
+  spawnSync(getInstallCommand(pkgManager), {
     shell: true,
     stdio: 'inherit',
     cwd: projectWorkdir,
-  }).on('exit', () => {
-    // Build the generator package to start
-    // testing the generator output
-    const buildCommand = `${
-      pkgManager === 'npm' ? 'npm run' : pkgManager
-    } build`
-    runBlockingCommand(
-      'Generator',
-      `${generatorLocation} && ${buildCommand}`,
-      'Building',
-    )
-
-    // Switch to 'main' and Commit files
-    execSync(
-      `${workingDir} && git checkout -b main && git add . && git commit -m"init"`,
-    )
-    console.log(colors.cyan('Created git commit.\n'))
-
-    // Add commit-msg husky hook to lint commits
-    // using commitlint before they are created
-    //! must be added after initilizing a git repo
-    //! and after commiting `init` to skip validation
-    if (answers.semanticRelease) {
-      fs.writeFileSync(
-        path.join(projectWorkdir, './.husky/commit-msg'),
-        huskyCommitMsgHook,
-      )
-      execSync(
-        `${workingDir} && git add . && git commit -m"feat: added husky for safety commit-msg"`,
-      )
-    }
-
-    // Success Messages
-    console.log(colors.green(`Success!`), `Created ${projectWorkdir}`)
-    console.log(`We suggest that you begin by typing:\n`)
-    console.log(colors.cyan('cd'), pkgName)
-    console.log(colors.cyan('code .'))
-    console.log(`\nStart Generating ;)`)
   })
+  //! Post-install
+
+  // Build the generator package to start
+  // testing the generator output
+  const buildCommand = `${pkgManager === 'npm' ? 'npm run' : pkgManager} build`
+  runBlockingCommand(
+    'Generator',
+    `${generatorLocation} && ${buildCommand}`,
+    'Building',
+  )
+
+  // Switch to 'main' and Commit files
+  execSync(
+    `${workingDir} && git checkout -b main && git add . && git commit -m"init"`,
+  )
+  console.log(colors.cyan('Created git commit.\n'))
+
+  // Add commit-msg husky hook to lint commits
+  // using commitlint before they are created
+  //! must be added after initilizing a git repo
+  //! and after commiting `init` to skip validation
+  if (answers.semanticRelease) {
+    fs.mkdirSync(path.join(projectWorkdir, './.husky'), {
+      recursive: true,
+    })
+    fs.writeFileSync(
+      path.join(projectWorkdir, './.husky/commit-msg'),
+      huskyCommitMsgHook,
+    )
+    execSync(
+      `${workingDir} && git add . && git commit -m"feat: added husky for safety commit-msg"`,
+    )
+  }
+
+  // Success Messages
+  console.log(colors.green(`Success!`), `Created ${projectWorkdir}`)
+  console.log(`We suggest that you begin by typing:\n`)
+  console.log(colors.cyan('cd'), pkgName)
+  console.log(colors.cyan('code .'))
+  console.log(`\nStart Generating ;)`)
+
+  return answers
 }
 main()

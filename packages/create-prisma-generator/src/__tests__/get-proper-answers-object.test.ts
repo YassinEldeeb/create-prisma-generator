@@ -11,36 +11,37 @@ afterEach(() => io.restore())
 // See the Questions to know how to modify these samples
 // LINK ..\utils\promptQuestions.ts#questions
 
+let genName = 'validname'
 const sampleAnswers = {
   async sample1() {
     // LINK ..\utils\promptQuestions.ts#Q1-generatorName
-    answer(io, { text: 'validname' })
+    await answer(io, { text: genName })
 
     // Skip the rest of the questions
-    skipQuestions(-1, io)
+    await skipQuestions(-1, io)
   },
   async sample2() {
     // LINK ..\utils\promptQuestions.ts#Q1-generatorName
-    answer(io, { text: 'validname' })
+    await answer(io, { text: genName })
 
     // Skip the rest of the questions
-    skipQuestions(-1, io, true)
+    await skipQuestions(-1, io, true)
   },
   async sample3() {
     // LINK ..\utils\promptQuestions.ts#Q1-generatorName
-    answer(io, { text: 'validname' })
+    await answer(io, { text: genName })
 
     // LINK ..\utils\promptQuestions.ts#Q2-usingTypescript
-    answer(io, { text: 'No' })
+    await answer(io, { text: 'No' })
 
     // LINK ..\utils\promptQuestions.ts#Q3-selectPkgManager
-    answer(io, { keys: ['up'] })
+    await answer(io, { keys: ['down'] })
 
     // LINK ..\utils\promptQuestions.ts#Q4-usingGithubActions
-    answer(io)
+    await answer(io, { text: 'No' })
 
     // Skip the rest of the questions
-    skipQuestions(-1, io, true)
+    await skipQuestions(-1, io)
   },
 }
 

@@ -1,0 +1,33 @@
+{
+  "answers": {
+    "generatorName": "my-best-prisma-gen",
+    "typescript": true,
+    "packageManager": "yarn",
+    "githubActions": true,
+    "semanticRelease": false,
+    "usageTemplate": false
+  },
+  "fsSnapshot": {
+    "my-best-prisma-gen\\.prettierrc": "",
+    "my-best-prisma-gen\\README.md": "",
+    "my-best-prisma-gen\\.gitignore": "",
+    "my-best-prisma-gen\\.npmignore": "",
+    "my-best-prisma-gen\\jest.config.js": "",
+    "my-best-prisma-gen\\package.json": "",
+    "my-best-prisma-gen\\src\\bin.ts": "",
+    "my-best-prisma-gen\\src\\constants.ts": "",
+    "my-best-prisma-gen\\src\\generator.ts": "",
+    "my-best-prisma-gen\\src\\helpers\\genEnum.ts": "",
+    "my-best-prisma-gen\\src\\helpers\\writeEnumFile.ts": "",
+    "my-best-prisma-gen\\src\\utils\\formatFile.ts": "",
+    "my-best-prisma-gen\\src\\utils\\writeFileSafely.ts": "",
+    "my-best-prisma-gen\\src\\__tests__\\genEnum.test.ts": "",
+    "my-best-prisma-gen\\src\\__tests__\\writeEnumFile.test.ts": "",
+    "my-best-prisma-gen\\src\\__tests__\\__fixtures__\\sample.prisma": "",
+    "my-best-prisma-gen\\src\\__tests__\\__fixtures__\\writeSampleDMMF.ts": "",
+    "my-best-prisma-gen\\src\\__tests__\\__snapshots__\\genEnum.test.ts.snap": "",
+    "my-best-prisma-gen\\tsconfig.json": "",
+    "my-best-prisma-gen\\.github\\dependabot.yml": "",
+    "my-best-prisma-gen\\.github\\workflows\\CI.yml": ""
+  }
+}

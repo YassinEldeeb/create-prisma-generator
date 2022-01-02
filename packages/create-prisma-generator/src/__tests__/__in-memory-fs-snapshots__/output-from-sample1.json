@@ -1,0 +1,40 @@
+{
+  "answers": {
+    "generatorName": "my-best-prisma-gen",
+    "typescript": true,
+    "packageManager": "pnpm",
+    "githubActions": true,
+    "semanticRelease": true,
+    "usageTemplate": true
+  },
+  "fsSnapshot": {
+    "my-best-prisma-gen\\.prettierrc": "",
+    "my-best-prisma-gen\\README.md": "",
+    "my-best-prisma-gen\\.gitignore": "",
+    "my-best-prisma-gen\\packages\\usage\\package.json": "",
+    "my-best-prisma-gen\\packages\\usage\\prisma\\schema.prisma": "",
+    "my-best-prisma-gen\\packages\\generator\\.npmignore": "",
+    "my-best-prisma-gen\\packages\\generator\\jest.config.js": "",
+    "my-best-prisma-gen\\packages\\generator\\package.json": "",
+    "my-best-prisma-gen\\packages\\generator\\src\\bin.ts": "",
+    "my-best-prisma-gen\\packages\\generator\\src\\constants.ts": "",
+    "my-best-prisma-gen\\packages\\generator\\src\\generator.ts": "",
+    "my-best-prisma-gen\\packages\\generator\\src\\helpers\\genEnum.ts": "",
+    "my-best-prisma-gen\\packages\\generator\\src\\helpers\\writeEnumFile.ts": "",
+    "my-best-prisma-gen\\packages\\generator\\src\\utils\\formatFile.ts": "",
+    "my-best-prisma-gen\\packages\\generator\\src\\utils\\writeFileSafely.ts": "",
+    "my-best-prisma-gen\\packages\\generator\\src\\__tests__\\genEnum.test.ts": "",
+    "my-best-prisma-gen\\packages\\generator\\src\\__tests__\\writeEnumFile.test.ts": "",
+    "my-best-prisma-gen\\packages\\generator\\src\\__tests__\\__fixtures__\\sample.prisma": "",
+    "my-best-prisma-gen\\packages\\generator\\src\\__tests__\\__fixtures__\\writeSampleDMMF.ts": "",
+    "my-best-prisma-gen\\packages\\generator\\src\\__tests__\\__snapshots__\\genEnum.test.ts.snap": "",
+    "my-best-prisma-gen\\packages\\generator\\tsconfig.json": "",
+    "my-best-prisma-gen\\packages\\generator\\dist\\bin.js": "",
+    "my-best-prisma-gen\\.github\\dependabot.yml": "",
+    "my-best-prisma-gen\\.github\\workflows\\CI.yml": "",
+    "my-best-prisma-gen\\pnpm-workspace.yaml": "",
+    "my-best-prisma-gen\\commitlint.config.js": "",
+    "my-best-prisma-gen\\package.json": "",
+    "my-best-prisma-gen\\.husky\\commit-msg": ""
+  }
+}

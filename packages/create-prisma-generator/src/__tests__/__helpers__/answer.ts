@@ -8,7 +8,7 @@ export const answer = async (
 ) => {
   await delay(10)
   if (options?.keys) {
-    options.keys.forEach((e) => io.send(e))
+    options.keys.forEach((e) => io.send(keys[e]))
   } else if (options?.text) {
     io.send(options.text)
   }
