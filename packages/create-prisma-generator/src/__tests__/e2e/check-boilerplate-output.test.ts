@@ -233,12 +233,14 @@ Object.keys(sampleAnswers).map((sample) => {
 
     // Check if any files are missing
     if (lastSnapshot) {
-      console.log(Object.keys(lastSnapshot).map((e: any) => path.resolve(e)))
+      console.log(Object.keys(lastSnapshot).map((e: any) => path.join(e)))
       console.log(newSnapshot)
+
       const missingFiles: string[] = []
       Object.keys(lastSnapshot).forEach((key) => {
-        // Resolve the path to avoid paths conflicts on different OSs
-        const resolvedPath = path.resolve(key)
+        // Using path.join which converts path seperator
+        // to match with the running OS
+        const resolvedPath = path.join(key)
         if (!Object.prototype.hasOwnProperty.call(newSnapshot, resolvedPath)) {
           missingFiles.push(genName + resolvedPath.split(genName)[1])
         }
