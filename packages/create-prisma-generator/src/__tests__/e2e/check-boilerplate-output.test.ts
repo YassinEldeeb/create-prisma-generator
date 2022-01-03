@@ -237,10 +237,10 @@ Object.keys(sampleAnswers).map((sample) => {
       console.log(newSnapshot)
       const missingFiles: string[] = []
       Object.keys(lastSnapshot).forEach((key) => {
-        if (
-          !Object.prototype.hasOwnProperty.call(newSnapshot, path.resolve(key))
-        ) {
-          missingFiles.push(genName + key.split(genName)[1])
+        // Resolve the path to avoid paths conflicts on different OSs
+        const resolvedPath = path.resolve(key)
+        if (!Object.prototype.hasOwnProperty.call(newSnapshot, resolvedPath)) {
+          missingFiles.push(genName + resolvedPath.split(genName)[1])
         }
       })
 
