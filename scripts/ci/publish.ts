@@ -165,7 +165,10 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
         )
 
         npmPublish(pkgCWD)
-        gitRelease(nextTag)
+        // Add changes like package.json(s)
+        const releaseMessage = `chore(release): ${nextTag} [skip ci]`
+        execSync(`git add -A .`)
+        execSync(`git tag -a ${nextTag} HEAD -m"${releaseMessage}"`)
         githubRelease(
           nextTag,
           releaseNotes,
@@ -176,3 +179,6 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
       }
     }
   })
+
+// Commit and Push all staged files
+gitRelease()

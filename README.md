@@ -35,14 +35,7 @@ I'm really obsessed with this architecture that Prisma Client is built on and I 
 
 But unfortunately I didn't have a smooth experience developing [my prisma generator](https://github.com/YassinEldeeb/prisma-tgql-types-gen).
 
-So I created this CLI to help developers getting started developing their Prisma Generators smoothly with all of the annoying repetitive things carried away like:
-- Publishing the generator to npm.
-- Testing environment.
-- Boilerplates for Typescript/Javascript W/Babel.
-- CI for Testing and Publishing.
-- Keeping dependencies up to date.
-- Workspace for testing the generator locally using `prisma generate`.
-- Best Practices for developing Prisma Generators.
+So I created this CLI to help developers getting started developing their Prisma Generators smoothly with all of the annoying repetitive things carried away like: publishing, getting started boilerplate, testing the gen locally by running `prisma generate`, ..etc
 
 ### Also Created a blog on dev.to to help you with the undocumented APIs that I've talked about previously and to explain the setup that this CLI has setup for you, [Check It out here](https://dev.to/yassineldeeb/create-prisma-generator-2mdg)
 
