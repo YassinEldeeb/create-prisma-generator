@@ -8,28 +8,38 @@ import { spyConsole } from './__helpers__/spyConsole'
 
 // Mock stdin to send keystrokes to the CLI
 let io: MockSTDIN
-beforeAll(() => (io = stdin()))
-afterAll(() => io.restore())
+beforeEach(() => (io = stdin()))
+afterEach(() => io.restore())
 
 let spy = spyConsole()
 
-test("shouldn't accept invalid package name", async () => {
-  const sendKeystrokes = async () => {
-    const invalidPkgName = '#invalid@pkgname'
-    await answer(io, { text: invalidPkgName })
+const invalidGeneratorNames = {
+  '#invalid@pkgname': { errorMsg: "isn't a valid package name!" },
+  'my-gen': { errorMsg: 'prisma-generator-<custom-name>' },
+  'prisma-generator': { errorMsg: 'prisma-generator-<custom-name>' },
+  'prisma-generator-': { errorMsg: 'prisma-generator-<custom-name>' },
+}
 
-    await delay(10)
+Object.keys(invalidGeneratorNames).forEach((invalidPkgName) => {
+  test(`shouldn't accept ${invalidPkgName} as a package name`, async () => {
+    const sendKeystrokes = async () => {
+      await answer(io, { text: invalidPkgName })
 
-    clearInput(io, invalidPkgName.length)
-    await answer(io, { text: 'validname' })
+      await delay(10)
 
-    // Skip the rest of the questions
-    await skipQuestions(-1, io)
-  }
-  setTimeout(() => sendKeystrokes().then(), 5)
-  await promptQuestions()
+      clearInput(io, invalidPkgName.length)
+      await answer(io, { text: 'prisma-generator-data-graph' })
 
-  expect(spy.console.mock.calls.toString()).toContain(
-    "isn't a valid package name!",
-  )
+      // Skip the rest of the questions
+      await skipQuestions(-1, io)
+    }
+    setTimeout(() => sendKeystrokes().then(), 5)
+    await promptQuestions()
+
+    expect(spy.console.mock.calls.toString()).toContain(
+      invalidGeneratorNames[
+        invalidPkgName as keyof typeof invalidGeneratorNames
+      ].errorMsg,
+    )
+  })
 })

@@ -11,14 +11,31 @@ export const questions: inquirer.QuestionCollection<any>[] = [
     name: 'generatorName',
     message: "what's your generator name",
     // Validate Package Name
-    validate(pkgName) {
-      const validPkgName = validatePkgName(pkgName)
+    validate(pkgName: string) {
+      const sanitizedPkgName = pkgName.trim().toLowerCase()
+      const validPkgName = validatePkgName(sanitizedPkgName.trim())
       if (!validPkgName.validForNewPackages) {
-        console.log(colors.red(`\n"${pkgName}" isn't a valid package name!`))
+        console.log(
+          colors.red(`\n"${sanitizedPkgName}" isn't a valid package name!`),
+        )
         validPkgName.errors?.forEach((e) => console.log(colors.cyan(e)))
         validPkgName.warnings?.forEach((e) => console.log(colors.yellow(e)))
         return false
       } else {
+        const namingConvention = 'prisma-generator-'
+        if (
+          !sanitizedPkgName.startsWith(namingConvention) ||
+          // Add 1 to ensure he typed something after the naming convention
+          sanitizedPkgName.length < namingConvention.length + 1
+        ) {
+          console.log(
+            colors.cyan(
+              `\nPrisma recommends using this naming convention:\n${namingConvention}<custom-name>`,
+            ),
+          )
+          return false
+        }
+
         return true
       }
     },
