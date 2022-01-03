@@ -1,6 +1,6 @@
 {
   "name": "@cpg-cli/semantic-releases",
-  "version": "1.2.2",
+  "version": "1.2.5",
   "main": "bin.js",
   "license": "MIT",
   "bin": {
