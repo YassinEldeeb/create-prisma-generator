@@ -254,7 +254,10 @@ Object.keys(sampleAnswers).map((sample) => {
         JSON.stringify({ answers, fsSnapshot: newSnapshot }, null, 2),
       )
     }
-    console.log({ answers, fsSnapshot: newSnapshot })
+    console.log(
+      'FS_IN_MEMORY',
+      JSON.stringify({ answers, fsSnapshot: newSnapshot }, null, 2),
+    )
 
     // Treshold of 5 more files, anything more than that
     // is considered too much boilerplate
