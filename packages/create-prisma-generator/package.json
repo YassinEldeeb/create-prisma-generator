@@ -62,6 +62,7 @@
     "boilerplate",
     "setup",
     "development",
-    "testing"
+    "testing",
+    "CLI"
   ]
 }

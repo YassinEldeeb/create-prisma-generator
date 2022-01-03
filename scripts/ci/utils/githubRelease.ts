@@ -16,13 +16,9 @@ export const githubRelease = (
   })
 
   // TODO: Fix "/bin/sh: 1: Syntax error: "(" unexpected"
-  console.log(
-    `curl -X POST -u ${GIT_COMMITTER_NAME}:${GITHUB_TOKEN} -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${repoName}/releases -d '${releaseData}'`,
-  )
-
-  // Source: https://docs.github.com/en/rest/reference/releases#create-a-release
+  // API Ref: https://docs.github.com/en/rest/reference/releases#create-a-release
   execSync(
-    `curl -X POST -u ${GIT_COMMITTER_NAME}:${GITHUB_TOKEN} -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${repoName}/releases -d '${releaseData}'`,
+    `curl -X POST -u ${GIT_COMMITTER_NAME}:${GITHUB_TOKEN} -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${repoName}/releases -d ${releaseData}`,
   )
 
   logger.success(`Published a new release with tag ${tag}!`)
