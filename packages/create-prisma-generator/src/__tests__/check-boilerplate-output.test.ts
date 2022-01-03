@@ -1,9 +1,8 @@
 // --------------------------------------------------------------------------------
-// -------- This is the BEAST test that's responsible for --------
-// -------- checking the full generated boilerplate --------
-// -------- running on a virtual in-memory file-system --------
+// This is the BEAST test suit that's responsible for
+// checking the full generated boilerplate from 7 different CLIs
+// running on a virtual in-memory file-system
 // --------------------------------------------------------------------------------
-
 import { MockSTDIN, stdin } from 'mock-stdin'
 import { main } from '../index'
 import { answer } from './__helpers__/answer'
