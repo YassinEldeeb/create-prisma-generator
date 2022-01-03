@@ -219,8 +219,6 @@ Object.keys(sampleAnswers).map((sample) => {
         })
       }, {})
 
-    console.log('New Snapshot:', newSnapshot)
-
     const snapshotPath = path.join(
       __dirname,
       `../__in-memory-fs-snapshots__/output-from-${sample}.json`,
@@ -236,11 +234,17 @@ Object.keys(sampleAnswers).map((sample) => {
       const missingFiles: string[] = []
       Object.keys(lastSnapshot).forEach((key) => {
         // Convert path seperator based on OS
-        const resolvedPath = key.split(lastSnapshot.pathSep).join(path.sep)
-        console.log('Resolved Path', resolvedPath)
-        console.log('UnResolved Path', key)
-        if (!Object.prototype.hasOwnProperty.call(newSnapshot, resolvedPath)) {
-          missingFiles.push(genName + resolvedPath.split(genName)[1])
+        const pathOnCurrentOS = key.split(lastSnapshot.pathSep).join(path.sep)
+        console.log('New Snapshot:', newSnapshot)
+        console.log('Path:', pathOnCurrentOS)
+        console.log(
+          Object.prototype.hasOwnProperty.call(newSnapshot, pathOnCurrentOS),
+        )
+
+        if (
+          !Object.prototype.hasOwnProperty.call(newSnapshot, pathOnCurrentOS)
+        ) {
+          missingFiles.push(pathOnCurrentOS)
         }
       })
 
