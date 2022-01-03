@@ -125,6 +125,7 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
         }
 
         let nextVersion = ''
+        console.log(`packages/${dirent.name}/`)
         if (lastTag ? hasPkgChanged(`packages/${dirent.name}/`) : true) {
           const lastVersion = execSync(`npm view ${pkgName} version`)
             .toString()
