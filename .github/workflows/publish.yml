@@ -35,11 +35,13 @@ jobs:
         run: pnpm simulate-dist
 
       - name: Install dependencies
+        working-directory: ./packages/create-prisma-generator
         run: pnpm i --frozen-lockfile
 
       - name: Run Tests 🧪
         working-directory: ./packages/create-prisma-generator
         run: pnpm test
+
   Publish:
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/main' }}
