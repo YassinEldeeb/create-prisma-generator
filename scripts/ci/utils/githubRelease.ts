@@ -16,8 +16,9 @@ export const githubRelease = (
   })
 
   // TODO: Fix "/bin/sh: 1: Syntax error: "(" unexpected"
+  // TODO: JSON has to be sanitized correctly for curl
   // API Ref: https://docs.github.com/en/rest/reference/releases#create-a-release
-  const data = execSync(
+  execSync(
     `curl -X POST -u ${GIT_COMMITTER_NAME}:${GITHUB_TOKEN} -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${repoName}/releases -d '${releaseData}'`,
   )
 
