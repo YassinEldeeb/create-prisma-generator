@@ -1,6 +1,6 @@
 {
   "name": "@cpg-cli/root-configs",
-  "version": "1.2.2",
+  "version": "1.2.4",
   "main": "bin.js",
   "license": "MIT",
   "bin": {
