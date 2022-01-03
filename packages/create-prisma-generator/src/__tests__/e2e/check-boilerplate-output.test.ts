@@ -237,6 +237,8 @@ Object.keys(sampleAnswers).map((sample) => {
       Object.keys(lastSnapshot).forEach((key) => {
         // Convert path seperator based on OS
         const resolvedPath = key.split(lastSnapshot.pathSep).join(path.sep)
+        console.log('Resolved Path', resolvedPath)
+        console.log('UnResolved Path', key)
         if (!Object.prototype.hasOwnProperty.call(newSnapshot, resolvedPath)) {
           missingFiles.push(genName + resolvedPath.split(genName)[1])
         }
