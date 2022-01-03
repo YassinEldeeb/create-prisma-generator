@@ -20,5 +20,8 @@
     "type": "git",
     "url": "https://github.com/YassinEldeeb/create-prisma-generator.git"
   },
-  "author": "Yassin Eldeeb <yassineldeeb94@gmail.com>"
+  "author": "Yassin Eldeeb <yassineldeeb94@gmail.com>",
+  "keywords": [
+    "create-prisma-generator"
+  ]
 }

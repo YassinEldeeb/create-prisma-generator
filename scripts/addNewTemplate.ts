@@ -38,6 +38,13 @@ if (!templateName) {
           'utf-8',
         ),
       )
+      const binFile = `#!/usr/bin/env node
+require('./index')()
+`
+      fs.writeFileSync(
+        path.join(process.cwd(), 'packages', templateName, 'bin.js'),
+        binFile,
+      )
       fs.writeFileSync(
         path.join(process.cwd(), 'packages', templateName, '.npmignore'),
         fs.readFileSync(
