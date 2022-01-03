@@ -238,6 +238,12 @@ Object.keys(sampleAnswers).map((sample) => {
         console.log('New Snapshot:', newSnapshot)
         console.log('Path:', pathOnCurrentOS)
         console.log(
+          'Path from virtual fs',
+          Object.keys(newSnapshot)[0]
+            .split(lastSnapshot.pathSep)
+            .join(path.sep),
+        )
+        console.log(
           Object.prototype.hasOwnProperty.call(newSnapshot, pathOnCurrentOS),
         )
 
