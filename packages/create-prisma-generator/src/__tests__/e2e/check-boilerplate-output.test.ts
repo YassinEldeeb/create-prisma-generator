@@ -211,6 +211,8 @@ Object.keys(sampleAnswers).map((sample) => {
     const newSnapshot = Object.keys(fsSnapshot)
       .filter((key) => {
         const condition = path.join(process.cwd(), genName)
+        console.log(condition)
+        console.log(path.resolve(key))
         return path.join(path.resolve(key)).includes(condition)
       })
       .reduce((cur, key) => {
