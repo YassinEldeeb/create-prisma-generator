@@ -253,6 +253,8 @@ Object.keys(sampleAnswers).map((sample) => {
         snapshotPath,
         JSON.stringify({ answers, fsSnapshot: newSnapshot }, null, 2),
       )
+    } else {
+      console.log({ answers, fsSnapshot: newSnapshot })
     }
 
     // Treshold of 5 more files, anything more than that
