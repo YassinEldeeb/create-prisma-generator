@@ -1,5 +1,6 @@
 import { execSync } from 'child_process'
 import { logger } from '../../utils/logger'
+import { escapeRegex } from './escapeRegex'
 
 export const githubRelease = (
   tag: string,
@@ -17,8 +18,11 @@ export const githubRelease = (
 
   // TODO: Fix "/bin/sh: 1: Syntax error: "(" unexpected"
   // API Ref: https://docs.github.com/en/rest/reference/releases#create-a-release
+  // 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
   execSync(
-    `curl -X POST -u ${GIT_COMMITTER_NAME}:${GITHUB_TOKEN} -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${repoName}/releases -d ${releaseData}`,
+    `curl -X POST -u ${GIT_COMMITTER_NAME}:${GITHUB_TOKEN} -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${repoName}/releases -d '${escapeRegex(
+      releaseData,
+    )}'`,
   )
 
   logger.success(`Published a new release with tag ${tag}!`)
