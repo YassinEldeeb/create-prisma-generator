@@ -39,24 +39,38 @@ This script will make a new package at `packages/${template-name}` with all of t
 packages
 +└── cpg-new-template
 +    ├── index.js
++    ├── bin.js
 +    ├── package.json
 +    └── template
 ```
 
 The generated package contains `index.js` and that acts like a tiny CLI that takes a path as the first argument to identify where to copy the template to.
 
+> ⚠ `index.js` has to be named exactly like this and export a default function cause tests depends on it when mocking `child_process` executed CLIs.
+> If you're interested you can see the [whole shebang](https://github.com/YassinEldeeb/create-prisma-generator/blob/main/packages/create-prisma-generator/src/__tests__/e2e/check-boilerplate-output.test.ts#L95-L121)
 ```js
-#!/usr/bin/env node
-import path, { dirname } from 'path'
-import { fileURLToPath } from 'url'
-import fse from 'fs-extra'
+const path = require('path')
+const fs = require('fs')
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
+const setup = () => {
+  function copySync(from, to) {
+    fs.mkdirSync(to, { recursive: true })
+    fs.readdirSync(from).forEach((element) => {
+      if (fs.lstatSync(path.join(from, element)).isFile()) {
+        fs.copyFileSync(path.join(from, element), path.join(to, element))
+      } else {
+        copySync(path.join(from, element), path.join(to, element))
+      }
+    })
+  }
 
-fse.copySync((
-  path.join(path.join(__dirname, `./template`)),
-  path.join(process.cwd(), process.argv[2]),
-)
+  copySync(
+    path.join(path.join(__dirname, `./template`)),
+    path.join(process.cwd(), process.argv[2]),
+  )
+}
+
+module.exports = setup
 ```
 
 now you can place whatever configs, files, ..etc in the template directory and then PR me so I can review it and gratefully accept
