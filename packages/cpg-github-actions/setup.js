@@ -2,10 +2,6 @@ const path = require('path')
 const fs = require('fs')
 
 const setup = () => {
-  console.log(
-    '-----------------------HEHEHEHEHEEEEEEEEEEEEEEEEEEEEEEEEEHEHE-----------------------',
-  )
-
   function copySync(from, to) {
     fs.mkdirSync(to, { recursive: true })
     fs.readdirSync(from).forEach((element) => {
