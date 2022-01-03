@@ -21,12 +21,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - uses: actions/cache@v2
-        if: ${{matrix.os}} != 'windows-latest'
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/pnpm-lock.yml') }}
-
       - name: Setup PNPM
         uses: pnpm/action-setup@v2.0.1
         with:
@@ -36,7 +30,6 @@ jobs:
         run: pnpm simulate-dist
 
       - name: Install dependencies
-        working-directory: ./packages/create-prisma-generator
         run: pnpm i --frozen-lockfile
 
       - name: Run Tests 🧪
