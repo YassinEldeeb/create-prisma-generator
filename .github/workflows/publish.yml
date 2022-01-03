@@ -1,13 +1,49 @@
-name: Publish Packages
+name: Test & Publish Packages
 
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: ['*']
 
 jobs:
+  Quality:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node-version: [14.x, 15.x, 16.x, 17.x]
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{matrix.node-version}}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/pnpm-lock.yml') }}
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.23.6
+
+      - name: Simulate CLI build
+        run: pnpm simulate-dist
+
+      - name: Install dependencies
+        run: pnpm i --frozen-lockfile
+
+      - name: Run Tests 🧪
+        working-directory: ./packages/create-prisma-generator
+        run: pnpm test
   Publish:
-    needs: [Quality]
     runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/main' }}
+    needs: [Quality]
 
     steps:
       - uses: actions/checkout@v2
