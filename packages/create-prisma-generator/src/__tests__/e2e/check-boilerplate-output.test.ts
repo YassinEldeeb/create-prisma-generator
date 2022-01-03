@@ -226,17 +226,14 @@ Object.keys(sampleAnswers).map((sample) => {
 
     const lastSnapshot = mockedFS.actual.existsSync(snapshotPath)
       ? JSON.parse(mockedFS.actual.readFileSync(snapshotPath, 'utf-8'))
-          .fsSnapshot
       : null
 
     // Check if any files are missing
-    if (lastSnapshot) {
+    if (lastSnapshot && lastSnapshot.fsSnapshot) {
       const missingFiles: string[] = []
-      Object.keys(lastSnapshot).forEach((key) => {
+      Object.keys(lastSnapshot.fsSnapshot).forEach((key) => {
         // Convert path seperator based on OS
         const pathOnCurrentOS = key.split(lastSnapshot.pathSep).join(path.sep)
-        console.log('Path on the Current OS:', pathOnCurrentOS)
-        console.log('Path on previous OS:', key)
 
         if (
           !Object.prototype.hasOwnProperty.call(newSnapshot, pathOnCurrentOS)
@@ -267,7 +264,7 @@ Object.keys(sampleAnswers).map((sample) => {
     // Treshold of 5 more files, anything more than that
     // is considered too much boilerplate
     const lastSnapshotLength = lastSnapshot
-      ? Object.keys(lastSnapshot).length
+      ? Object.keys(lastSnapshot.fsSnapshot).length
       : 0
 
     if (lastSnapshotLength > 0) {
