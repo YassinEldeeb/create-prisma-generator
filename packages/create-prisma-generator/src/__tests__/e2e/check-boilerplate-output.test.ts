@@ -207,6 +207,8 @@ Object.keys(sampleAnswers).map((sample) => {
 
     const answers = await main()
 
+    console.log('FS_IN_MEMORY', JSON.stringify(mockedFS.toJSON(), null, 2))
+
     const fsSnapshot = mockedFS.toJSON()
     const newSnapshot = Object.keys(fsSnapshot)
       .filter((key) => {
@@ -254,10 +256,6 @@ Object.keys(sampleAnswers).map((sample) => {
         JSON.stringify({ answers, fsSnapshot: newSnapshot }, null, 2),
       )
     }
-    console.log(
-      'FS_IN_MEMORY',
-      JSON.stringify({ answers, fsSnapshot: newSnapshot }, null, 2),
-    )
 
     // Treshold of 5 more files, anything more than that
     // is considered too much boilerplate
