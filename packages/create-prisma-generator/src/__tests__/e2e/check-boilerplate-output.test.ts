@@ -235,17 +235,8 @@ Object.keys(sampleAnswers).map((sample) => {
       Object.keys(lastSnapshot).forEach((key) => {
         // Convert path seperator based on OS
         const pathOnCurrentOS = key.split(lastSnapshot.pathSep).join(path.sep)
-        console.log('New Snapshot:', newSnapshot)
-        console.log('Path:', pathOnCurrentOS)
-        console.log(
-          'Path from virtual fs',
-          Object.keys(newSnapshot)[0]
-            .split(lastSnapshot.pathSep)
-            .join(path.sep),
-        )
-        console.log(
-          Object.prototype.hasOwnProperty.call(newSnapshot, pathOnCurrentOS),
-        )
+        console.log('Path on the Current OS:', pathOnCurrentOS)
+        console.log('Path on previous OS:', key)
 
         if (
           !Object.prototype.hasOwnProperty.call(newSnapshot, pathOnCurrentOS)
