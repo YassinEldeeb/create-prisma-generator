@@ -27,6 +27,10 @@ const tags = execSync(`git tag -l --sort=-v:refname`)
   .toString()
   .split('\n')
   .map((tag) => tag.trim())
+const changesSinceLastCommit = execSync(`git diff HEAD^ HEAD --name-only`)
+  .toString()
+  .trim()
+  .split('\n')
 
 // Commits analysis
 const releaseSeverityOrder = ['major', 'minor', 'patch']
@@ -126,7 +130,11 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
 
         let nextVersion = ''
         console.log(`packages/${dirent.name}/`)
-        if (lastTag ? hasPkgChanged(`packages/${dirent.name}/`) : true) {
+        if (
+          lastTag
+            ? hasPkgChanged(changesSinceLastCommit, `packages/${dirent.name}/`)
+            : true
+        ) {
           const lastVersion = execSync(`npm view ${pkgName} version`)
             .toString()
             .trim()
