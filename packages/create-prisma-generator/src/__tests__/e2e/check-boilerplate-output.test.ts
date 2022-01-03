@@ -227,7 +227,8 @@ Object.keys(sampleAnswers).map((sample) => {
       `../__in-memory-fs-snapshots__/output-from-${sample}.json`,
     )
     const lastSnapshot = mockedFS.actual.existsSync(snapshotPath)
-      ? JSON.parse(mockedFS.actual.readFileSync(snapshotPath, 'utf-8')).snapshot
+      ? JSON.parse(mockedFS.actual.readFileSync(snapshotPath, 'utf-8'))
+          .fsSnapshot
       : null
 
     // Check if any files are missing
