@@ -112,8 +112,8 @@ jest.mock('child_process', () => {
         const relativePath = path.relative(__dirname, CLIIndexAbsolutePath)
 
         // Execute the tiny CLI by importing it
-        const setup = require(relativePath)
-        setup()
+        // then calling the default exported function
+        require(relativePath)()
       }
     },
     spawnSync: () => '',
