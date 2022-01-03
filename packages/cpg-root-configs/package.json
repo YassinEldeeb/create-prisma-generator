@@ -1,16 +1,16 @@
 {
   "name": "@cpg-cli/root-configs",
   "version": "1.2.0",
-  "main": "index.js",
+  "main": "bin.js",
   "license": "MIT",
   "bin": {
-    "cpg-root-configs": "index.js"
+    "cpg-root-configs": "bin.js"
   },
   "files": [
     "template/**/*"
   ],
   "scripts": {
-    "start": "node index.js"
+    "start": "node bin.js"
   },
   "homepage": "https://github.com/YassinEldeeb/create-prisma-generator",
   "repository": {

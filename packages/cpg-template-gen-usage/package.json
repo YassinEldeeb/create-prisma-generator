@@ -1,10 +1,10 @@
 {
   "name": "@cpg-cli/template-gen-usage",
   "version": "1.1.0",
-  "main": "index.js",
+  "main": "bin.js",
   "license": "MIT",
   "bin": {
-    "cpg-template-gen-usage": "index.js"
+    "cpg-template-gen-usage": "bin.js"
   },
   "files": [
     "template/**/*"

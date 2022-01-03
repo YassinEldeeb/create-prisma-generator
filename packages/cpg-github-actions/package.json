@@ -1,10 +1,10 @@
 {
   "name": "@cpg-cli/github-actions",
   "version": "1.4.0",
-  "main": "index.js",
+  "main": "bin.js",
   "license": "MIT",
   "bin": {
-    "cpg-github-actions": "index.js"
+    "cpg-github-actions": "bin.js"
   },
   "scripts": {},
   "files": [

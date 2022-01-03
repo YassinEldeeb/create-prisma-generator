@@ -1,18 +1,18 @@
 // --------------------------------------------------------------------------------
 // This is the BEAST test suit that's responsible for
-// checking the full generated boilerplate from 7 different CLIs
-// running on a virtual in-memory file-system
+// checking the full generated boilerplate from 7+ different CLIs
+// from start to finish (e2e) running on a virtual in-memory file-system
 // --------------------------------------------------------------------------------
 import { MockSTDIN, stdin } from 'mock-stdin'
-import { main } from '../index'
-import { answer } from './__helpers__/answer'
-import { skipQuestions } from './__helpers__/skipQuestions'
+import { main } from '../../index'
+import { answer } from '../__helpers__/answer'
+import { skipQuestions } from '../__helpers__/skipQuestions'
 import fs from 'fs'
 import path from 'path'
 import memfs from 'memfs'
-import { MockedFS } from './types/MockedFS'
+import { MockedFS } from '../types/MockedFS'
 import child_process from 'child_process'
-import { getInstallCommand } from '../utils/getInstallCommands'
+import { getInstallCommand } from '../../utils/getInstallCommands'
 
 const mockedFS: MockedFS = fs as any
 
@@ -33,7 +33,7 @@ jest.mock('fs', () => {
   const fsModule = jest.requireActual(`fs`) as typeof fs
   const pathModule = jest.requireActual(`path`) as typeof path
 
-  const packagesPath = pathModule.join(__dirname, '../../../')
+  const packagesPath = pathModule.join(__dirname, '../../../../')
   const packages = fsModule
     .readdirSync(packagesPath, { withFileTypes: true })
     .filter((dirent: any) => dirent.isDirectory())
@@ -106,8 +106,8 @@ jest.mock('child_process', () => {
 
         const CLIIndexAbsolutePath = path.join(
           __dirname,
-          `../../../${pkgName}`,
-          'setup.js',
+          `../../../../${pkgName}`,
+          'index.js',
         )
         const relativePath = path.relative(__dirname, CLIIndexAbsolutePath)
 
@@ -224,7 +224,7 @@ Object.keys(sampleAnswers).map((sample) => {
 
     const snapshotPath = path.join(
       __dirname,
-      `__in-memory-fs-snapshots__/output-from-${sample}.json`,
+      `../__in-memory-fs-snapshots__/output-from-${sample}.json`,
     )
     const lastSnapshot = mockedFS.actual.existsSync(snapshotPath)
       ? JSON.parse(mockedFS.actual.readFileSync(snapshotPath, 'utf-8')).snapshot
