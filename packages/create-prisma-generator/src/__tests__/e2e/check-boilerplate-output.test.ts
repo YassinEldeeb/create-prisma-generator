@@ -226,10 +226,6 @@ Object.keys(sampleAnswers).map((sample) => {
       `../__in-memory-fs-snapshots__/output-from-${sample}.json`,
     )
 
-    console.log(snapshotPath)
-    console.log(mockedFS.actual.existsSync(snapshotPath))
-    console.log(__dirname)
-    console.log(process.cwd())
     const lastSnapshot = mockedFS.actual.existsSync(snapshotPath)
       ? JSON.parse(mockedFS.actual.readFileSync(snapshotPath, 'utf-8'))
           .fsSnapshot
@@ -237,6 +233,8 @@ Object.keys(sampleAnswers).map((sample) => {
 
     // Check if any files are missing
     if (lastSnapshot) {
+      console.log(lastSnapshot)
+      console.log(newSnapshot)
       const missingFiles: string[] = []
       Object.keys(lastSnapshot).forEach((key) => {
         if (!Object.prototype.hasOwnProperty.call(newSnapshot, key)) {
