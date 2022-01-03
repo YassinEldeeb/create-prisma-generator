@@ -1,6 +1,6 @@
 {
   "name": "create-prisma-generator",
-  "version": "1.5.4",
+  "version": "1.5.7",
   "main": "dist/index.js",
   "license": "MIT",
   "bin": {
