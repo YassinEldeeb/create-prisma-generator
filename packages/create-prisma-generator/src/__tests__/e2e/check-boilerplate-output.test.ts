@@ -227,6 +227,9 @@ Object.keys(sampleAnswers).map((sample) => {
     )
 
     console.log(snapshotPath)
+    console.log(mockedFS.actual.existsSync(snapshotPath))
+    console.log(__dirname)
+    console.log(process.cwd())
     const lastSnapshot = mockedFS.actual.existsSync(snapshotPath)
       ? JSON.parse(mockedFS.actual.readFileSync(snapshotPath, 'utf-8'))
           .fsSnapshot
