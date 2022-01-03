@@ -1,5 +1,16 @@
 # Architecture
 
+| CLIs | Short description |
+| --- | --- |
+| [create-prisma-generator](https://github.com/YassinEldeeb/create-prisma-generator/tree/main/packages/create-prisma-generator) | The main CLI that's responsible for prompting questions & executing other CLIs. |
+| [@cpg-cli/template-typescript](https://github.com/YassinEldeeb/create-prisma-generator/tree/main/packages/cpg-template-typescript) | CLI that stores the typescript template and copies it to the desired location. |
+| [@cpg-cli/template](https://github.com/YassinEldeeb/create-prisma-generator/tree/main/packages/cpg-template) | CLI that stores the javascript template and copies it to the desired location. |
+| [@cpg-cli/root-configs](https://github.com/YassinEldeeb/create-prisma-generator/tree/main/packages/cpg-root-configs) | CLI that stores the shared root configs and copies it to the desired location. |
+| [@cpg-cli/github-actions](https://github.com/YassinEldeeb/create-prisma-generator/tree/main/packages/cpg-github-actions) | CLI that stores the github actions template and copies it to the desired location. |
+| [@cpg-cli/semantic-releases](https://github.com/YassinEldeeb/create-prisma-generator/tree/main/packages/cpg-semantic-releases) | CLI that configs the current project to support [`semantic-release`](https://github.com/semantic-release/github) and add commit-msg safety. |
+| [@cpg-cli/template-gen-usage](https://github.com/YassinEldeeb/create-prisma-generator/tree/main/packages/cpg-template-gen-usage) | CLI that stores the generator usage template and copies it to the desired location. |
+
+
 ## create-prisma-generator
 This package is the `main CLI` that prompt questions to developers to know how they want their development environment to be like.
 
