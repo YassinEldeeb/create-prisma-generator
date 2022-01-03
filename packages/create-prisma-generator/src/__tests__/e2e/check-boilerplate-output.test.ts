@@ -233,14 +233,10 @@ Object.keys(sampleAnswers).map((sample) => {
 
     // Check if any files are missing
     if (lastSnapshot) {
-      console.log(Object.keys(lastSnapshot).map((e: any) => path.join(e)))
-      console.log(newSnapshot)
-
       const missingFiles: string[] = []
       Object.keys(lastSnapshot).forEach((key) => {
-        // Using path.join which converts path seperator
-        // to match with the running OS
-        const resolvedPath = path.join(key)
+        // Convert path seperator based on OS
+        const resolvedPath = key.split(lastSnapshot.pathSep).join(path.sep)
         if (!Object.prototype.hasOwnProperty.call(newSnapshot, resolvedPath)) {
           missingFiles.push(genName + resolvedPath.split(genName)[1])
         }
@@ -257,7 +253,11 @@ Object.keys(sampleAnswers).map((sample) => {
       // Write in-memory fs JSON
       mockedFS.actual.writeFileSync(
         snapshotPath,
-        JSON.stringify({ answers, fsSnapshot: newSnapshot }, null, 2),
+        JSON.stringify(
+          { answers, pathSep: path.sep, fsSnapshot: newSnapshot },
+          null,
+          2,
+        ),
       )
     }
 

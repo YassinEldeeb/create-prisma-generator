@@ -6,6 +6,7 @@
     "githubActions": false,
     "usageTemplate": true
   },
+  "pathSep": "\\",
   "fsSnapshot": {
     "my-best-prisma-gen\\.prettierrc": "",
     "my-best-prisma-gen\\README.md": "",
