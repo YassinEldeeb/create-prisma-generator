@@ -225,6 +225,8 @@ Object.keys(sampleAnswers).map((sample) => {
       __dirname,
       `../__in-memory-fs-snapshots__/output-from-${sample}.json`,
     )
+
+    console.log(snapshotPath)
     const lastSnapshot = mockedFS.actual.existsSync(snapshotPath)
       ? JSON.parse(mockedFS.actual.readFileSync(snapshotPath, 'utf-8'))
           .fsSnapshot
