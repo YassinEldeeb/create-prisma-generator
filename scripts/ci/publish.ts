@@ -31,6 +31,7 @@ const changesSinceLastCommit = execSync(`git diff HEAD^ HEAD --name-only`)
   .toString()
   .trim()
   .split('\n')
+let isThereStagedFiles = false
 
 // Commits analysis
 const releaseSeverityOrder = ['major', 'minor', 'patch']
@@ -169,6 +170,7 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
         const releaseMessage = `chore(release): ${nextTag} [skip ci]`
         execSync(`git add -A .`)
         execSync(`git tag -a ${nextTag} HEAD -m"${releaseMessage}"`)
+        isThereStagedFiles = true
         githubRelease(
           nextTag,
           releaseNotes,
@@ -181,4 +183,6 @@ fs.readdirSync(packagesPath, { withFileTypes: true })
   })
 
 // Commit and Push all staged files
-gitRelease()
+if (isThereStagedFiles) {
+  gitRelease()
+}
