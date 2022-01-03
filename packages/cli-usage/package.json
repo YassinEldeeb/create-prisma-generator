@@ -14,7 +14,6 @@
     "@cpg-cli/template": "workspace:*",
     "@cpg-cli/template-gen-usage": "workspace:*",
     "@cpg-cli/template-typescript": "workspace:*",
-    "@cpg-cli/root-configs": "workspace:*",
-    "@cpg-cli/template-new": "workspace:*"
+    "@cpg-cli/root-configs": "workspace:*"
   }
 }
