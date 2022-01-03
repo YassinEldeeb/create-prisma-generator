@@ -207,16 +207,11 @@ Object.keys(sampleAnswers).map((sample) => {
 
     const answers = await main()
 
-    console.log('FS_IN_MEMORY', JSON.stringify(mockedFS.toJSON(), null, 2))
-
     const fsSnapshot = mockedFS.toJSON()
     const newSnapshot = Object.keys(fsSnapshot)
       .filter((key) => {
-        // Removing the first (n)th chars as a treshold
-        // for slicing the drive prefix on different OSs
-        // cause `memfs` stores files paths without drive prefix
-        const condition = path.join(process.cwd(), genName).slice(5)
-        return path.join(key).includes(condition)
+        const condition = path.join(process.cwd(), genName)
+        return path.join(path.resolve(key)).includes(condition)
       })
       .reduce((cur, key) => {
         return Object.assign(cur, {
