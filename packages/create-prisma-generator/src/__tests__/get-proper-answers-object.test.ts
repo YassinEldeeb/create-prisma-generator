@@ -2,6 +2,7 @@ import { MockSTDIN, stdin } from 'mock-stdin'
 import { promptQuestions } from '../utils/promptQuestions'
 import { skipQuestions } from './__helpers__/skipQuestions'
 import { answer } from './__helpers__/answer'
+import { validGenName } from './constants/valid-prisma-gen-name'
 
 // Mock stdin to send keystrokes to the CLI
 let io: MockSTDIN
@@ -11,7 +12,7 @@ afterEach(() => io.restore())
 // See the Questions to know how to modify these samples
 // LINK ..\utils\promptQuestions.ts#questions
 
-let genName = 'validname'
+let genName = validGenName
 const sampleAnswers = {
   async sample1() {
     // LINK ..\utils\promptQuestions.ts#Q1-generatorName

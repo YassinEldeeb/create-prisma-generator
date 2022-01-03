@@ -13,6 +13,7 @@ import memfs from 'memfs'
 import { MockedFS } from '../types/MockedFS'
 import child_process from 'child_process'
 import { getInstallCommand } from '../../utils/getInstallCommands'
+import { validGenName } from '../constants/valid-prisma-gen-name'
 
 const mockedFS: MockedFS = fs as any
 
@@ -124,7 +125,9 @@ jest.spyOn(child_process, 'spawnSync')
 
 // If genName changed, fs-snapshot has to be deleted
 // to update the fs in-memory snapshot
-const genName = 'my-best-prisma-gen'
+// It has to be named uniquely cause some operations
+// are depending on splitting a path using this name
+const genName = validGenName + '-some-uniqueness'
 
 const sampleAnswers = {
   async sample1() {

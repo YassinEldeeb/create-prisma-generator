@@ -2,7 +2,7 @@
 
 exports[`should get proper answers object when answering using sample1 1`] = `
 Object {
-  "generatorName": "validname",
+  "generatorName": "prisma-generator-data-graph",
   "githubActions": true,
   "packageManager": "pnpm",
   "semanticRelease": true,
@@ -13,7 +13,7 @@ Object {
 
 exports[`should get proper answers object when answering using sample2 1`] = `
 Object {
-  "generatorName": "validname",
+  "generatorName": "prisma-generator-data-graph",
   "githubActions": false,
   "packageManager": "pnpm",
   "typescript": false,
@@ -23,7 +23,7 @@ Object {
 
 exports[`should get proper answers object when answering using sample3 1`] = `
 Object {
-  "generatorName": "validname",
+  "generatorName": "prisma-generator-data-graph",
   "githubActions": false,
   "packageManager": "npm",
   "typescript": false,

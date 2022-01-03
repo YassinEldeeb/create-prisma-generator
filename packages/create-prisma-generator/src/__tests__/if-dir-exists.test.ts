@@ -5,14 +5,15 @@ import { answer } from './__helpers__/answer'
 import { skipQuestions } from './__helpers__/skipQuestions'
 import path from 'path'
 import fs from 'fs'
+import { validGenName } from './constants/valid-prisma-gen-name'
 
 // Mock stdin to send keystrokes to the CLI
 let io: MockSTDIN
 beforeAll(() => {
   // Check if validname directory exists before running the Tests
-  if (!fs.existsSync(path.join(__dirname, 'validname'))) {
+  if (!fs.existsSync(path.join(__dirname, `${validGenName}`))) {
     throw new Error(
-      `'validname' directory should be placed under:\n ${__dirname}`,
+      `'${validGenName}' directory should be placed under:\n ${__dirname}`,
     )
   }
   io = stdin()
@@ -23,7 +24,7 @@ let spy = spyConsole()
 
 test("shouldn't start setting up the project if the directory already exists", async () => {
   const sendKeystrokes = async () => {
-    await answer(io, { text: 'validname' })
+    await answer(io, { text: validGenName })
     // Skip the rest of the questions
     await skipQuestions(-1, io)
   }

@@ -7,7 +7,8 @@ module.exports = {
     '__helpers__/',
     '__fixtures__/',
     '__mocks__/',
-    'types',
+    'types/',
+    'constants/',
   ],
   setupFilesAfterEnv: ['@alex_neo/jest-expect-message'],
 }
