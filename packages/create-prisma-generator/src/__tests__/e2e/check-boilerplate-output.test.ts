@@ -233,7 +233,7 @@ Object.keys(sampleAnswers).map((sample) => {
 
     // Check if any files are missing
     if (lastSnapshot) {
-      console.log(lastSnapshot.map((e: any) => path.resolve(e)))
+      console.log(Object.keys(lastSnapshot).map((e: any) => path.resolve(e)))
       console.log(newSnapshot)
       const missingFiles: string[] = []
       Object.keys(lastSnapshot).forEach((key) => {
