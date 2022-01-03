@@ -211,9 +211,6 @@ Object.keys(sampleAnswers).map((sample) => {
     const newSnapshot = Object.keys(fsSnapshot)
       .filter((key) => {
         const condition = path.join(process.cwd(), genName)
-        console.log(condition)
-        console.log(path.resolve(key))
-        console.log(path.resolve(key).includes(condition))
         return path.resolve(key).includes(condition)
       })
       .reduce((cur, key) => {
@@ -221,6 +218,8 @@ Object.keys(sampleAnswers).map((sample) => {
           [path.join(genName, key.split(genName)[1])]: '',
         })
       }, {})
+
+    console.log('New Snapshot:', newSnapshot)
 
     const snapshotPath = path.join(
       __dirname,
