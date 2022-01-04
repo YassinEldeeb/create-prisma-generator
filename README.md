@@ -26,7 +26,7 @@ The most prominent generator is called [`prisma-client-js`](https://github.com/p
 
 Generators will always be called when you run `prisma generate`. However, only the generators mentioned in the schema.prisma file are being run.
 
-[See the full Article about Prisma Generators](https://prismaio.notion.site/Prisma-Generators-a2cdf262207a4e9dbcd0e362dfac8dc0)
+[Strongly recommend reading the full article, It's pretty good](https://prismaio.notion.site/Prisma-Generators-a2cdf262207a4e9dbcd0e362dfac8dc0)
 
 # why?
 As a community, developing prisma generators is really hard cause there is nothing documented about [@prisma/sdk](https://www.npmjs.com/package/@prisma/sdk) nor [@prisma/generator-helper](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwj07PXhlYD1AhUHkhQKHQ9WAMgQFnoECAgQAQ&url=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F%40prisma%2Fgenerator-helper&usg=AOvVaw3JS07ZjHOiV5HmyvNRxTUs) and the only way you can get started is by looking at [other generators](https://www.prisma.io/docs/concepts/components/prisma-schema/generators#community-generators) code which might be useful.
