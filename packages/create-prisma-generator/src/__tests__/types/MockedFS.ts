@@ -8,5 +8,5 @@ export interface MockedFS extends Volume {
   InitialFSJSONSetup: any
   reset: () => void
   toJSON: () => any
-  goBackToInitialSetup: () => any
+  goBackToInitialSetup: () => void
 }

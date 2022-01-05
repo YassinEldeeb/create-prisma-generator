@@ -8,23 +8,24 @@ import { writeFileSafely } from './utils/writeFileSafely'
 logger.info(`${GENERATOR_NAME}:Registered`)
 
 generatorHandler({
-  onManifest: () => ({
-    defaultOutput: '../generated',
-    prettyName: GENERATOR_NAME,
-    requiresGenerators: ['prisma-client-js'],
-  }),
+  onManifest() {
+    logger.info(`${GENERATOR_NAME}:Registered`)
+    return {
+      version,
+      defaultOutput: '../generated',
+      prettyName: GENERATOR_NAME,
+    }
+  },
   onGenerate: async (options) => {
     options.dmmf.datamodel.enums.forEach(async (enumInfo) => {
       const tsEnum = genEnum(enumInfo)
 
-      const outputPath = options.generator.output?.value
-
-      await writeFileSafely(
-        path.join(outputPath, `${enumInfo.name}.ts`),
-        tsEnum,
+      const writeLocation = path.join(
+        options.generator.output?.value,
+        `${enumInfo.name}.ts`,
       )
-    })
 
-    logger.info(`${GENERATOR_NAME}:Generated Successfuly!`)
+      await writeFileSafely(writeLocation, tsEnum)
+    })
   },
 })

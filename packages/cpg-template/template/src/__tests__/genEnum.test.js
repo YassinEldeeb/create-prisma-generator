@@ -1,12 +1,9 @@
 import { genEnum } from '../helpers/genEnum'
-import { getSampleDMMF } from './__fixtures__/writeSampleDMMF'
+import { getSampleDMMF } from './__fixtures__/getSampleDMMF'
 
-let sampleDMMF
-beforeAll(async () => {
-  sampleDMMF = await getSampleDMMF()
-})
+test('enum generation', async () => {
+  const sampleDMMF = await getSampleDMMF()
 
-test('enum generation', () => {
   sampleDMMF.datamodel.enums.forEach((enumInfo) => {
     expect(genEnum(enumInfo)).toMatchSnapshot(enumInfo.name)
   })

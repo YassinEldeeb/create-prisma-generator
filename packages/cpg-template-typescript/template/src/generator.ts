@@ -3,21 +3,28 @@ import { logger } from '@prisma/sdk'
 import path from 'path'
 import { GENERATOR_NAME } from './constants'
 import { genEnum } from './helpers/genEnum'
-import { writeEnumFile } from './helpers/writeEnumFile'
+import { writeFileSafely } from './utils/writeFileSafely'
 
-logger.info(`${GENERATOR_NAME}:Registered`)
-
+const { version } = require('../package.json')
 generatorHandler({
-  onManifest: () => ({
-    defaultOutput: '../generated',
-    prettyName: GENERATOR_NAME,
-    requiresGenerators: ['prisma-client-js'],
-  }),
+  onManifest() {
+    logger.info(`${GENERATOR_NAME}:Registered`)
+    return {
+      version,
+      defaultOutput: '../generated',
+      prettyName: GENERATOR_NAME,
+    }
+  },
   onGenerate: async (options: GeneratorOptions) => {
      options.dmmf.datamodel.enums.forEach(async (enumInfo) => {
       const tsEnum = genEnum(enumInfo)
 
-      writeEnumFile(enumInfo.name, tsEnum, options.generator.output?.value!)
+      const writeLocation = path.join(
+        options.generator.output?.value!,
+        `${enumInfo.name}.ts`,
+      )
+
+      await writeFileSafely(writeLocation, tsEnum)
     })
 
     logger.info(`${GENERATOR_NAME}:Generated Successfuly!`)

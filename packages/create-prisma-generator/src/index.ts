@@ -1,4 +1,4 @@
-import { execSync, spawn, spawnSync } from 'child_process'
+import { execSync, spawnSync } from 'child_process'
 import colors from 'colors'
 import fs from 'fs'
 import path from 'path'
