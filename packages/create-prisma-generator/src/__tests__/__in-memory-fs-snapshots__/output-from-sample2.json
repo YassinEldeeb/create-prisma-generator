@@ -19,13 +19,11 @@
     "prisma-generator-data-graph-some-uniqueness\\src\\constants.js": "",
     "prisma-generator-data-graph-some-uniqueness\\src\\generator.js": "",
     "prisma-generator-data-graph-some-uniqueness\\src\\helpers\\genEnum.js": "",
-    "prisma-generator-data-graph-some-uniqueness\\src\\helpers\\writeEnumFile.js": "",
     "prisma-generator-data-graph-some-uniqueness\\src\\utils\\formatFile.js": "",
     "prisma-generator-data-graph-some-uniqueness\\src\\utils\\writeFileSafely.js": "",
     "prisma-generator-data-graph-some-uniqueness\\src\\__tests__\\genEnum.test.js": "",
-    "prisma-generator-data-graph-some-uniqueness\\src\\__tests__\\writeEnumFile.test.js": "",
+    "prisma-generator-data-graph-some-uniqueness\\src\\__tests__\\__fixtures__\\getSampleDMMF.js": "",
     "prisma-generator-data-graph-some-uniqueness\\src\\__tests__\\__fixtures__\\sample.prisma": "",
-    "prisma-generator-data-graph-some-uniqueness\\src\\__tests__\\__fixtures__\\writeSampleDMMF.js": "",
     "prisma-generator-data-graph-some-uniqueness\\src\\__tests__\\__snapshots__\\genEnum.test.js.snap": ""
   }
 }

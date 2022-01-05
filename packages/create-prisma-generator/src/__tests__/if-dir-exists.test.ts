@@ -4,14 +4,15 @@ import { main } from '../index'
 import { answer } from './__helpers__/answer'
 import { skipQuestions } from './__helpers__/skipQuestions'
 import path from 'path'
-import fs from 'fs'
 import { validGenName } from './constants/valid-prisma-gen-name'
 
 // Mock stdin to send keystrokes to the CLI
 let io: MockSTDIN
 beforeAll(() => {
+  const actualFS = jest.requireActual('fs')
+
   // Check if validname directory exists before running the Tests
-  if (!fs.existsSync(path.join(__dirname, `${validGenName}`))) {
+  if (!actualFS.existsSync(path.join(__dirname, validGenName))) {
     throw new Error(
       `'${validGenName}' directory should be placed under:\n ${__dirname}`,
     )
@@ -22,7 +23,7 @@ afterAll(() => io.restore())
 
 let spy = spyConsole()
 
-// Mocking fs & child_process to avoid actually
+// Mocking fs & child_process to avoid
 // setting up the project if the test failed
 jest.mock('fs')
 jest.mock('child_process')
