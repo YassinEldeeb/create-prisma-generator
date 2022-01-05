@@ -23,9 +23,8 @@ afterAll(() => io.restore())
 
 let spy = spyConsole()
 
-// Mocking fs & child_process to avoid
-// setting up the project if the test failed
-jest.mock('fs')
+// Mocking child_process to avoid setting up
+// the project if the test failed
 jest.mock('child_process')
 
 test("shouldn't start setting up the project if the directory already exists", async () => {

@@ -26,7 +26,7 @@ export const main = async () => {
     : workingDir
 
   // Validate if folder with the same name doesn't exist
-  if (fs.existsSync(path.join(projectWorkdir))) {
+  if (fs.existsSync(projectWorkdir)) {
     console.log(colors.red(`${pkgName} directory already exists!`))
     return
   }
