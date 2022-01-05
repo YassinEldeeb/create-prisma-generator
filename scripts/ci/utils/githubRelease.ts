@@ -1,4 +1,3 @@
-import { execSync } from 'child_process'
 import { logger } from '../../utils/logger'
 import axios from 'axios'
 

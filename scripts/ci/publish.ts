@@ -27,10 +27,18 @@ const tags = execSync(`git tag -l --sort=-v:refname`)
   .toString()
   .split('\n')
   .map((tag) => tag.trim())
-const changesSinceLastCommit = execSync(`git diff HEAD^ HEAD --name-only`)
+
+const changesSinceLastCommit = execSync(
+  `git diff ${execSync('git rev-parse HEAD^@')
+    .toString()
+    .trim()
+    .split('\n')
+    .at(-1)} HEAD --name-only`,
+)
   .toString()
   .trim()
   .split('\n')
+
 let isThereStagedFiles = false
 
 // Commits analysis
