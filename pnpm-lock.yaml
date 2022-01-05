@@ -6,11 +6,15 @@ importers:
     specifiers:
       '@commitlint/cli': ^15.0.0
       '@commitlint/config-conventional': ^15.0.0
+      '@types/axios': ^0.14.0
+      axios: ^0.24.0
       husky: ^7.0.0
       ts-node: ^10.4.0
     devDependencies:
       '@commitlint/cli': 15.0.0
       '@commitlint/config-conventional': 15.0.0
+      '@types/axios': 0.14.0
+      axios: 0.24.0
       husky: 7.0.4
       ts-node: 10.4.0
 
@@ -1314,6 +1318,15 @@ packages:
     resolution: {integrity: sha512-eZxlbI8GZscaGS7kkc/trHTT5xgrjH3/1n2JDwusC9iahPKWMRvRjJSAN5mCXviuTGQ/lHnhvv8Q1YTpnfz9gA==}
     dev: true
 
+  /@types/axios/0.14.0:
+    resolution: {integrity: sha1-7CMA++fX3d1+udOr+HmZlkyvzkY=}
+    deprecated: This is a stub types definition for axios (https://github.com/mzabriskie/axios). axios provides its own type definitions, so you don't need @types/axios installed!
+    dependencies:
+      axios: 0.24.0
+    transitivePeerDependencies:
+      - debug
+    dev: true
+
   /@types/babel__core/7.1.17:
     resolution: {integrity: sha512-6zzkezS9QEIL8yCBvXWxPTJPNuMeECJVxSOhxNY/jfq9LxOTHivaYTqr37n9LknWWRTIkzqH2UilS5QFvfa90A==}
     dependencies:
@@ -1634,7 +1647,6 @@ packages:
       follow-redirects: 1.14.6
     transitivePeerDependencies:
       - debug
-    dev: false
 
   /babel-jest/27.4.5_@babel+core@7.16.5:
     resolution: {integrity: sha512-3uuUTjXbgtODmSv/DXO9nZfD52IyC2OYTFaXGRzL0kpykzroaquCrD5+lZNafTvZlnNqZHt5pb0M08qVBZnsnA==}
@@ -2645,7 +2657,6 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
-    dev: false
 
   /forever-agent/0.6.1:
     resolution: {integrity: sha1-+8cfDEGt6zf5bFd60e1C2P2sypE=}

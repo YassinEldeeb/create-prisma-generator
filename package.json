@@ -13,6 +13,8 @@
   "devDependencies": {
     "@commitlint/cli": "^15.0.0",
     "@commitlint/config-conventional": "^15.0.0",
+    "@types/axios": "^0.14.0",
+    "axios": "^0.24.0",
     "husky": "^7.0.0",
     "ts-node": "^10.4.0"
   }

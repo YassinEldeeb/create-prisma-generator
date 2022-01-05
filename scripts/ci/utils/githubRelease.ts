@@ -1,5 +1,6 @@
 import { execSync } from 'child_process'
 import { logger } from '../../utils/logger'
+import axios from 'axios'
 
 export const githubRelease = (
   tag: string,
@@ -15,12 +16,14 @@ export const githubRelease = (
     owner: GIT_COMMITTER_NAME,
   })
 
-  // TODO: Fix "/bin/sh: 1: Syntax error: "(" unexpected"
-  // TODO: JSON has to be sanitized correctly for curl
   // API Ref: https://docs.github.com/en/rest/reference/releases#create-a-release
-  execSync(
-    `curl -X POST -u ${GIT_COMMITTER_NAME}:${GITHUB_TOKEN} -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${repoName}/releases -d '${releaseData}'`,
-  )
+  axios.post(`https://api.github.com/repos/${repoName}/releases`, releaseData, {
+    headers: {
+      Authorization: `Bearer ${GITHUB_TOKEN}`,
+      'Content-Type': 'application/json',
+      Accept: 'application/vnd.github.v3+json',
+    },
+  })
 
   logger.success(`Published a new release with tag ${tag}!`)
 }
