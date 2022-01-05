@@ -49,7 +49,7 @@ The generated package contains `index.js` and that acts like a tiny CLI that tak
 Note that you can do whatever you want with this CLI like configuring existing files but this is just the default boilerplate that's most commonly used.
 
 > ⚠ `index.js` has to be named exactly like this and export a default function cause tests depends on it when mocking `child_process` executed CLIs.
-> If you're interested you can see the [whole shebang](https://github.com/YassinEldeeb/create-prisma-generator/blob/main/packages/create-prisma-generator/src/__tests__/e2e/check-boilerplate-output.test.ts#L95-L121)
+> If you're interested you can see the [whole shebang](https://github.com/YassinEldeeb/create-prisma-generator/blob/main/packages/create-prisma-generator/src/__tests__/e2e/check-boilerplate-output.test.ts#L96-L122)
 ```js
 const path = require('path')
 const fs = require('fs')
