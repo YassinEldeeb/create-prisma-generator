@@ -1,4 +1,4 @@
-# Reference
+# Prisma SDK Reference
 
 > ⚠ WARNING: `@prisma/sdk` is an internal API that's not supposed to be used outside of prisma's fence as [discussed here](https://github.com/prisma/prisma/discussions/10721#discussioncomment-1822836)
 >
