@@ -11,7 +11,7 @@
 
 ## `logger`
 
-a simple utility to print colorized messages to the terminal formatted like that:
+a simple wrapper around `[chalk](https://github.com/chalk/chalk)` to print colorized messages to the terminal formatted like that:
 
 `prisma:type` Message
 
@@ -69,7 +69,7 @@ const platform = await getPlatform()
 ```
 
 ## `isCi`
-a simple wrapper around [`ci-info`](https://www.npmjs.com/package/ci-info) to get a boolean if wether or not the generator is running in a CI environment.
+a simple wrapper around [`ci-info`](https://github.com/watson/ci-info) to get a boolean if wether or not the generator is running in a CI environment.
 
 ### Usage
 
@@ -87,6 +87,8 @@ a great utility for drawing boxes that can be useful for showing messages if the
 anyVerticalValue = number of lines
 
 anyHorizontalValue = number of space chars
+
+### Usage
 
 ```ts
 const incompatibilityErrorMessage = drawBox({
