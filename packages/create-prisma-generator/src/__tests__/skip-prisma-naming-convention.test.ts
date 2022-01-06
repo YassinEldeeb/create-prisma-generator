@@ -1,5 +1,5 @@
 import { MockSTDIN, stdin } from 'mock-stdin'
-import { promptQuestions } from '../utils/promptQuestions'
+import { promptQuestions } from '../utils/inquirer/promptQuestions'
 import { validGenName } from './constants/valid-prisma-gen-name'
 import { answer } from './__helpers__/answer'
 import { clearInput } from './__helpers__/clearInput'

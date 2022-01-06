@@ -1,5 +1,5 @@
 import { MockSTDIN, stdin } from 'mock-stdin'
-import { promptQuestions } from '../utils/promptQuestions'
+import { promptQuestions } from '../utils/inquirer/promptQuestions'
 import { skipQuestions } from './__helpers__/skipQuestions'
 import { answer } from './__helpers__/answer'
 import { validGenName } from './constants/valid-prisma-gen-name'
@@ -16,7 +16,7 @@ let genName = validGenName
 const sampleAnswers = {
   async sample1() {
     // LINK ..\utils\promptQuestions.ts#Q1-generatorName
-    await answer(io, { text: genName })
+    await answer(io, { text: `  ${genName}    ` })
 
     // Skip the rest of the questions
     await skipQuestions(-1, io)
@@ -43,6 +43,14 @@ const sampleAnswers = {
 
     // Skip the rest of the questions
     await skipQuestions(-1, io)
+  },
+  async sample4() {
+    // LINK ..\utils\promptQuestions.ts#Q1-generatorName
+    await answer(io, { text: 'my-gen --skip-check' })
+
+    // Skip the rest of the questions
+    await skipQuestions(2, io)
+    await skipQuestions(-1, io, true)
   },
 }
 

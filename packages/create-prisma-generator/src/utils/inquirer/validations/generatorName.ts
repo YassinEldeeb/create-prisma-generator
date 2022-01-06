@@ -1,10 +1,10 @@
 import validatePkgName from 'validate-npm-package-name'
 import colors from 'colors'
+import { flags } from '../flags'
 
-export const validateGenName = (pkgName: any, answers?: any) => {
-  const skipPrismaNamingConventionFlag = '--skip-check'
+export const validateGeneratorName = (pkgName: string) => {
   const validPkgName = validatePkgName(
-    pkgName.replace(skipPrismaNamingConventionFlag, '').trim(),
+    pkgName.replace(flags.skipPrismaNamingConventionFlag, '').trim(),
   )
 
   if (!validPkgName.validForNewPackages) {
@@ -19,7 +19,8 @@ export const validateGenName = (pkgName: any, answers?: any) => {
       ? sanitizedPkgName.split('/')[0]
       : null
     const skipCheck =
-      sanitizedPkgName.trim().split(' ')[1] === skipPrismaNamingConventionFlag
+      sanitizedPkgName.trim().split(' ')[1] ===
+      flags.skipPrismaNamingConventionFlag
 
     if (!skipCheck) {
       if (
@@ -46,7 +47,7 @@ export const validateGenName = (pkgName: any, answers?: any) => {
         }
         console.log(
           colors.grey(
-            `use the \`${skipPrismaNamingConventionFlag}\` flag to skip prisma's recommendation.\n`,
+            `use the \`${flags.skipPrismaNamingConventionFlag}\` flag to skip prisma's recommendation.\n`,
           ),
         )
         return false

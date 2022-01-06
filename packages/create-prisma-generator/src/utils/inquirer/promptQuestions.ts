@@ -1,6 +1,7 @@
 import inquirer from 'inquirer'
-import { Answers } from '../types/answers'
-import { validateGenName } from './validations/validateGenName'
+import { Answers } from '../../types/answers'
+import { filterValue } from './filters/value'
+import { validateGeneratorName } from './validations/generatorName'
 
 // ANCHOR[id=questions]
 export const questions: inquirer.QuestionCollection<any>[] = [
@@ -11,7 +12,7 @@ export const questions: inquirer.QuestionCollection<any>[] = [
     message: "what's your generator name",
     // Validate Package Name
     validate(pkgName: string) {
-      return validateGenName(pkgName)
+      return validateGeneratorName(pkgName)
     },
   },
   // ANCHOR[id=Q2-usingTypescript]
@@ -53,6 +54,11 @@ export const questions: inquirer.QuestionCollection<any>[] = [
 
 export const promptQuestions = async (): Promise<Answers> => {
   const answers = (await inquirer.prompt(questions)) as Answers
+
+  Object.keys(answers).forEach((e) => {
+    const value = answers[e as keyof typeof answers]
+    ;(answers as any)[e] = filterValue(value)
+  })
 
   return answers
 }

@@ -1,5 +1,5 @@
 import { MockSTDIN } from 'mock-stdin'
-import { questions } from '../../utils/promptQuestions'
+import { questions } from '../../utils/inquirer/promptQuestions'
 import { delay } from '../__helpers__/delay'
 import { keys } from '../__helpers__/keyCodes'
 

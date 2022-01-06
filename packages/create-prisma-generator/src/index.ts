@@ -3,7 +3,7 @@ import colors from 'colors'
 import fs from 'fs'
 import path from 'path'
 import { runBlockingCommand } from './utils/runBlockingCommand'
-import { promptQuestions } from './utils/promptQuestions'
+import { promptQuestions } from './utils/inquirer/promptQuestions'
 import { replacePlaceholders } from './utils/replacePlaceholders'
 import { yarnWorkspaceJSON } from './config/yarn-workspace'
 import { pnpmWorkspaceYML } from './config/pnpm-workspace'
@@ -15,6 +15,8 @@ export const main = async () => {
   const answers = await promptQuestions()
 
   const pkgName = answers.generatorName.toLowerCase()
+
+  console.log('PKG Name', pkgName)
 
   // Reused variables
   const projectWorkdir = path.join(process.cwd(), pkgName)

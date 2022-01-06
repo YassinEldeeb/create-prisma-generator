@@ -30,3 +30,13 @@ Object {
   "usageTemplate": true,
 }
 `;
+
+exports[`should get proper answers object when answering using sample4 1`] = `
+Object {
+  "generatorName": "my-gen",
+  "githubActions": false,
+  "packageManager": "pnpm",
+  "typescript": true,
+  "usageTemplate": false,
+}
+`;
