@@ -25,13 +25,17 @@ logger.info(`${GENERATOR_NAME}:Registered`)
 
 ## `getDMMF`
 
-this is a great utility function that comes in handy especially when writting tests when you've a `sample.prisma` and want to get DMMF from it without running `prisma generate` and go through this cycle 👎:
+this is a very great utility function that comes in handy especially when writting tests when you've a `sample.prisma` and want to get DMMF from it without running `prisma generate` and go through this cycle 👎:
 
 ```sh
 @prisma/cli -> @prisma/sdk -> Spawns Generators -> Send DMMF through RPCs
 ```
 
 a better approuch is to cut this cycle and just get the utility function in `@prisma/sdk` that's responsible for generating the DMMF from a prisma definitions string.
+
+This function calls a rust binary that introspects the prisma definations in the string and gives back a nice AST([Abstract Syntax Tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree)) for the defined definations in prisma modelling language.
+
+> ⚠️ Note: The DMMF is a Prisma ORM internal API with no guarantees for stability to outside users. They might - and do - change the DMMF in potentially breaking ways between minor versions.
 
 ### Usage
 
