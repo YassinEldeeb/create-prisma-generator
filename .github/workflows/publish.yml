@@ -27,23 +27,23 @@ jobs:
         id: changed-packages
         with:
           paths: packages
-    
+
       - name: Setup PNPM
-        if: steps.changed-server.outputs.changed-packages == 'true'
+        if: steps.changed-packages.outputs.changed == 'true'
         uses: pnpm/action-setup@v2.0.1
         with:
           version: 6.23.6
 
       - name: Simulate CLI build
-        if: steps.changed-server.outputs.changed-packages == 'true'
+        if: steps.changed-packages.outputs.changed == 'true'
         run: pnpm simulate-dist
 
       - name: Install dependencies
-        if: steps.changed-server.outputs.changed-packages == 'true'
+        if: steps.changed-packages.outputs.changed == 'true'
         run: pnpm i --frozen-lockfile
 
       - name: Run Tests 🧪
-        if: steps.changed-server.outputs.changed-packages == 'true'
+        if: steps.changed-packages.outputs.changed == 'true'
         working-directory: ./packages/create-prisma-generator
         run: pnpm test
 
@@ -69,26 +69,26 @@ jobs:
 
       - name: Setup PNPM
         uses: pnpm/action-setup@v2.0.1
-        if: steps.changed-server.outputs.changed-packages == 'true'
+        if: steps.changed-packages.outputs.changed == 'true'
         with:
           version: 6.23.6
 
       - uses: actions/cache@v2
-        if: steps.changed-server.outputs.changed-packages == 'true'
+        if: steps.changed-packages.outputs.changed == 'true'
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - name: Simulate CLI build
-        if: steps.changed-server.outputs.changed-packages == 'true'
+        if: steps.changed-packages.outputs.changed == 'true'
         run: pnpm simulate-dist
 
       - name: Install deps
-        if: steps.changed-server.outputs.changed-packages == 'true'
+        if: steps.changed-packages.outputs.changed == 'true'
         run: pnpm i --frozen-lockfile
 
       - name: Publish 🚀
-        if: steps.changed-server.outputs.changed-packages == 'true'
+        if: steps.changed-packages.outputs.changed == 'true'
         run: |
           GITHUB_TOKEN="${{secrets.GITHUB_TOKEN}}" GIT_COMMITTER_EMAIL="${{secrets.GIT_COMMITTER_EMAIL}}" GIT_COMMITTER_NAME="${{secrets.GIT_COMMITTER_NAME}}" npx ts-node ./scripts/ci/publish.ts
         env:

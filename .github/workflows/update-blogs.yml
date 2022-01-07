@@ -22,32 +22,32 @@ jobs:
           paths: dev.to
 
       - name: Setup PNPM
-        if: steps.changed-server.outputs.changed-blogs == 'true'
+        if: steps.changed-blogs.outputs.changed == 'true'
         uses: pnpm/action-setup@v2.0.1
         with:
           version: 6.23.6
 
       - uses: actions/cache@v2
-        if: steps.changed-server.outputs.changed-blogs == 'true'
+        if: steps.changed-blogs.outputs.changed == 'true'
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - name: Install deps
-        if: steps.changed-server.outputs.changed-blogs == 'true'
+        if: steps.changed-blogs.outputs.changed == 'true'
         run: pnpm i --filter "dev.to" --frozen-lockfile
 
       - name: Run Prettier
-        if: steps.changed-server.outputs.changed-blogs == 'true'
+        if: steps.changed-blogs.outputs.changed == 'true'
         working-directory: dev.to
         run: pnpm prettier:check
 
       - name: Run Embedme
-        if: steps.changed-server.outputs.changed-blogs == 'true'
+        if: steps.changed-blogs.outputs.changed == 'true'
         working-directory: dev.to
         run: pnpm embedme:check
 
       - name: Deploy to dev.to
-        if: steps.changed-server.outputs.changed-blogs == 'true'
+        if: steps.changed-blogs.outputs.changed == 'true'
         working-directory: dev.to
         run: DEV_TO_GIT_TOKEN=${{ secrets.DEV_TOKEN }} pnpm dev-to-git
