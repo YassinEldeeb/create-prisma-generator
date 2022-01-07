@@ -5,7 +5,10 @@ export const hasPkgChanged = (changes: string[], folder: string) => {
 
   const lastCommitMessage = execSync('git show -s --format=%s').toString()
 
-  if (lastCommitMessage.includes('[force publish]')) {
+  if (
+    lastCommitMessage.includes('[force publish]') ||
+    lastCommitMessage.includes('[force-publish]')
+  ) {
     return true
   }
   return !!changes.find(
