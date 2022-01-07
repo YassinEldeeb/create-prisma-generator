@@ -64,6 +64,9 @@ Your environment will have everything you need to build your prisma generator li
 # Architecture
 Read [Architecture.md](https://github.com/YassinEldeeb/create-prisma-generator/blob/main/ARCHITECTURE.md) to understand how everything is working.
 
+# Prisma SDK reference
+Read [Prisma_SDK_Reference.md](https://github.com/YassinEldeeb/create-prisma-generator/blob/main/PRISMA_SDK_REFERENCE.md)
+
 # Community
 The Create Prisma Generator community can be found on [GitHub Discussions](https://github.com/YassinEldeeb/create-prisma-generator/discussions), where you can ask questions, suggest ideas, and share your projects.
 
