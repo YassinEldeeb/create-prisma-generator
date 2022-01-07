@@ -117,22 +117,22 @@ And `CLIs` is just an object that has a bunch of methods to execute the Tiny CLI
 // packages/create-prisma-generator/src/tinyClis.ts
 export const CLIs = {
   typescriptTemplate(path: string) {
-    return `npx @cpg-cli/template-typescript@latest ${path}`
+    return `npx @cpg-cli/template-typescript ${path}`
   },
   rootConfigs(path: string) {
-    return `npx @cpg-cli/root-configs@latest ${path}`
+    return `npx @cpg-cli/root-configs ${path}`
   },
   usageTemplate(path: string) {
-    return `npx @cpg-cli/template-gen-usage@latest ${path}`
+    return `npx @cpg-cli/template-gen-usage ${path}`
   },
   javascriptTemplate(path: string) {
-    return `npx @cpg-cli/template@latest ${path}`
+    return `npx @cpg-cli/template ${path}`
   },
   githubActionsTemplate(path: string) {
-    return `npx @cpg-cli/github-actions@latest ${path}`
+    return `npx @cpg-cli/github-actions ${path}`
   },
   setupSemanticRelease(path: string, workspaceFlag: string) {
-    return `npx @cpg-cli/semantic-releases@latest ${path} ${workspaceFlag}`
+    return `npx @cpg-cli/semantic-releases ${path} ${workspaceFlag}`
   },
 }
 ```
