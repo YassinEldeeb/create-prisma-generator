@@ -11,7 +11,7 @@
 
 ## `logger`
 
-a simple wrapper around `[chalk](https://github.com/chalk/chalk)` to print colorized messages to the terminal formatted like that:
+a simple wrapper around [`chalk`](https://github.com/chalk/chalk) to print colorized messages to the terminal formatted like that:
 
 `prisma:type` Message
 
