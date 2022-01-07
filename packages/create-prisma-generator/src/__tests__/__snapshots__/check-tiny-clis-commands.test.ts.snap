@@ -3,27 +3,27 @@
 exports[`make sure tiny CLIs commands are configured properly 1`] = `
 Array [
   Object {
-    "command": "npx @cpg-cli/template-typescript@latest path",
+    "command": "npx @cpg-cli/template-typescript path",
     "key": "typescriptTemplate",
   },
   Object {
-    "command": "npx @cpg-cli/root-configs@latest path",
+    "command": "npx @cpg-cli/root-configs path",
     "key": "rootConfigs",
   },
   Object {
-    "command": "npx @cpg-cli/template-gen-usage@latest path",
+    "command": "npx @cpg-cli/template-gen-usage path",
     "key": "usageTemplate",
   },
   Object {
-    "command": "npx @cpg-cli/template@latest path",
+    "command": "npx @cpg-cli/template path",
     "key": "javascriptTemplate",
   },
   Object {
-    "command": "npx @cpg-cli/github-actions@latest path",
+    "command": "npx @cpg-cli/github-actions path",
     "key": "githubActionsTemplate",
   },
   Object {
-    "command": "npx @cpg-cli/semantic-releases@latest path workspace",
+    "command": "npx @cpg-cli/semantic-releases path workspace",
     "key": "setupSemanticRelease",
   },
 ]

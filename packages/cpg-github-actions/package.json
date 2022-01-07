@@ -8,7 +8,9 @@
   },
   "scripts": {},
   "files": [
-    "template/**/*"
+    "template/**/*",
+    "index.js",
+    "bin.js"
   ],
   "homepage": "https://github.com/YassinEldeeb/create-prisma-generator",
   "repository": {

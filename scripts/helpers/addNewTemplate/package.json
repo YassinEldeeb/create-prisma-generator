@@ -7,7 +7,9 @@
     "$PKG_BIN": "index.js"
   },
   "files": [
-    "template/**/*"
+    "template/**/*",
+    "index.js",
+    "bin.js"
   ],
   "scripts": {
     "start": "node index.js"

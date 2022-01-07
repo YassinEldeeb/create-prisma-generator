@@ -7,7 +7,9 @@
     "cpg-template-gen-usage": "bin.js"
   },
   "files": [
-    "template/**/*"
+    "template/**/*",
+    "index.js",
+    "bin.js"
   ],
   "scripts": {},
   "homepage": "https://github.com/YassinEldeeb/create-prisma-generator",

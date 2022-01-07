@@ -7,7 +7,9 @@
     "cpg-semantic-releases": "bin.js"
   },
   "files": [
-    "template/**/*"
+    "template/**/*",
+    "index.js",
+    "bin.js"
   ],
   "scripts": {
     "start": "node bin.js"
