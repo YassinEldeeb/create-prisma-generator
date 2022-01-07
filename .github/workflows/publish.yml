@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - uses: YassinEldeeb/has-changed-path@v2
+      - uses: YassinEldeeb/has-changed-path@v2.1
         id: changed-packages
         with:
           paths: packages
@@ -62,7 +62,7 @@ jobs:
           node-version: 16.x
           registry-url: https://registry.npmjs.org
 
-      - uses: YassinEldeeb/has-changed-path@v2
+      - uses: YassinEldeeb/has-changed-path@v2.1
         id: changed-packages
         with:
           paths: packages
