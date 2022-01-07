@@ -16,8 +16,6 @@ export const main = async () => {
 
   const pkgName = answers.generatorName.toLowerCase()
 
-  console.log('PKG Name', pkgName)
-
   // Reused variables
   const projectWorkdir = path.join(process.cwd(), pkgName)
   const pkgManager = answers.packageManager
