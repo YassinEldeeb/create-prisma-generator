@@ -119,3 +119,7 @@ const requiredDataModel = `generator client {
 
 console.log(highlightDatamodel(requiredDataModel))
 ```
+
+# Credits
+
+This API reference probably wouldn't exist without the help of [`Github Code Search`](https://cs.github.com/) which I got my preview license to try it the day I wrote this documentation and It helped me a lot in searching the different parts in `@prisma/sdk` in Prisma's code base to see how they're used and in which cases.
