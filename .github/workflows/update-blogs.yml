@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: 16.x
 
-      - uses: YassinEldeeb/has-changed-path@v2
+      - uses: YassinEldeeb/has-changed-path@v2.1
         id: changed-blogs
         with:
           paths: dev.to
