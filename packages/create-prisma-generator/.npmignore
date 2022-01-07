@@ -6,4 +6,3 @@ jest.config.js
 yarn.lock
 yarn-error.log
 pnpm-debug.log
-.turbo
