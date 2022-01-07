@@ -11,7 +11,7 @@
 
 ## `logger`
 
-a simple utility to print colorized messages to the terminal formatted like that:
+a simple wrapper around [`chalk`](https://github.com/chalk/chalk) to print colorized messages to the terminal formatted like that:
 
 `prisma:type` Message
 
@@ -25,13 +25,17 @@ logger.info(`${GENERATOR_NAME}:Registered`)
 
 ## `getDMMF`
 
-this is a great utility function that comes in handy especially when writting tests when you've a `sample.prisma` and want to get DMMF from it without running `prisma generate` and go through this cycle 👎:
+this is a very great utility function that comes in handy especially when writting tests when you've a `sample.prisma` and want to get DMMF from it without running `prisma generate` and go through this cycle 👎:
 
 ```sh
 @prisma/cli -> @prisma/sdk -> Spawns Generators -> Send DMMF through RPCs
 ```
 
 a better approuch is to cut this cycle and just get the utility function in `@prisma/sdk` that's responsible for generating the DMMF from a prisma definitions string.
+
+This function calls a rust binary that introspects the prisma definations in the string and gives back a nice AST([Abstract Syntax Tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree)) for the defined definations in prisma modelling language.
+
+> ⚠️ Note: The DMMF is a Prisma ORM internal API with no guarantees for stability to outside users. They might - and do - change the DMMF in potentially breaking ways between minor versions.
 
 ### Usage
 
@@ -69,7 +73,7 @@ const platform = await getPlatform()
 ```
 
 ## `isCi`
-a simple wrapper around [`ci-info`](https://www.npmjs.com/package/ci-info) to get a boolean if wether or not the generator is running in a CI environment.
+a simple wrapper around [`ci-info`](https://github.com/watson/ci-info) to get a boolean if wether or not the generator is running in a CI environment.
 
 ### Usage
 
@@ -87,6 +91,8 @@ a great utility for drawing boxes that can be useful for showing messages if the
 anyVerticalValue = number of lines
 
 anyHorizontalValue = number of space chars
+
+### Usage
 
 ```ts
 const incompatibilityErrorMessage = drawBox({
@@ -113,3 +119,7 @@ const requiredDataModel = `generator client {
 
 console.log(highlightDatamodel(requiredDataModel))
 ```
+
+# Credits
+
+This API reference probably wouldn't exist without the help of [`Github Code Search`](https://www.youtube.com/watch?v=UOIPBfPXkus) which I got my preview license to try it the day I wrote this documentation and It helped me a lot in searching the different parts in `@prisma/sdk` in Prisma's code base to see how they're used and in which cases.
