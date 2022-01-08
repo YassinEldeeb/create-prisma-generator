@@ -54,6 +54,7 @@ the template folder contains files/folders that are copied to the desired locati
 packages
 └── cpg-new-template
     ├── index.js
+    ├── bin.js
     ├── package.json
     └── template
 ```
