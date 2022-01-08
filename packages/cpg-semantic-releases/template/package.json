@@ -1,5 +1,4 @@
 {
-  "private": true,
   "devDependencies": {
     "@commitlint/cli": "^16.0.1",
     "@commitlint/config-conventional": "^16.0.0",

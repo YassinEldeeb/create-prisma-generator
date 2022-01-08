@@ -102,6 +102,10 @@ const setup = () => {
         {
           ...existingRootPkgJSON,
           ...JSON.parse(templatePkgJSON),
+          scripts: {
+            ...existingRootPkgJSON.scripts,
+            ...JSON.parse(templatePkgJSON).scripts,
+          },
         },
         null,
         2,
