@@ -15,7 +15,6 @@ export const formatFile = (content) => {
 
         res(formatted)
       } catch (error) {
-        console.error(error)
         rej(error)
       }
     }),

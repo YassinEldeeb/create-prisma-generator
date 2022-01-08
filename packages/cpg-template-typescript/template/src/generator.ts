@@ -6,6 +6,7 @@ import { genEnum } from './helpers/genEnum'
 import { writeFileSafely } from './utils/writeFileSafely'
 
 const { version } = require('../package.json')
+
 generatorHandler({
   onManifest() {
     logger.info(`${GENERATOR_NAME}:Registered`)
@@ -16,7 +17,7 @@ generatorHandler({
     }
   },
   onGenerate: async (options: GeneratorOptions) => {
-     options.dmmf.datamodel.enums.forEach(async (enumInfo) => {
+    options.dmmf.datamodel.enums.forEach(async (enumInfo) => {
       const tsEnum = genEnum(enumInfo)
 
       const writeLocation = path.join(

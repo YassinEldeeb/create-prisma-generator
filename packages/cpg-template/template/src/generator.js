@@ -5,7 +5,7 @@ import { GENERATOR_NAME } from './constants'
 import { genEnum } from './helpers/genEnum'
 import { writeFileSafely } from './utils/writeFileSafely'
 
-logger.info(`${GENERATOR_NAME}:Registered`)
+const { version } = require('../package.json')
 
 generatorHandler({
   onManifest() {
