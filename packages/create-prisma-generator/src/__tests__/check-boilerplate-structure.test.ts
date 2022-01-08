@@ -34,7 +34,7 @@ jest.mock('fs', () => {
   const fsModule = jest.requireActual(`fs`) as typeof fs
   const pathModule = jest.requireActual(`path`) as typeof path
 
-  const packagesPath = pathModule.join(__dirname, '../../../../')
+  const packagesPath = pathModule.join(__dirname, '../../../')
   const packages = fsModule
     .readdirSync(packagesPath, { withFileTypes: true })
     .filter((dirent: any) => dirent.isDirectory())
@@ -107,7 +107,7 @@ jest.mock('child_process', () => {
 
         const CLIIndexAbsolutePath = path.join(
           __dirname,
-          `../../../../${pkgName}`,
+          `../../../${pkgName}`,
           'index.js',
         )
         const relativePath = path.relative(__dirname, CLIIndexAbsolutePath)
