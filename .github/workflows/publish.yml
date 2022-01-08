@@ -52,7 +52,7 @@ jobs:
     needs: [unit-tests]
     strategy:
       matrix:
-        node-version: [14.x, 15.x, 16.x, 17.x]
+        node-version: [16.x]
         os: [ubuntu-latest, windows-latest]
 
     steps:
@@ -68,6 +68,12 @@ jobs:
         id: changed-packages
         with:
           paths: packages
+
+      - name: Tell git who am I
+        if: steps.changed-packages.outputs.changed == 'true'
+        run: |
+          git config --global user.name "me"
+          git config --global user.email "me@example.com"
 
       - name: Setup PNPM
         if: steps.changed-packages.outputs.changed == 'true'
