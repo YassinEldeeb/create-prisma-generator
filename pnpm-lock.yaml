@@ -87,6 +87,7 @@ importers:
       '@types/node': ^17.0.5
       '@types/rimraf': ^3.0.2
       '@types/validate-npm-package-name': ^3.0.3
+      ci-info: ^3.3.0
       colors: ^1.4.0
       concurrently: ^6.5.1
       copyfiles: ^2.4.1
@@ -125,6 +126,7 @@ importers:
       '@types/node': 17.0.5
       '@types/rimraf': 3.0.2
       '@types/validate-npm-package-name': 3.0.3
+      ci-info: 3.3.0
       concurrently: 6.5.1
       copyfiles: 2.4.1
       jest: 27.4.5_ts-node@10.4.0

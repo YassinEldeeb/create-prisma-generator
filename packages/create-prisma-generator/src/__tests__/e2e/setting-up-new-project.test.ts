@@ -8,6 +8,7 @@ import os from 'os'
 import path from 'path'
 import { main } from '../..'
 import { execSync } from 'child_process'
+import ci from 'ci-info'
 
 let io: MockSTDIN
 let tempDirPath: string
@@ -15,7 +16,17 @@ let initialCWD: string
 
 beforeEach(() => {
   io = stdin()
-  tempDirPath = fs.mkdtempSync(fs.realpathSync(os.tmpdir() + path.sep))
+
+  // Create temp folder in the same project folder if in CI env.
+  // Github Actions: `EACCES: permission denied, mkdtemp '/tmpXXXXXX'`
+  // Issue: https://github.com/actions/toolkit/issues/518
+  if (ci.isCI) {
+    const tempPath = path.join(process.cwd(), 'temp')
+    fs.mkdirSync(path.join(process.cwd(), 'temp'))
+    tempDirPath = tempPath
+  } else {
+    tempDirPath = fs.mkdtempSync(fs.realpathSync(os.tmpdir() + path.sep))
+  }
   if (!initialCWD) {
     initialCWD = process.cwd()
   }
