@@ -11,6 +11,7 @@
     "node": ">=14.0"
   },
   "scripts": {
+    "start": "node dist/bin.js",
     "dev": "npx tsc -w",
     "build": "npx tsc",
     "prepack": "yarn build",

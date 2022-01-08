@@ -11,6 +11,7 @@
     "node": ">=14.0"
   },
   "scripts": {
+    "start": "node dist/bin.js",
     "dev": "babel src -d dist --watch",
     "build": "babel src -d dist",
     "prepack": "yarn build",

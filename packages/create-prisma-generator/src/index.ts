@@ -151,6 +151,7 @@ export const main = async () => {
     stdio: 'inherit',
     cwd: projectWorkdir,
   })
+
   //! Post-install
 
   // Build the generator package to start

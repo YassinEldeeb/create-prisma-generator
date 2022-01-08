@@ -14,7 +14,7 @@
     "dev": "tsc -w",
     "build": "tsc",
     "prepack": "yarn build",
-    "test": "jest",
+    "test": "jest --verbose",
     "test-w": "jest --watch"
   },
   "dependencies": {
@@ -45,6 +45,11 @@
     "tsc-watch": "^4.5.0",
     "typescript": "^4.5.4",
     "unionfs": "^4.4.0",
+    "@cpg-cli/semantic-releases": "workspace:*",
+    "@cpg-cli/github-actions": "workspace:*",
+    "@cpg-cli/template": "workspace:*",
+    "@cpg-cli/template-gen-usage": "workspace:*",
+    "@cpg-cli/template-typescript": "workspace:*",
     "@cpg-cli/root-configs": "workspace:*"
   },
   "homepage": "https://github.com/YassinEldeeb/create-prisma-generator",

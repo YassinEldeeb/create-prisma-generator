@@ -7,7 +7,7 @@ on:
     branches: ['*']
 
 jobs:
-  Quality:
+  unit-tests:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -45,12 +45,53 @@ jobs:
       - name: Run Tests 🧪
         if: steps.changed-packages.outputs.changed == 'true'
         working-directory: ./packages/create-prisma-generator
-        run: pnpm test
+        run: pnpm test -- --testPathIgnorePattern e2e
+
+  e2e-tests:
+    runs-on: ${{ matrix.os }}
+    needs: [unit-tests]
+    strategy:
+      matrix:
+        node-version: [14.x, 15.x, 16.x, 17.x]
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 100
+      - name: Use Node.js ${{matrix.node-version}}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - uses: YassinEldeeb/has-changed-path@v2.1
+        id: changed-packages
+        with:
+          paths: packages
+
+      - name: Setup PNPM
+        if: steps.changed-packages.outputs.changed == 'true'
+        uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.23.6
+
+      - name: Simulate CLI build
+        if: steps.changed-packages.outputs.changed == 'true'
+        run: pnpm simulate-dist
+
+      - name: Install dependencies
+        if: steps.changed-packages.outputs.changed == 'true'
+        run: pnpm i --frozen-lockfile
+
+      - name: Run E2E Tests 🧪
+        if: steps.changed-packages.outputs.changed == 'true'
+        working-directory: ./packages/create-prisma-generator
+        run: pnpm test -- src/__tests__/e2e
 
   Publish:
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/main' }}
-    needs: [Quality]
+    needs: [unit-tests, e2e-tests]
 
     steps:
       - uses: actions/checkout@v2

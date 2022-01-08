@@ -1,19 +1,19 @@
 // --------------------------------------------------------------------------------
 // This is the BEAST test suit that's responsible for
 // checking the full generated boilerplate from 7+ different CLIs
-// from start to finish (e2e) running on a virtual in-memory file-system
+// from start to finish running on a virtual in-memory file-system
 // --------------------------------------------------------------------------------
 import { MockSTDIN, stdin } from 'mock-stdin'
-import { main } from '../../index'
-import { answer } from '../__helpers__/answer'
-import { skipQuestions } from '../__helpers__/skipQuestions'
+import { main } from '../index'
+import { answer } from './__helpers__/answer'
+import { skipQuestions } from './__helpers__/skipQuestions'
 import fs from 'fs'
 import path from 'path'
 import memfs from 'memfs'
-import { MockedFS } from '../types/MockedFS'
+import { MockedFS } from './types/MockedFS'
 import child_process from 'child_process'
-import { getInstallCommand } from '../../utils/getInstallCommands'
-import { validGenName } from '../constants/valid-prisma-gen-name'
+import { getInstallCommand } from '../utils/getInstallCommands'
+import { validGenName } from './constants/valid-prisma-gen-name'
 
 const mockedFS: MockedFS = fs as any
 
@@ -202,7 +202,7 @@ const pkgManager = {
 }
 
 Object.keys(sampleAnswers).map((sample) => {
-  test(`check the output with ${sample}`, async () => {
+  test(`check the boilerplate structure with ${sample}`, async () => {
     setTimeout(
       () => sampleAnswers[sample as keyof typeof sampleAnswers]().then(),
       5,
@@ -224,7 +224,7 @@ Object.keys(sampleAnswers).map((sample) => {
 
     const snapshotPath = path.join(
       __dirname,
-      `../__in-memory-fs-snapshots__/output-from-${sample}.json`,
+      `__in-memory-fs-snapshots__/output-from-${sample}.json`,
     )
 
     const lastSnapshot = mockedFS.actual.existsSync(snapshotPath)
