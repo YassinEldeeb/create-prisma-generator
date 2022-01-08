@@ -202,7 +202,7 @@ const pkgManager = {
 }
 
 Object.keys(sampleAnswers).map((sample) => {
-  test(`check the boilerplate structure with ${sample}`, async () => {
+  test(`check the ouput structure with ${sample}`, async () => {
     setTimeout(
       () => sampleAnswers[sample as keyof typeof sampleAnswers]().then(),
       5,

@@ -11,7 +11,7 @@ import { huskyCommitMsgHook } from './config/husky-commit-msg-hook'
 import { CLIs } from './tinyClis'
 import { getInstallCommand } from './utils/getInstallCommands'
 
-export const main = async () => {
+export const main = async (testing?: 'testing') => {
   const answers = await promptQuestions()
 
   const pkgName = answers.generatorName.toLowerCase()
@@ -144,6 +144,15 @@ export const main = async () => {
   }
 
   console.log(colors.cyan(`Installing dependencies using ${pkgManager}\n`))
+
+  // Adding empty `pnpm-workspace.yaml` to seperate development workspace
+  // from temp testing workspace
+  if (testing) {
+    const pnpmWorkspacePath = path.join(projectWorkdir, 'pnpm-workspace.yaml')
+    if (!fs.existsSync(pnpmWorkspacePath)) {
+      fs.writeFileSync(pnpmWorkspacePath, '')
+    }
+  }
 
   // Install packages
   spawnSync(getInstallCommand(pkgManager), {

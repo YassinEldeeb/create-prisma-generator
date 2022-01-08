@@ -4,11 +4,9 @@ import { validGenName } from '../constants/valid-prisma-gen-name'
 import { answer } from '../__helpers__/answer'
 import { skipQuestions } from '../__helpers__/skipQuestions'
 import fs from 'fs'
-import os from 'os'
 import path from 'path'
 import { main } from '../..'
-import { execSync } from 'child_process'
-import ci from 'ci-info'
+import { execSync, spawnSync } from 'child_process'
 
 let io: MockSTDIN
 let tempDirPath: string
@@ -17,19 +15,48 @@ let initialCWD: string
 beforeEach(() => {
   io = stdin()
 
-  // Create temp folder in the same project folder if in CI env.
-  // Github Actions: `EACCES: permission denied, mkdtemp '/tmpXXXXXX'`
-  // Issue: https://github.com/actions/toolkit/issues/518
-  if (ci.isCI) {
-    const tempPath = path.join(process.cwd(), 'temp')
-    fs.mkdirSync(path.join(process.cwd(), 'temp'))
-    tempDirPath = tempPath
-  } else {
-    tempDirPath = fs.mkdtempSync(fs.realpathSync(os.tmpdir() + path.sep))
+  // Create temp folder in the same workspace.
+  // cause:
+  // 1. Github Actions: `EACCES: permission denied, mkdtemp '/tmpXXXXXX'`
+  //  Issue: https://github.com/actions/toolkit/issues/518
+  // 2. I want the tiny CLIs to be in the same running process location
+  //  to inherit local packages instead of using the online versions
+
+  const tempPath = path.join(__dirname, '../../../../temp')
+  fs.mkdirSync(tempPath, { recursive: true })
+
+  const tempPkgJSON = {
+    name: 'temp-for-e2e-testing',
+    private: true,
+    devDependencies: {
+      'create-prisma-generator': 'workspace:*',
+      '@cpg-cli/semantic-releases': 'workspace:*',
+      '@cpg-cli/github-actions': 'workspace:*',
+      '@cpg-cli/template': 'workspace:*',
+      '@cpg-cli/template-gen-usage': 'workspace:*',
+      '@cpg-cli/template-typescript': 'workspace:*',
+      '@cpg-cli/root-configs': 'workspace:*',
+    },
   }
+
+  fs.writeFileSync(
+    path.join(tempPath, 'package.json'),
+    JSON.stringify(tempPkgJSON, null, 2),
+  )
+
+  // Link local deps(tiny CLIs)
+  spawnSync('pnpm i', {
+    shell: true,
+    stdio: 'inherit',
+    cwd: tempPath,
+  })
+
+  tempDirPath = tempPath
+
   if (!initialCWD) {
     initialCWD = process.cwd()
   }
+
   process.chdir(tempDirPath)
 })
 
@@ -74,38 +101,6 @@ const sampleAnswers = {
     // Skip the rest of the questions
     await skipQuestions(-1, io, true)
   },
-  async sample4() {
-    // LINK ..\utils\promptQuestions.ts#Q1-generatorName
-    await answer(io, { text: genName })
-
-    // LINK ..\utils\promptQuestions.ts#Q2-usingTypescript
-    await answer(io, { text: 'No' })
-
-    // LINK ..\utils\promptQuestions.ts#Q3-selectPkgManager
-    await answer(io, { keys: ['down'] }) // > npm
-
-    // LINK ..\utils\promptQuestions.ts#Q4-usingGithubActions
-    await answer(io, { text: 'No' })
-
-    // Skip the rest of the questions
-    await skipQuestions(-1, io)
-  },
-  async sample5() {
-    // LINK ..\utils\promptQuestions.ts#Q1-generatorName
-    await answer(io, { text: genName })
-
-    // LINK ..\utils\promptQuestions.ts#Q2-usingTypescript
-    await answer(io)
-
-    // LINK ..\utils\promptQuestions.ts#Q3-selectPkgManager
-    await answer(io, { keys: ['up'] }) // > yarn
-
-    // LINK ..\utils\promptQuestions.ts#Q4-usingGithubActions
-    await answer(io)
-
-    // Skip the rest of the questions
-    await skipQuestions(-1, io, true)
-  },
 }
 
 const FOUR_MINUTES = 1000 * 60 * 4
@@ -121,7 +116,7 @@ Object.keys(sampleAnswers).map((sample) => {
         5,
       )
 
-      const answers = (await main())!
+      const answers = (await main('testing'))!
       const { packageManager, usageTemplate } = answers
 
       // Running some scripts developers usually run after the boilerplate
@@ -138,8 +133,6 @@ Object.keys(sampleAnswers).map((sample) => {
         execSync(command, { cwd })
       }
 
-      runScript('start')
-
       // usageTemplate === Using Workspaces
       if (usageTemplate) {
         console.log(`Running generator tests`)
@@ -148,16 +141,19 @@ Object.keys(sampleAnswers).map((sample) => {
           genName,
           'packages/generator',
         )
+
+        runScript('start', generatorPath)
         runScript('test', generatorPath)
 
         console.log(
-          `Running prisma generate to check if generator is linked properly`,
+          `Running \`prisma generate\` to check if generator is linked properly`,
         )
         execSync('npx prisma generate', {
           cwd: path.join(generatorPath, '../usage'),
           stdio: 'inherit',
         })
       } else {
+        runScript('start')
         console.log(`Running generator tests`)
         runScript('test')
       }

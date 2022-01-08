@@ -1,30 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`make sure tiny CLIs commands are configured properly 1`] = `
-Array [
-  Object {
-    "command": "npx @cpg-cli/template-typescript path",
-    "key": "typescriptTemplate",
-  },
-  Object {
-    "command": "npx @cpg-cli/root-configs path",
-    "key": "rootConfigs",
-  },
-  Object {
-    "command": "npx @cpg-cli/template-gen-usage path",
-    "key": "usageTemplate",
-  },
-  Object {
-    "command": "npx @cpg-cli/template path",
-    "key": "javascriptTemplate",
-  },
-  Object {
-    "command": "npx @cpg-cli/github-actions path",
-    "key": "githubActionsTemplate",
-  },
-  Object {
-    "command": "npx @cpg-cli/semantic-releases path workspace",
-    "key": "setupSemanticRelease",
-  },
-]
-`;
+exports[`githubActionsTemplate command is configured properly 1`] = `"npx @cpg-cli/github-actions path"`;
+
+exports[`javascriptTemplate command is configured properly 1`] = `"npx @cpg-cli/template path"`;
+
+exports[`rootConfigs command is configured properly 1`] = `"npx @cpg-cli/root-configs path"`;
+
+exports[`setupSemanticRelease command is configured properly 1`] = `"npx @cpg-cli/semantic-releases path workspace"`;
+
+exports[`typescriptTemplate command is configured properly 1`] = `"npx @cpg-cli/template-typescript path"`;
+
+exports[`usageTemplate command is configured properly 1`] = `"npx @cpg-cli/template-gen-usage path"`;

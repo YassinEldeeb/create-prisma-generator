@@ -1,6 +1,8 @@
 import { CLIs } from '../tinyClis'
-import { serializeCLIs } from './__helpers__/snapshotSerializers'
+import { serializeCLI } from './__helpers__/snapshotSerializers'
 
-test('make sure tiny CLIs commands are configured properly', () => {
-  expect(serializeCLIs(CLIs)).toMatchSnapshot()
+Object.keys(CLIs).forEach((cli) => {
+  test(`${cli} command is configured properly`, () => {
+    expect(serializeCLI(cli as keyof typeof CLIs)).toMatchSnapshot()
+  })
 })
