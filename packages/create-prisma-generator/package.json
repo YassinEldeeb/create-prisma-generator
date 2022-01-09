@@ -64,6 +64,7 @@
     "setup",
     "development",
     "testing",
-    "CLI"
+    "CLI",
+    "cli"
   ]
 }
