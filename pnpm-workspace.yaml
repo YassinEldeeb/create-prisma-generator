@@ -4,6 +4,3 @@ packages:
   - dev.to
   # exclude packages that are inside template directories
   - '!**/template/**'
-  # exclude packages that are inside temp directories
-  # those are specifically for e2e testing
-  - '!**/temp/prisma-generator-data-graph'

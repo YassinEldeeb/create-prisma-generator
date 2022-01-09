@@ -8,3 +8,4 @@ build
 my-gen
 .turbo
 .pnpm-debug.log
+temp

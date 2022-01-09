@@ -12,9 +12,7 @@ let io: MockSTDIN
 let tempDirPath: string
 let initialCWD: string
 
-beforeEach(() => {
-  io = stdin()
-
+beforeAll(() => {
   // Create temp folder in the same workspace.
   // cause:
   // 1. Github Actions: `EACCES: permission denied, mkdtemp '/tmpXXXXXX'`
@@ -53,19 +51,26 @@ beforeEach(() => {
 
   tempDirPath = tempPath
 
-  if (!initialCWD) {
-    initialCWD = process.cwd()
-  }
+  initialCWD = process.cwd()
 
   process.chdir(tempDirPath)
 })
 
+beforeEach(() => {
+  io = stdin()
+})
+
 afterEach(() => {
+  fs.rmSync(path.join(tempDirPath, genName), { recursive: true })
+  console.log('Cleaned up previous project folder 🧹')
+})
+
+afterAll(() => {
   // Switching to prevous CWD so that we
-  // can delete the tmp folder
+  // can delete the previous project folder
   process.chdir(initialCWD)
-  fs.rmSync(tempDirPath, { recursive: true })
   console.log('Cleaned up temp folder 🧹')
+  fs.rmSync(tempDirPath, { recursive: true })
 })
 
 const genName = validGenName
@@ -105,6 +110,34 @@ const sampleAnswers = {
 
 const FOUR_MINUTES = 1000 * 60 * 4
 
+jest.mock('child_process', () => {
+  const actualChildProcess = jest.requireActual('child_process')
+
+  return {
+    ...actualChildProcess,
+    spawnSync: (cmd: string, options?: any) => {
+      const installCommands = ['yarn', 'pnpm i', 'npm i']
+
+      const projectPath = path.join(process.cwd(), genName)
+      const workspacePath = path.join(projectPath, 'pnpm-workspace.yaml')
+
+      //! Adding empty `pnpm-workspace.yaml` to seperate development workspace
+      //! from temp testing workspace when using pnpm
+      //? checking for project dir if it exists to avoid running this logic
+      //? if spawnSync is being used in one of the teardown functions
+      if (
+        fs.existsSync(projectPath) &&
+        !fs.existsSync(workspacePath) &&
+        installCommands.includes(cmd)
+      ) {
+        fs.writeFileSync(workspacePath, '')
+      }
+
+      actualChildProcess.spawnSync(cmd, options)
+    },
+  }
+})
+
 Object.keys(sampleAnswers).map((sample) => {
   test(
     `setting up a new prisma generator like a normal user using ${sample}`,
@@ -116,14 +149,13 @@ Object.keys(sampleAnswers).map((sample) => {
         5,
       )
 
-      const answers = (await main('testing'))!
+      const projectWorkDir = path.join(process.cwd(), genName)
+
+      const answers = (await main())!
       const { packageManager, usageTemplate } = answers
 
       // Running some scripts developers usually run after the boilerplate
-      const runScript = (
-        script: string,
-        cwd: string = path.join(process.cwd(), genName),
-      ) => {
+      const runScript = (script: string, cwd: string = projectWorkDir) => {
         let command = ''
         if (packageManager === 'npm') {
           command = `${packageManager} run ${script}`
@@ -160,7 +192,7 @@ Object.keys(sampleAnswers).map((sample) => {
 
       console.log(`Checking if git repo is initalized`)
       execSync('git rev-parse --is-inside-work-tree', {
-        cwd: path.join(process.cwd(), genName),
+        cwd: projectWorkDir,
         stdio: 'inherit',
       })
     },

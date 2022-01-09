@@ -11,7 +11,7 @@ import { huskyCommitMsgHook } from './config/husky-commit-msg-hook'
 import { CLIs } from './tinyClis'
 import { getInstallCommand } from './utils/getInstallCommands'
 
-export const main = async (testing?: 'testing') => {
+export const main = async () => {
   const answers = await promptQuestions()
 
   const pkgName = answers.generatorName.toLowerCase()
@@ -39,8 +39,7 @@ export const main = async (testing?: 'testing') => {
   // Initialize git
   //! This needs to be at the top cause `husky` won't run
   //! if there was no repository
-  fs.readdirSync(process.cwd())
-  fs.mkdirSync(projectWorkdir)
+  fs.mkdirSync(projectWorkdir, { recursive: true })
   execSync(`${workingDir} && git init`)
   console.log(colors.cyan('\nInitialized a git repository.\n'))
 
@@ -144,15 +143,6 @@ export const main = async (testing?: 'testing') => {
   }
 
   console.log(colors.cyan(`Installing dependencies using ${pkgManager}\n`))
-
-  // Adding empty `pnpm-workspace.yaml` to seperate development workspace
-  // from temp testing workspace
-  if (testing) {
-    const pnpmWorkspacePath = path.join(projectWorkdir, 'pnpm-workspace.yaml')
-    if (!fs.existsSync(pnpmWorkspacePath)) {
-      fs.writeFileSync(pnpmWorkspacePath, '')
-    }
-  }
 
   // Install packages
   spawnSync(getInstallCommand(pkgManager), {
