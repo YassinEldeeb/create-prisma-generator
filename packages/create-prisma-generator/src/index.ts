@@ -12,11 +12,7 @@ import { CLIs } from './tinyClis'
 import { getInstallCommand } from './utils/getInstallCommands'
 
 export const main = async () => {
-  console.log('--------------------It gone down here--------------------')
   const answers = await promptQuestions()
-  console.log(
-    '--------------------It crashed after the questions--------------------',
-  )
 
   const pkgName = answers.generatorName.toLowerCase()
 

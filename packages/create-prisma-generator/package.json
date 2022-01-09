@@ -1,7 +1,7 @@
 {
   "name": "create-prisma-generator",
   "version": "1.9.3",
-  "main": "dist/index.js",
+  "main": "dist/bin.js",
   "license": "MIT",
   "bin": {
     "create-prisma-generator": "dist/bin.js"
