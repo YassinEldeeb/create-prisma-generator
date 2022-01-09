@@ -1,5 +1,5 @@
 import { execSync, spawnSync } from 'child_process'
-import colors from 'colors'
+import chalk from 'chalk'
 import fs from 'fs'
 import path from 'path'
 import { runBlockingCommand } from './utils/runBlockingCommand'
@@ -27,13 +27,13 @@ export const main = async () => {
 
   // Validate if folder with the same name doesn't exist
   if (fs.existsSync(projectWorkdir)) {
-    console.log(colors.red(`${pkgName} directory already exists!`))
+    console.log(chalk.red(`${pkgName} directory already exists!`))
     return
   }
 
   console.log(
     '\nCreating a new Prisma generator in',
-    colors.cyan(path.join(projectWorkdir)) + '.\n',
+    chalk.cyan(path.join(projectWorkdir)) + '.\n',
   )
 
   // Initialize git
@@ -41,7 +41,7 @@ export const main = async () => {
   //! if there was no repository
   fs.mkdirSync(projectWorkdir, { recursive: true })
   execSync(`${workingDir} && git init`)
-  console.log(colors.cyan('\nInitialized a git repository.\n'))
+  console.log(chalk.cyan('\nInitialized a git repository.\n'))
 
   // Adding default root configs
   const templateName = 'root default configs'
@@ -123,10 +123,7 @@ export const main = async () => {
       '',
     )
 
-    console.log(
-      colors.cyan(`${pkgManager} Workspace`),
-      'configured correctly\n',
-    )
+    console.log(chalk.cyan(`${pkgManager} Workspace`), 'configured correctly\n')
   }
 
   //! Should be after initializing the workspace
@@ -142,7 +139,7 @@ export const main = async () => {
     )
   }
 
-  console.log(colors.cyan(`Installing dependencies using ${pkgManager}\n`))
+  console.log(chalk.cyan(`Installing dependencies using ${pkgManager}\n`))
 
   // Install packages
   spawnSync(getInstallCommand(pkgManager), {
@@ -166,7 +163,7 @@ export const main = async () => {
   execSync(
     `${workingDir} && git checkout -b main && git add . && git commit -m"init"`,
   )
-  console.log(colors.cyan('Created git commit.\n'))
+  console.log(chalk.cyan('Created git commit.\n'))
 
   // Add commit-msg husky hook to lint commits
   // using commitlint before they are created
@@ -186,10 +183,10 @@ export const main = async () => {
   }
 
   // Success Messages
-  console.log(colors.green(`Success!`), `Created ${projectWorkdir}`)
+  console.log(chalk.green(`Success!`), `Created ${projectWorkdir}`)
   console.log(`We suggest that you begin by typing:\n`)
-  console.log(colors.cyan('cd'), pkgName)
-  console.log(colors.cyan('code .'))
+  console.log(chalk.cyan('cd'), pkgName)
+  console.log(chalk.cyan('code .'))
   console.log(`\nStart Generating ;)`)
 
   return answers

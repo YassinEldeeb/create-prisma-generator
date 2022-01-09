@@ -1,12 +1,12 @@
 import { execSync } from 'child_process'
-import colors from 'colors'
+import chalk from 'chalk'
 
 export const runBlockingCommand = (
   name: string,
   command: string,
   type: 'Loading' | 'Building' | 'Configuring' = 'Loading',
 ) => {
-  console.log(colors.cyan(`${type} ${name}...`))
+  console.log(chalk.cyan(`${type} ${name}...`))
   execSync(command)
 
   let successMsg
@@ -21,5 +21,5 @@ export const runBlockingCommand = (
       successMsg = 'Configured'
       break
   }
-  console.log(colors.green(`${name} ${successMsg} Successfully!\n`))
+  console.log(chalk.green(`${name} ${successMsg} Successfully!\n`))
 }

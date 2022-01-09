@@ -1,5 +1,5 @@
 import validatePkgName from 'validate-npm-package-name'
-import colors from 'colors'
+import chalk from 'chalk'
 import { flags } from '../flags'
 
 export const validateGeneratorName = (pkgName: string) => {
@@ -8,9 +8,9 @@ export const validateGeneratorName = (pkgName: string) => {
   )
 
   if (!validPkgName.validForNewPackages) {
-    console.log(colors.red(`\n"${pkgName}" isn't a valid package name!`))
-    validPkgName.errors?.forEach((e) => console.log(colors.cyan(e)))
-    validPkgName.warnings?.forEach((e) => console.log(colors.yellow(e)))
+    console.log(chalk.red(`\n"${pkgName}" isn't a valid package name!`))
+    validPkgName.errors?.forEach((e) => console.log(chalk.cyan(e)))
+    validPkgName.warnings?.forEach((e) => console.log(chalk.yellow(e)))
     return false
   } else {
     const sanitizedPkgName = pkgName.trim()
@@ -32,21 +32,21 @@ export const validateGeneratorName = (pkgName: string) => {
       ) {
         if (org) {
           console.log(
-            colors.cyan(
+            chalk.cyan(
               `\nPrisma recommends you to use this naming convention:\n`,
             ),
-            colors.yellow(`${org}/${namingConvention}<custom-name>\n`),
+            chalk.yellow(`${org}/${namingConvention}<custom-name>\n`),
           )
         } else {
           console.log(
-            colors.cyan(
+            chalk.cyan(
               `\n\nPrisma recommends you to use this naming convention:\n`,
             ),
-            colors.yellow(`${namingConvention}<custom-name>`),
+            chalk.yellow(`${namingConvention}<custom-name>`),
           )
         }
         console.log(
-          colors.grey(
+          chalk.grey(
             `use the \`${flags.skipPrismaNamingConventionFlag}\` flag to skip prisma's recommendation.\n`,
           ),
         )

@@ -7,148 +7,136 @@ on:
     branches: ['*']
 
 jobs:
-  # unit-tests:
-  #   runs-on: ${{ matrix.os }}
-  #   strategy:
-  #     matrix:
-  #       node-version: [14.x, 15.x, 16.x, 17.x]
-  #       os: [ubuntu-latest, windows-latest]
+  unit-tests:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node-version: [14.x, 15.x, 16.x, 17.x]
+        os: [ubuntu-latest, windows-latest]
 
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #       with:
-  #         fetch-depth: 100
-  #     - name: Use Node.js ${{matrix.node-version}}
-  #       uses: actions/setup-node@v2
-  #       with:
-  #         node-version: ${{ matrix.node-version }}
-
-  #     - uses: YassinEldeeb/has-changed-path@v2.1
-  #       id: changed-packages
-  #       with:
-  #         paths: packages
-
-  #     - name: Setup PNPM
-  #       if: steps.changed-packages.outputs.changed == 'true'
-  #       uses: pnpm/action-setup@v2.0.1
-  #       with:
-  #         version: 6.23.6
-
-  #     - name: Simulate CLI build
-  #       if: steps.changed-packages.outputs.changed == 'true'
-  #       run: pnpm simulate-dist
-
-  #     - name: Install dependencies
-  #       if: steps.changed-packages.outputs.changed == 'true'
-  #       run: pnpm i --frozen-lockfile
-
-  #     - name: Run Tests 🧪
-  #       if: steps.changed-packages.outputs.changed == 'true'
-  #       working-directory: ./packages/create-prisma-generator
-  #       run: pnpm test -- --testPathIgnorePatterns e2e
-
-  # e2e-tests:
-  #   runs-on: ${{ matrix.os }}
-  #   needs: [unit-tests]
-  #   strategy:
-  #     matrix:
-  #       node-version: [16.x]
-  #       os: [ubuntu-latest, windows-latest, macos-latest]
-
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #       with:
-  #         fetch-depth: 100
-  #     - name: Use Node.js ${{matrix.node-version}}
-  #       uses: actions/setup-node@v2
-  #       with:
-  #         node-version: ${{ matrix.node-version }}
-
-  #     - uses: YassinEldeeb/has-changed-path@v2.1
-  #       id: changed-packages
-  #       with:
-  #         paths: packages
-
-  #     - name: Tell git who am I
-  #       if: steps.changed-packages.outputs.changed == 'true'
-  #       run: |
-  #         git config --global user.name "me"
-  #         git config --global user.email "me@example.com"
-
-  #     - name: Setup PNPM
-  #       if: steps.changed-packages.outputs.changed == 'true'
-  #       uses: pnpm/action-setup@v2.0.1
-  #       with:
-  #         version: 6.23.6
-
-  #     - name: Simulate CLI build
-  #       if: steps.changed-packages.outputs.changed == 'true'
-  #       run: pnpm simulate-dist
-
-  #     - name: Install dependencies
-  #       if: steps.changed-packages.outputs.changed == 'true'
-  #       run: pnpm i --frozen-lockfile
-
-  #     - name: Run E2E Tests 🧪
-  #       if: steps.changed-packages.outputs.changed == 'true'
-  #       working-directory: ./packages/create-prisma-generator
-  #       run: pnpm test -- --testPathPattern e2e
-
-  # Publish:
-  #   runs-on: ubuntu-latest
-  #   if: ${{ github.ref == 'refs/heads/main' }}
-  #   needs: [unit-tests, e2e-tests]
-
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #       with:
-  #         fetch-depth: 100
-  #     - name: Use Node.js
-  #       uses: actions/setup-node@v2
-  #       with:
-  #         node-version: 16.x
-  #         registry-url: https://registry.npmjs.org
-
-  #     - uses: YassinEldeeb/has-changed-path@v2.1
-  #       id: changed-packages
-  #       with:
-  #         paths: packages
-
-  #     - name: Setup PNPM
-  #       uses: pnpm/action-setup@v2.0.1
-  #       if: steps.changed-packages.outputs.changed == 'true'
-  #       with:
-  #         version: 6.23.6
-
-  #     - uses: actions/cache@v2
-  #       if: steps.changed-packages.outputs.changed == 'true'
-  #       with:
-  #         path: '**/node_modules'
-  #         key: ${{ runner.os }}-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
-
-  #     - name: Simulate CLI build
-  #       if: steps.changed-packages.outputs.changed == 'true'
-  #       run: pnpm simulate-dist
-
-  #     - name: Install deps
-  #       if: steps.changed-packages.outputs.changed == 'true'
-  #       run: pnpm i --frozen-lockfile
-
-  #     - name: Publish 🚀
-  #       if: steps.changed-packages.outputs.changed == 'true'
-  #       run: |
-  #         GITHUB_TOKEN="${{secrets.GITHUB_TOKEN}}" GIT_COMMITTER_EMAIL="${{secrets.GIT_COMMITTER_EMAIL}}" GIT_COMMITTER_NAME="${{secrets.GIT_COMMITTER_NAME}}" npx ts-node ./scripts/ci/publish.ts
-  #       env:
-  #         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-  debugging-issue:
-    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+        with:
+          fetch-depth: 100
+      - name: Use Node.js ${{matrix.node-version}}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - uses: YassinEldeeb/has-changed-path@v2.1
+        id: changed-packages
+        with:
+          paths: packages
+
+      - name: Setup PNPM
+        if: steps.changed-packages.outputs.changed == 'true'
+        uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.23.6
+
+      - name: Simulate CLI build
+        if: steps.changed-packages.outputs.changed == 'true'
+        run: pnpm simulate-dist
+
+      - name: Install dependencies
+        if: steps.changed-packages.outputs.changed == 'true'
+        run: pnpm i --frozen-lockfile
+
+      - name: Run Tests 🧪
+        if: steps.changed-packages.outputs.changed == 'true'
+        working-directory: ./packages/create-prisma-generator
+        run: pnpm test -- --testPathIgnorePatterns e2e
+
+  e2e-tests:
+    runs-on: ${{ matrix.os }}
+    needs: [unit-tests]
+    strategy:
+      matrix:
+        node-version: [16.x]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 100
+      - name: Use Node.js ${{matrix.node-version}}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - uses: YassinEldeeb/has-changed-path@v2.1
+        id: changed-packages
+        with:
+          paths: packages
+
+      - name: Tell git who am I
+        if: steps.changed-packages.outputs.changed == 'true'
+        run: |
+          git config --global user.name "me"
+          git config --global user.email "me@example.com"
+
+      - name: Setup PNPM
+        if: steps.changed-packages.outputs.changed == 'true'
+        uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.23.6
+
+      - name: Simulate CLI build
+        if: steps.changed-packages.outputs.changed == 'true'
+        run: pnpm simulate-dist
+
+      - name: Install dependencies
+        if: steps.changed-packages.outputs.changed == 'true'
+        run: pnpm i --frozen-lockfile
+
+      - name: Run E2E Tests 🧪
+        if: steps.changed-packages.outputs.changed == 'true'
+        working-directory: ./packages/create-prisma-generator
+        run: pnpm test -- --testPathPattern e2e
+
+  Publish:
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/main' }}
+    needs: [unit-tests, e2e-tests]
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 100
+      - name: Use Node.js
+        uses: actions/setup-node@v2
         with:
           node-version: 16.x
+          registry-url: https://registry.npmjs.org
 
-      - name: Debugging
+      - uses: YassinEldeeb/has-changed-path@v2.1
+        id: changed-packages
+        with:
+          paths: packages
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v2.0.1
+        if: steps.changed-packages.outputs.changed == 'true'
+        with:
+          version: 6.23.6
+
+      - uses: actions/cache@v2
+        if: steps.changed-packages.outputs.changed == 'true'
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
+
+      - name: Simulate CLI build
+        if: steps.changed-packages.outputs.changed == 'true'
+        run: pnpm simulate-dist
+
+      - name: Install deps
+        if: steps.changed-packages.outputs.changed == 'true'
+        run: pnpm i --frozen-lockfile
+
+      - name: Publish 🚀
+        if: steps.changed-packages.outputs.changed == 'true'
         run: |
-          npx create-prisma-generator
+          GITHUB_TOKEN="${{secrets.GITHUB_TOKEN}}" GIT_COMMITTER_EMAIL="${{secrets.GIT_COMMITTER_EMAIL}}" GIT_COMMITTER_NAME="${{secrets.GIT_COMMITTER_NAME}}" npx ts-node ./scripts/ci/publish.ts
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
