@@ -122,6 +122,24 @@ importers:
       typescript: 4.5.4
       unionfs: 4.4.0
 
+  packages/temp:
+    specifiers:
+      '@cpg-cli/github-actions': workspace:*
+      '@cpg-cli/root-configs': workspace:*
+      '@cpg-cli/semantic-releases': workspace:*
+      '@cpg-cli/template': workspace:*
+      '@cpg-cli/template-gen-usage': workspace:*
+      '@cpg-cli/template-typescript': workspace:*
+      create-prisma-generator: workspace:*
+    devDependencies:
+      '@cpg-cli/github-actions': link:../cpg-github-actions
+      '@cpg-cli/root-configs': link:../cpg-root-configs
+      '@cpg-cli/semantic-releases': link:../cpg-semantic-releases
+      '@cpg-cli/template': link:../cpg-template
+      '@cpg-cli/template-gen-usage': link:../cpg-template-gen-usage
+      '@cpg-cli/template-typescript': link:../cpg-template-typescript
+      create-prisma-generator: link:../create-prisma-generator
+
 packages:
 
   /@alex_neo/jest-expect-message/1.0.5:

@@ -174,7 +174,6 @@ Object.keys(sampleAnswers).map((sample) => {
           'packages/generator',
         )
 
-        runScript('start', generatorPath)
         runScript('test', generatorPath)
 
         console.log(
@@ -185,7 +184,6 @@ Object.keys(sampleAnswers).map((sample) => {
           stdio: 'inherit',
         })
       } else {
-        runScript('start')
         console.log(`Running generator tests`)
         runScript('test')
       }
