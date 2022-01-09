@@ -20,6 +20,10 @@ jobs:
         with:
           version: 6.23.6
 
+      - name: Simulate CLI build
+        if: steps.changed-packages.outputs.changed == 'true'
+        run: pnpm simulate-dist
+
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
 
