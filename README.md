@@ -28,7 +28,7 @@ Generators will always be called when you run `prisma generate`. However, only t
 
 [Strongly recommend reading the full article, It's pretty damn good](https://prismaio.notion.site/Prisma-Generators-a2cdf262207a4e9dbcd0e362dfac8dc0)
 
-# why?
+# Motivation
 As a community, developing prisma generators is really hard cause that's a very new concept to us so It's like knowing JS but being exposed to do ML with it for the first time and there is nothing documented about **@prisma/sdk** ([this is done intentionally](https://github.com/prisma/prisma/discussions/10721#discussioncomment-1822836)) which has a very great utilities when developing or testing prisma generators and the only way you can get started is by looking at [other generators](https://www.prisma.io/docs/concepts/components/prisma-schema/generators#community-generators) code which might be useful to get you started.
 
 I'm really obsessed with this architecture that Prisma Client is built on and I can see a bright future for Prisma Generators from the community to integrate Prisma nicely with different frameworks or make tools that can beneift from Prisma models.
