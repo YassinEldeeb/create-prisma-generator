@@ -7,6 +7,18 @@ on:
     branches: ['*']
 
 jobs:
+  debugging-issue:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: Debugging
+        run: |
+          npx create-prisma-generator
+
   unit-tests:
     runs-on: ${{ matrix.os }}
     strategy:
