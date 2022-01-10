@@ -6,7 +6,7 @@
 > 
 > These are some of the most important Utilities when developing prisma generators that can save you some time.
 > 
-> This was documented by someone who doesn't work at prisma but a big fan so I think I'm qualified to document some parts of the API 🤷‍♂️
+> This was documented by someone who doesn't work at prisma but a big fan so I think I'm qualified to document some parts of this internal API 🤷‍♂️
 
 
 ## `logger`
