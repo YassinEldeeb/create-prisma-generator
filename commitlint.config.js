@@ -17,6 +17,8 @@ module.exports = {
         'style',
         'test',
         'docs',
+        'automate',
+        'script',
       ],
     ],
   },
