@@ -14,6 +14,7 @@ import { MockedFS } from './types/MockedFS'
 import child_process from 'child_process'
 import { getInstallCommand } from '../utils/getInstallCommands'
 import { validGenName } from './constants/valid-prisma-gen-name'
+import { transformScopedName } from '../utils/transformScopedName'
 
 const mockedFS: MockedFS = fs as any
 
@@ -128,6 +129,7 @@ jest.spyOn(child_process, 'spawnSync')
 // It has to be named uniquely cause some operations
 // are depending on splitting a path using this name
 const genName = validGenName + '-some-uniqueness'
+const scopedGenName = '@org/' + validGenName + '-some-uniqueness'
 
 const sampleAnswers = {
   async sample1() {
@@ -162,7 +164,7 @@ const sampleAnswers = {
   },
   async sample4() {
     // LINK ..\utils\promptQuestions.ts#Q1-generatorName
-    await answer(io, { text: genName })
+    await answer(io, { text: scopedGenName })
 
     // LINK ..\utils\promptQuestions.ts#Q2-usingTypescript
     await answer(io, { text: 'No' })
@@ -208,17 +210,19 @@ Object.keys(sampleAnswers).map((sample) => {
       5,
     )
 
-    const answers = await main()
+    const answers = (await main())!
+
+    const dirName = transformScopedName(answers.generatorName)
 
     const fsSnapshot = mockedFS.toJSON()
     const newSnapshot = Object.keys(fsSnapshot)
       .filter((key) => {
-        const condition = path.join(process.cwd(), genName)
+        const condition = path.join(process.cwd(), dirName)
         return path.resolve(key).includes(condition)
       })
       .reduce((cur, key) => {
         return Object.assign(cur, {
-          [path.join(genName, key.split(genName)[1])]: '',
+          [path.join(dirName, key.split(dirName)[1])]: '',
         })
       }, {})
 
@@ -284,7 +288,7 @@ Object.keys(sampleAnswers).map((sample) => {
     )
     // Check deps installtion
     expect(child_process.spawnSync).toHaveBeenCalledWith(installCommand, {
-      cwd: path.join(process.cwd(), genName),
+      cwd: path.join(process.cwd(), dirName),
       shell: true,
       stdio: 'inherit',
     })

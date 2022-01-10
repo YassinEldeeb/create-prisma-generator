@@ -10,24 +10,26 @@ import { pnpmWorkspaceYML } from './config/pnpm-workspace'
 import { huskyCommitMsgHook } from './config/husky-commit-msg-hook'
 import { CLIs } from './tinyClis'
 import { getInstallCommand } from './utils/getInstallCommands'
+import { transformScopedName } from './utils/transformScopedName'
 
 export const main = async () => {
   const answers = await promptQuestions()
 
-  const pkgName = answers.generatorName.toLowerCase()
+  const pkgName = answers.generatorName
+  const dirName = transformScopedName(pkgName)
 
   // Reused variables
-  const projectWorkdir = path.join(process.cwd(), pkgName)
+  const projectWorkdir = path.join(process.cwd(), dirName)
   const pkgManager = answers.packageManager
   const usingWorkspaces = answers.usageTemplate
-  const workingDir = `cd ${pkgName}`
+  const workingDir = `cd ${dirName}`
   const generatorLocation = usingWorkspaces
     ? `${workingDir}/packages/generator`
     : workingDir
 
   // Validate if folder with the same name doesn't exist
   if (fs.existsSync(projectWorkdir)) {
-    console.log(chalk.red(`${pkgName} directory already exists!`))
+    console.log(chalk.red(`${dirName} directory already exists!`))
     return
   }
 
@@ -45,18 +47,18 @@ export const main = async () => {
 
   // Adding default root configs
   const templateName = 'root default configs'
-  runBlockingCommand(templateName, CLIs.rootConfigs(pkgName))
+  runBlockingCommand(templateName, CLIs.rootConfigs(dirName))
 
   if (answers.usageTemplate) {
     const templateName = 'Usage Template'
-    runBlockingCommand(templateName, CLIs.usageTemplate(`${pkgName}/packages`))
+    runBlockingCommand(templateName, CLIs.usageTemplate(`${dirName}/packages`))
   }
 
   if (answers.typescript) {
     const templateName = 'Typescript Template'
     const outputLocation = usingWorkspaces
-      ? `${pkgName}/packages/generator`
-      : pkgName
+      ? `${dirName}/packages/generator`
+      : dirName
     runBlockingCommand(templateName, CLIs.typescriptTemplate(outputLocation))
   }
 
@@ -64,15 +66,15 @@ export const main = async () => {
   if (!answers.typescript) {
     const templateName = 'Javascript Template'
     const outputLocation = usingWorkspaces
-      ? `${pkgName}/packages/generator`
-      : pkgName
+      ? `${dirName}/packages/generator`
+      : dirName
 
     runBlockingCommand(templateName, CLIs.javascriptTemplate(outputLocation))
   }
 
   if (answers.githubActions) {
     const templateName = 'Github actions Template'
-    runBlockingCommand(templateName, CLIs.githubActionsTemplate(pkgName))
+    runBlockingCommand(templateName, CLIs.githubActionsTemplate(dirName))
 
     // Replace placeholders
     const workflowPath = path.join(projectWorkdir, '.github/workflows/CI.yml')
@@ -99,7 +101,7 @@ export const main = async () => {
 
   // Replace placeholders like $PACKAGE_NAME with actual pkgName
   // In places where It's needed
-  replacePlaceholders(answers, pkgName)
+  replacePlaceholders(answers, dirName)
 
   // Setup Workspaces based on pkg manager
   if (usingWorkspaces) {
@@ -134,7 +136,7 @@ export const main = async () => {
     const workspaceFlag = usingWorkspaces ? 'workspace' : ''
     runBlockingCommand(
       templateName,
-      CLIs.setupSemanticRelease(pkgName, workspaceFlag),
+      CLIs.setupSemanticRelease(dirName, workspaceFlag),
       'Configuring',
     )
   }
@@ -185,10 +187,12 @@ export const main = async () => {
   // Success Messages
   console.log(chalk.green(`Success!`), `Created ${projectWorkdir}`)
   console.log(`We suggest that you begin by typing:\n`)
-  console.log(chalk.cyan('cd'), pkgName)
+  console.log(chalk.cyan('cd'), dirName)
   console.log(chalk.cyan('code .'))
   console.log(`\nStart Generating ;)`)
 
+  // return answers cause It's useful for tests
+  // to verify the behavior based on the answers
   return answers
 }
 main()
