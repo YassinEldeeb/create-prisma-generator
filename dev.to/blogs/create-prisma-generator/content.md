@@ -6,4 +6,4 @@ description: 'Introducing create-prisma-generator CLI and explaining the boilerp
 tags: typescript, javascript, prisma, generator
 ---
 
-Edit this blog by making a PR to [this repo](https://github.com/YassinEldeeb/create-prisma-generator/tree/main/dev.to/blogs/create-prisma-generator)
+This blog is hosted on [this github repo](https://github.com/YassinEldeeb/create-prisma-generator/tree/main/dev.to/blogs/create-prisma-generator) in `content.md` file so feel free to correct me when I miss up by making a PR there.

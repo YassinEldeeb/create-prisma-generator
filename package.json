@@ -5,6 +5,7 @@
   ],
   "scripts": {
     "new-template": "ts-node ./scripts/addNewTemplate.ts",
+    "new-blog": "ts-node ./scripts/addNewBlog.ts",
     "guide-dependabot": "ts-node ./scripts/guideDependabot.ts",
     "simulate-dist": "node ./scripts/simulateDist.js",
     "gen-tags": "ts-node ./scripts/generateTags.ts",
