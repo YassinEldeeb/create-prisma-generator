@@ -1,8 +1,8 @@
-# Prisma SDK Reference
+# Prisma SDK Reference (v3.6.0)
 
 > ⚠ WARNING: `@prisma/sdk` is an internal API that's not supposed to be used outside of prisma's fence as [mentioned in this issue](https://github.com/prisma/prisma/issues/10725)
 >
-> It's not recommended to fully document `@prisma/sdk` as it might change unexpectedly so if you wanna contribute, please keep it simple and don't dig deep.
+> It's not recommended to fully document `@prisma/sdk` as it might change unexpectedly or be deleted entirely so if you wanna contribute, please keep it simple and don't dig deep.
 > 
 > These are some of the most important Utilities when developing prisma generators that can save you some time.
 > 
