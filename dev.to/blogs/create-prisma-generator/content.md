@@ -2,7 +2,7 @@
 published: false
 title: 'Create Prisma Generator'
 cover_image: 'https://raw.githubusercontent.com/YassinEldeeb/create-prisma-generator/main/images/cool-banner.png'
-description: 'Demo where we're gonna be building a prisma generator together'
+description: 'Introducing create-prisma-generator CLI and explaining the boilerplate'
 tags: typescript, javascript, prisma, generator
 ---
 
