@@ -90,3 +90,58 @@ generator custom_generator {
 ```
 
 You'll see that it created all of the directories for the defined path and outputted the generated enums there.
+
+Now after we've played around with the Hello World generator, Let's take a look at the code for it.
+
+You can find the generator code located under `packages/generator` directory.
+
+Open `packages/generator/src/generator.(ts|js)` and let's slowly discuss what's in there.
+
+At the top you'll see we're importing some strange modules like `@prisma/generator-helper`, `@prisma/sdk`, what are those?
+
+### @prisma/generator-helper
+
+The generator has to be an executable binary somewhere in the filesystem. This binary, for example `./my-gen` needs to implement a JSON RPC interface via stdio.
+
+> When `@prisma/sdk` spawns our generator, It uses [RPCs](https://en.wikipedia.org/wiki/JSON-RPC) to communicate with our generator to send it the parsed datamodel AST as an example.
+
+Luckily for us, prisma has wrote a helper library called `@prisma/generator-helper`. It takes all the work of implementing the interface and gives us simple callbacks where we can implement our business logic.
+
+And as you can see, It has a callback called `generatorHandler` which takes two methods:
+
+#### `onManifest:`
+
+When running the prisma cli with the following command `prisma generate` It gets our generator manifest as defined below which contains all of the information about our generator like It's name, version, default output, which binaries and which version the generator needs.
+
+#### `onGenerate:`
+
+This is a callback method that run when `@prisma/sdk` calls it with the correct arguments that contains the parsed datamodel AST, generator options and other useful information.
+
+```ts
+const { version } = require('../package.json')
+
+generatorHandler({
+  onManifest() {
+    logger.info(`${GENERATOR_NAME}:Registered`)
+    return {
+      version,
+      defaultOutput: '../generated',
+      prettyName: GENERATOR_NAME,
+    }
+  },
+  onGenerate: async (options: GeneratorOptions) => {
+    options.dmmf.datamodel.enums.forEach(async (enumInfo) => {
+      const tsEnum = genEnum(enumInfo)
+
+      const writeLocation = path.join(
+        options.generator.output?.value!,
+        `${enumInfo.name}.ts`,
+      )
+
+      await writeFileSafely(writeLocation, tsEnum)
+    })
+
+    logger.info(`${GENERATOR_NAME}:Generated Successfuly!`)
+  },
+})
+```

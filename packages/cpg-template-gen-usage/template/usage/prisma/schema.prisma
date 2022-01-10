@@ -1,7 +1,3 @@
-generator client {
-  provider = "prisma-client-js"
-}
-
 generator custom_generator {
   provider = "$CUSTOM_GENERATOR_PROVIDER"
   output   = "../types"
