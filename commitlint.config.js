@@ -9,7 +9,7 @@ module.exports = {
       [
         'feat',
         'fix',
-        'blogs',
+        'blog',
         'ci',
         'refactor',
         'perf',

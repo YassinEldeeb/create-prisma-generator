@@ -32,9 +32,61 @@ Answer the prompt questions to setup your project, The project setup will be bas
 > Note: "? setup workspace for testing the generator" means to symlink the generator with another sample usage project so that when you run `prisma generate` from your terminal, It uses the local generator in the workspace which is very useful when developing, I strongly recommend it.
 
 ```sh
-npx create-prisma-generator
+$ npx create-prisma-generator
 ```
 
 I'll go and answer Yes for everything to go with the full capabilities of this CLI but you can follow along with your setup too.
 
 ![my-answers-to-questions](https://raw.githubusercontent.com/YassinEldeeb/create-prisma-generator/main/dev.to/blogs/create-prisma-generator/assets/my-questions-answers.png)
+
+And once you see the success message in your terminal saying that your project is now ready, open the project in your favourite IDE and let's have some fun 😉
+
+First let's open the `schema.prisma` which you can find it at `packages/usage/prisma/schema.prisma`.
+
+You'll notice your generator there symlinked with the generator code in the workspace
+
+> Note: the provider can differ from package manager to another, here I chose `pnpm`
+
+```ts
+generator custom_generator {
+  provider = "npx my-gen"
+  output   = "../types"
+}
+```
+
+You'll also see some enums there, that's because the hello world generator that you get from running `create-prisma-generator` is for generating Typescript Enums from `schema.prisma`.
+
+Now let's run the `prisma generate` command which should run all of the generators listed in `schema.prisma`:
+
+```sh
+cd packages/usage
+npx prisma generate
+```
+
+Oh, WOW! the types directory wasn't there before, what the hell happened!
+
+You can see that the `types` directory was generated after running `prisma generate` which contains all of the different enums defined in `schema.prisma` organized by an enum per file.
+
+So if you opened any of the files in the `types` directory, you'll see an enum that matches exactly with the name and values as defined in `schema.prisma`
+
+```ts
+enum Language {
+  Typescript = 'Typescript',
+  Javascript = 'Javascript',
+  Rust = 'Rust',
+  Go = 'Go',
+  Python = 'Python',
+  Cpp = 'Cpp',
+}
+```
+
+Noticed something? the output option in the `custom_generator` block in `schema.prisma` tells the generator where to output the generated files with a path relative to the directory where `schema.prisma` is located, try to change this option to something different like `../src/types` and run `npx prisma generate` again.
+
+```ts
+generator custom_generator {
+  provider = "npx my-gen"
+  output   = "../src/types"
+}
+```
+
+You'll see that it created all of the directories for the defined path and outputted the generated enums there.
