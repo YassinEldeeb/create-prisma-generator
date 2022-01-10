@@ -28,14 +28,14 @@ Generators will always be called when you run `prisma generate`. However, only t
 
 [Strongly recommend reading the full article, It's pretty damn good](https://prismaio.notion.site/Prisma-Generators-a2cdf262207a4e9dbcd0e362dfac8dc0)
 
-# why?
+# Motivation
 As a community, developing prisma generators is really hard cause that's a very new concept to us so It's like knowing JS but being exposed to do ML with it for the first time and there is nothing documented about **@prisma/sdk** ([this is done intentionally](https://github.com/prisma/prisma/discussions/10721#discussioncomment-1822836)) which has a very great utilities when developing or testing prisma generators and the only way you can get started is by looking at [other generators](https://www.prisma.io/docs/concepts/components/prisma-schema/generators#community-generators) code which might be useful to get you started.
 
 I'm really obsessed with this architecture that Prisma Client is built on and I can see a bright future for Prisma Generators from the community to integrate Prisma nicely with different frameworks or make tools that can beneift from Prisma models.
 
 But unfortunately I didn't have a smooth experience developing [my prisma generator](https://github.com/YassinEldeeb/prisma-tgql-types-gen).
 
-So I created this CLI to encourage developers to make their own prisma generators by automating things that are repeatable/annoying to make a nice worflow for them to have a smooth experience with all of the annoying repetitive things carried away like: getting started boilerplate, publishing, testing the gen locally by running `prisma generate`, ..etc
+So I created this CLI to encourage developers to make their own prisma generators to have a smooth experience with all of the annoying repetitive things carried away like: getting started boilerplate, publishing, testing the gen locally by running `prisma generate`, ..etc
 
 ### Also Created a blog on dev.to where we're gonna be building a prisma generator together to explain the boilerplate that this CLI has setup for you and the different concepts you'll come across when developing prisma generators, [Check It out here](https://dev.to/yassineldeeb/create-prisma-generator-2mdg)
 
