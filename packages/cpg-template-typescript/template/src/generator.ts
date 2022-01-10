@@ -27,7 +27,5 @@ generatorHandler({
 
       await writeFileSafely(writeLocation, tsEnum)
     })
-
-    logger.info(`${GENERATOR_NAME}:Generated Successfuly!`)
   },
 })

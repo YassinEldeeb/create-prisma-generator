@@ -23,7 +23,7 @@ From our perspective as a community when integrating prisma in different environ
 
 ## Getting Started
 
-Now that you've a high level overview of what a prisma generator is, lets discuss the hello world prisma generator you'll get when using create-prisma-generator CLI 💪
+Now that you've a high level overview of what a prisma generator is, let's discuss the hello world prisma generator you'll get when using create-prisma-generator CLI 💪
 
 I made it so that it requires the least amount of effort to start developing your own prisma generator.
 
@@ -99,7 +99,7 @@ Open `packages/generator/src/generator.(ts|js)` and let's slowly discuss what's 
 
 At the top you'll see we're importing some strange modules like `@prisma/generator-helper`, `@prisma/sdk`, what are those?
 
-### @prisma/generator-helper
+## @prisma/generator-helper
 
 The generator has to be an executable binary somewhere in the filesystem. This binary, for example `./my-gen` needs to implement a JSON RPC interface via stdio.
 
@@ -109,13 +109,51 @@ Luckily for us, prisma has wrote a helper library called `@prisma/generator-help
 
 And as you can see, It has a callback called `generatorHandler` which takes two methods:
 
-#### `onManifest:`
+### `onManifest:`
 
-When running the prisma cli with the following command `prisma generate` It gets our generator manifest as defined below which contains all of the information about our generator like It's name, version, default output, which binaries and which version the generator needs.
+When running the prisma cli with the following command `prisma generate` It gets our generator manifest that gets returned from the `onManifest` callback method which contains all of the information about our generator like It's name, version, default output, which binaries and which version the generator needs.
 
-#### `onGenerate:`
+```ts
+generatorHandler({
+  onManifest() {
+    return {
+      ...
+    }
+  },
+  ...
+})
+```
+
+### `onGenerate:`
 
 This is a callback method that run when `@prisma/sdk` calls it with the correct arguments that contains the parsed datamodel AST, generator options and other useful information.
+
+```ts
+generatorHandler({
+  ...
+  onGenerate: async (options: GeneratorOptions) => {
+    ...
+  },
+})
+```
+
+## @prisma/sdk
+
+This is an internal API that has some very cool utilities that are often used when developing prisma generators which I've documented some parts about it [here](https://github.com/YassinEldeeb/create-prisma-generator/blob/main/PRISMA_SDK_REFERENCE.md).
+
+## Back to our Hello World generator
+
+After we've dicussed a bit about `@prisma/generator-helper` and `@prisma/sdk`, Let's get back to `generator.(ts|js)`
+
+You'll first see that we're importing the generator's package.json and grabbing the version out if it to pass it as a part of the generator manifest,
+
+then using the `GENERATOR_NAME` constant which is imported from `packages/generator/constants.ts` to log an info message to let us know when our generator is registred then returning an object expressing our generator manifest.
+
+`version` and `prettyName` are used by `@prisma/sdk` when It calls `getGeneratorSuccessMessage` to generate a success message from our generator manifest like shown below.
+
+![generator-success-message](https://raw.githubusercontent.com/YassinEldeeb/create-prisma-generator/main/dev.to/blogs/create-prisma-generator/assets/generated-successfully.png)
+
+`defaultOutput` is a fallback for the `output` option if It wasn't provided in the generator block.
 
 ```ts
 const { version } = require('../package.json')
@@ -129,8 +167,23 @@ generatorHandler({
       prettyName: GENERATOR_NAME,
     }
   },
+  ...
+}
+```
+
+Let's get to the `onGenerate` callback where you'll receive the generator options which you can find the latest type definitions [here](https://github.com/prisma/prisma/blob/main/packages/generator-helper/src/types.ts), this contains a lot of information for our generator to use like pure datamodel, dmmf, generator(config, name, output, provider), schemaPath, version and hell a lot more.
+
+> DMMF?? It's the Datamodel Meta Format. It is an AST (abstract syntax tree) of the datamodel in the form of JSON.
+
+You can see that we're specifically making use of `options.dmmf.datamodel.enums` which contains all of the parsed enums as AST that we can then have full freedom of outputting anything with this information.
+
+We're using a helper function that can be found in `packages/generator/src/helpers/genEnum.(ts|js)` that takes the enum information and gives us back a string containing a Typescript Enum.
+
+```ts
+generatorHandler({
+  ...
   onGenerate: async (options: GeneratorOptions) => {
-    options.dmmf.datamodel.enums.forEach(async (enumInfo) => {
+      options.dmmf.datamodel.enums.forEach(async (enumInfo) => {
       const tsEnum = genEnum(enumInfo)
 
       const writeLocation = path.join(
@@ -140,8 +193,33 @@ generatorHandler({
 
       await writeFileSafely(writeLocation, tsEnum)
     })
-
-    logger.info(`${GENERATOR_NAME}:Generated Successfuly!`)
   },
 })
+
 ```
+
+Nothing crazy to make a Typescript Enum from the enum info, you can take a look at the file, It's really really simple.
+
+```ts
+export const genEnum = ({ name, values }: DMMF.DatamodelEnum) => {
+  const enumValues = values.map(({ name }) => `${name}="${name}"`).join(',\n')
+
+  return `enum ${name} { \n${enumValues}\n }`
+}
+```
+
+Another thing you'll see is a utility function called `writeFileSafely` which takes the write location for the file and the content for that file then It creates all of the directories recursivly following the write location path and uses another utility function called `formatFile` to format the content using prettier before writing the file to the specified path.
+
+```ts
+export const writeFileSafely = async (writeLocation: string, content: any) => {
+  fs.mkdirSync(path.dirname(writeLocation), {
+    recursive: true,
+  })
+
+  fs.writeFileSync(writeLocation, await formatFile(content))
+}
+```
+
+And that's it, that's our Hello World generator, hope It was a fun ride.
+
+## Fancy Stuff
