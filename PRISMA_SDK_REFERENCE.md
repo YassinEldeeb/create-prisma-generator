@@ -1,6 +1,6 @@
 # Prisma SDK Reference
 
-> ⚠ WARNING: `@prisma/sdk` is an internal API that's not supposed to be used outside of prisma's fence as [discussed here](https://github.com/prisma/prisma/discussions/10721#discussioncomment-1822836)
+> ⚠ WARNING: `@prisma/sdk` is an internal API that's not supposed to be used outside of prisma's fence as [mentioned in this issue](https://github.com/prisma/prisma/issues/10725)
 >
 > It's not recommended to fully document `@prisma/sdk` as it might change unexpectedly so if you wanna contribute, please keep it simple and don't dig deep.
 > 
