@@ -251,7 +251,7 @@ Now that you've your npm access token you can create a new github repository and
 
 Let's make a small change to this generator like changing the name of the generator as an example.
 
-```ts
+```diff
 - export const GENERATOR_NAME = 'my-gen'
 + export const GENERATOR_NAME = 'my-super-gen'
 ```
@@ -294,7 +294,7 @@ Now that you've your github access token you can add a new secret to your github
 
 Let's make a smalll change to this generator like changing the name of the generator as an example and call it a minor release.
 
-```ts
+```diff
   generatorHandler({
   onManifest() {
 -   logger.info(`${GENERATOR_NAME}:Registered`)
@@ -310,7 +310,7 @@ git push -u origin main
 ```
 
 Oh crab what the hell is this?
-![husky-with-commitlint](husky-with-commitlint.png)
+![husky-with-commitlint](https://raw.githubusercontent.com/YassinEldeeb/create-prisma-generator/main/dev.to/blogs/create-prisma-generator/assets/husky-with-commitlint.png)
 
 Remember when I told you that this CLI has setup husky with commitlint to validate your commit messages if it was conventional or not before commiting so that semantic-release can decide what the next version is based on your commit messages.
 
@@ -328,4 +328,4 @@ After you push, go to your repository on github specifically on tha Actions tab 
 
 ![semantic-release-generated-changelog](https://raw.githubusercontent.com/YassinEldeeb/create-prisma-generator/main/dev.to/blogs/create-prisma-generator/assets/commit-change-log.png)
 
-WOW! I had a 0.01% chance that someone can read through all of that till the very end. I'm very proud of you, please mention or DM me on twitter to let me know you're one of the 0.01%
+WOW! I had a 0.01% chance that someone can read through all of that till the very end. I'm very proud of you, please mention or DM me on twitter and let me know you're one of the 0.01% of people.
