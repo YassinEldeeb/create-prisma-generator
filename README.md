@@ -9,7 +9,7 @@
   <br />
   <a href="https://github.com/YassinEldeeb/create-prisma-generator#Usage">Usage</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://dev.to/yassineldeeb">Blog</a>
+  <a href="https://dev.to/yassineldeeb/create-prisma-generator-2mdg">Blog</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://github.com/YassinEldeeb/create-prisma-generator/blob/main/ARCHITECTURE.md">Architecture</a>
   <br />
@@ -37,7 +37,7 @@ But unfortunately I didn't have a smooth experience developing [my prisma genera
 
 So I created this CLI to encourage developers to make their own prisma generators to have a smooth experience with all of the annoying repetitive things carried away like: getting started boilerplate, publishing, testing the gen locally by running `prisma generate`, ..etc
 
-### Also Created a blog on dev.to where we're gonna be building a prisma generator together to explain the boilerplate that this CLI has setup for you and the different concepts you'll come across when developing prisma generators, [Check It out here](https://dev.to/yassineldeeb/create-prisma-generator-2mdg)
+### Also Created a blog on dev.to where we're gonna be discussing the hello world prisma generator together that this CLI has setup for you and the different concepts you'll come across when developing prisma generators, [Check It out here](https://dev.to/yassineldeeb/create-prisma-generator-2mdg)
 
 # Usage
 
