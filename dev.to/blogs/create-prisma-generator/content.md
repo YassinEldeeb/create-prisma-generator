@@ -223,7 +223,7 @@ And that's it, that's our Hello World generator, hope It was a fun ride.
 
 ## How do I develop within this workspace?
 
-1. Open a new terminal and cd into `packages/generator` and run
+1- Open a new terminal and cd into `packages/generator` and run
 
 ```sh
 # You can use whatever package manager to run the dev script
@@ -232,7 +232,7 @@ $ pnpm dev
 
 This will watch your changes and compile on save into a dist folder.
 
-2. Open another terminal and cd into `packages/usage` and here you'll have the latest build of your generator's code symlinked to this package so running:
+2- Open another terminal and cd into `packages/usage` and here you'll have the latest build of your generator's code symlinked to this package so running:
 
 ```sh
 $ npx prisma generate
