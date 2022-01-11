@@ -59,8 +59,8 @@ You'll also see some enums there, that's because the hello world generator that 
 Now let's run the `prisma generate` command which should run all of the generators listed in `schema.prisma`:
 
 ```sh
-cd packages/usage
-npx prisma generate
+$ cd packages/usage
+$ npx prisma generate
 ```
 
 Oh, WOW! the types directory wasn't there before, what the hell happened!
@@ -222,6 +222,27 @@ export const writeFileSafely = async (writeLocation: string, content: any) => {
 
 And that's it, that's our Hello World generator, hope It was a fun ride.
 
+## How do I develop within this workspace?
+
+1. Open a new terminal and cd into `packages/generator` and run
+
+```sh
+# You can use whatever package manager to run the dev script
+$ pnpm dev
+```
+
+This will watch your changes and compile on save into a dist folder.
+
+2. Open another terminal and cd into `packages/usage` and here you'll have the latest build of your generator's code symlinked to this package so running:
+
+```sh
+$ npx prisma generate
+```
+
+..will always use the latest code of your compiled generator.
+
+And as you iterate over your generator's code, you can run `npx prisma generate` to see the results.
+
 ## Testing 🧪
 
 Quality Software can't be shipped directly to the users and have to be well tested before It goes live.
@@ -236,7 +257,7 @@ We can run that test by running the following command in `packages/generator` di
 
 ```sh
 # You can use whatever package manager to run the test script
-pnpm test
+$ pnpm test
 ```
 
 You'll see all of the tests are passing, that means our software is ready to be shipped! 🥳
@@ -296,9 +317,9 @@ Let's make a small change to this generator like changing the name of the genera
 Then commit & push to your repository on the `main` branch
 
 ```sh
-git add .
-git commit -m"fix: generator name"
-git push -u origin main
+$ git add .
+$ git commit -m"fix: generator name"
+$ git push -u origin main
 ```
 
 After you push, go to your repository on github specifically on tha `Actions` tab and you'll immediately see the tests running and after they finish, the package will be published to npm with the version specified in the generator's package.json using your access token which you can then find using the following url `https://www.npmjs.com/package/$your-generator-name` 🥳.
@@ -341,9 +362,9 @@ Let's make a smalll change to this generator like changing the name of the gener
 Then commit & push to your repository on the `main` branch
 
 ```sh
-git add .
-git commit -m"new register message"
-git push -u origin main
+$ git add .
+$ git commit -m"new register message"
+$ git push -u origin main
 ```
 
 Oh crab what the hell is this?
@@ -354,9 +375,9 @@ Remember when I told you that this CLI has setup husky with commitlint to valida
 Now let's run a proper conventional commit message
 
 ```sh
-git add .
-git commit -m"feat: new register message"
-git push -u origin main
+$ git add .
+$ git commit -m"feat: new register message"
+$ git push -u origin main
 ```
 
 After you push, go to your repository on github specifically on tha Actions tab and you'll see the same running tests and after they finish, you'll notice something different, semantic-release has bumped the version to `1.1.0` and modified the package.json version to sync it with npm, generated a CHANGELOG for you, created a new tag and published a github release for you 🤯
