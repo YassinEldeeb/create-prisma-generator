@@ -18,7 +18,7 @@ Generators will always be called when you run `prisma generate`. However, only t
 
 [Strongly recommend reading the full article, It's pretty damn good](https://prismaio.notion.site/Prisma-Generators-a2cdf262207a4e9dbcd0e362dfac8dc0)
 
-From our perspective as a community when integrating prisma in different environments you'll often notice that there's a thing that you always go to change after modifying your prisma schema in your codebase, and that's when great developers realize that this thing should be automated to eliminate the problem of maintaining two or more different sources of the same definitions.
+From our a community perspective when integrating prisma in different environments you'll often notice that there's a thing that you always go to change after modifying your prisma schema in your codebase, and that's when great developers realize that this thing should be automated to eliminate the problem of maintaining two or more different sources of the same definitions.
 
 ## Getting Started
 
