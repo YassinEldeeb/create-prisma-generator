@@ -323,7 +323,7 @@ $ git push -u origin main
 
 After you push, go to your repository on github specifically on tha `Actions` tab and you'll immediately see the tests running and after they finish, the package will be published to npm with the version specified in the generator's package.json using your access token which you can then find using the following url `https://www.npmjs.com/package/$your-generator-name` 🥳.
 
-![github-actions.png](https://raw.githubusercontent.com/YassinEldeeb/create-prisma-generator/main/dev.to/blogs/create-prisma-generator/assets/add-secrets-to-github.png)
+![github-actions.png](https://raw.githubusercontent.com/YassinEldeeb/create-prisma-generator/main/dev.to/blogs/create-prisma-generator/assets/github-actions.png)
 
 ### Automatic Semantic Versioning 🤖
 
