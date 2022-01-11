@@ -222,6 +222,43 @@ export const writeFileSafely = async (writeLocation: string, content: any) => {
 
 And that's it, that's our Hello World generator, hope It was a fun ride.
 
+## Testing 🧪
+
+Quality Software can't be shipped directly to the users and have to be well tested before It goes live.
+
+That's why I've included jest in any project that gets bootstrapped by `create-prisma-generator` CLI.
+
+> If you don't know what jest is? It's a JavaScript Testing Framework [learn more about it here](https://jestjs.io/docs/getting-started)
+
+There's a very simple test located under `packages/generator/__tests__/` called `genEnum.test.ts`, If you opened this file you'll see a test written that compares the generated output of the genEnum() helper function we've talked about previously with the already taken snapshot of a working version of this function.
+
+We can run that test by running the following command in `packages/generator` directory:
+
+```sh
+# You can use whatever package manager to run the test script
+pnpm test
+```
+
+You'll see all of the tests are passing, that means our software is ready to be shipped! 🥳
+
+![generator-success-message](https://raw.githubusercontent.com/YassinEldeeb/create-prisma-generator/main/dev.to/blogs/create-prisma-generator/assets/passing-tests.png)
+
+You can also see that we're not getting the DMMF from `@prisma/sdk`, mmm... that's strange but how are we getting the DMMF from a `schema.prisma` and where is even that `schema.prisma` file?
+
+Usually in production the DMMF gets sent through this cycle:
+
+```sh
+@prisma/cli -> @prisma/sdk -> Spawns Generators -> Send DMMF through RPCs
+```
+
+Which works perfectly fine but not the ideal when testing prisma generators, we can cut this cycle and just get the utility function in @prisma/sdk that's responsible for generating the DMMF from a prisma definitions string which called `getDMMF`.
+
+So as you can see we're calling `getSampleDMMF()` from the fixtures defined in the tests directory which then reads the `sample.prisma` located under `__tests__/__fixtures__/` and parse it to an AST exactly like the one we get normally in a production environment.
+
+And now It's up to you to write tests for your own generator.
+
+I'm curios to see your creative solutions for testing your prisma generator 🤗.
+
 ## Fancy Stuff ✨
 
 Now let's get fancy with the full capabilities of this CLI and manage this project like an elite open source programmer 💪.
