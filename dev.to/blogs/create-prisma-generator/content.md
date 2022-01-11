@@ -9,7 +9,7 @@ series: create-prisma-generator
 
 This blog is hosted on [this github repo](https://github.com/YassinEldeeb/create-prisma-generator/tree/main/dev.to/blogs/create-prisma-generator) in `content.md` file so feel free to correct me when I miss up by making a PR there.
 
-## What's a prisma generator?
+## What's a prisma generator? 🤔
 
 Prisma has a concept called "Generator". A generator is an executable program, which takes the parsed Prisma schema as an input and has full freedom to output anything.
 
@@ -222,4 +222,110 @@ export const writeFileSafely = async (writeLocation: string, content: any) => {
 
 And that's it, that's our Hello World generator, hope It was a fun ride.
 
-## Fancy Stuff
+## Fancy Stuff ✨
+
+Now let's get fancy with the full capabilities of this CLI and manage this project like an elite open source programmer 💪.
+
+### Auto Publishing 🚀
+
+Remember the "automate publishing the generator with Github Actions" I've said yes to it at first.
+
+That had setup a Github Actions workflow at `.github/workflows/CI.yml` which will run all of our generator tests then if they're all passing It will publish the package to npm using your Access Token.
+
+To get an access token, you must first be logged in with your npm account or [register here](https://www.npmjs.com/signup)
+
+Then click on your profile picture and go to "Access Tokens" like shown in the screenshot below 👇
+
+![npm-profile-dropdown](https://raw.githubusercontent.com/YassinEldeeb/create-prisma-generator/main/dev.to/blogs/create-prisma-generator/assets/npm-dropdown.png)
+
+Click on "Generate New Token" and select the token type to be "Automation" so that you don't require 2FA when running in a CI environment.
+
+![npm-profile-dropdown](https://raw.githubusercontent.com/YassinEldeeb/create-prisma-generator/main/dev.to/blogs/create-prisma-generator/assets/create-npm-token.png)
+
+Before start publishing your package to npm, you'll need to replace the placeholders in `packages/generator/package.json` with actual information like: description, homepage, repository, author and keywords.
+Check the docs to know what all of those fields mean [npm package.json docs](https://docs.npmjs.com/cli/v8/configuring-npm/package-json).
+
+Now that you've your npm access token you can create a new github repository and add a new secret to your github actions secrets with this exact same name `NPM_TOKEN`.
+
+![npm-profile-dropdown](https://raw.githubusercontent.com/YassinEldeeb/create-prisma-generator/main/dev.to/blogs/create-prisma-generator/assets/add-secrets-to-github.png)
+
+Let's make a small change to this generator like changing the name of the generator as an example.
+
+```ts
+- export const GENERATOR_NAME = 'my-gen'
++ export const GENERATOR_NAME = 'my-super-gen'
+```
+
+Then commit & push to your repository on the `main` branch
+
+```sh
+git add .
+git commit -m"fix: generator name"
+git push -u origin main
+```
+
+After you push, go to your repository on github specifically on tha `Actions` tab and you'll immediately see the tests running and after they finish, the package will be published to npm with the version specified in the generator's package.json using your access token which you can then find using the following url `https://www.npmjs.com/package/$your-generator-name` 🥳.
+
+![github-actions.png](https://raw.githubusercontent.com/YassinEldeeb/create-prisma-generator/main/dev.to/blogs/create-prisma-generator/assets/add-secrets-to-github.png)
+
+### Automatic Semantic Versioning 🤖
+
+Don't know what semantic versioning is?, Mahmoud Abdelwahab got you covered with a 1 minute video about it [check it out](https://www.youtube.com/watch?v=5NQUut8uf9w)
+
+Now we've a workflow for testing and automatic publishing the package to npm but It's not very nice having to go and manually bump the version in the `package.json` everytime you change something and wanna publish it.
+
+Using [semantic-release](https://github.com/semantic-release/semantic-release), we can just focus on our commit messages and It'll do the rest of the work for us like: bumping the version, github release, git tag, generating a CHANGELOG and a lot more.
+
+Remember the "(Github Actions) setup automatic semantic release" I've said yes to it at first.
+
+That had setup semantic-release for me with the Github Actions workflow and added husky with commitlint to force [Conventional Commit Messages](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#-commit-message-format) which then semantic-release will recognize and decide the next version based on it and do all of the stuff for us.
+
+But there's a very small configuration we still need to make for this to work as intended.
+
+Remember when I said:
+
+> bumping the version, github release, git tag, generating a CHANGELOG and a lot more.
+
+Well, semantic-release needs read/write access over public/private repos to achieve all of that.
+
+Create a new github access token [from this link](https://github.com/settings/tokens/new?scopes=repo) providing a note for it so you can remember what it was for.
+
+Now that you've your github access token you can add a new secret to your github actions secrets with this exact same name GH_TOKEN which semantic-release will look for to do all of the magic for us.
+
+Let's make a smalll change to this generator like changing the name of the generator as an example and call it a minor release.
+
+```ts
+  generatorHandler({
+  onManifest() {
+-   logger.info(`${GENERATOR_NAME}:Registered`)
++   logger.info(`${GENERATOR_NAME}:Hooked`)
+```
+
+Then commit & push to your repository on the `main` branch
+
+```sh
+git add .
+git commit -m"new register message"
+git push -u origin main
+```
+
+Oh crab what the hell is this?
+![husky-with-commitlint](husky-with-commitlint.png)
+
+Remember when I told you that this CLI has setup husky with commitlint to validate your commit messages if it was conventional or not before commiting so that semantic-release can decide what the next version is based on your commit messages.
+
+Now let's run a proper conventional commit message
+
+```sh
+git add .
+git commit -m"feat: new register message"
+git push -u origin main
+```
+
+After you push, go to your repository on github specifically on tha Actions tab and you'll see the same running tests and after they finish, you'll notice something different, semantic-release has bumped the version to `1.1.0` and modified the package.json version to sync it with npm, generated a CHANGELOG for you, created a new tag and published a github release for you 🤯
+
+![github-actions.png](https://raw.githubusercontent.com/YassinEldeeb/create-prisma-generator/main/dev.to/blogs/create-prisma-generator/assets/github-release.png)
+
+![semantic-release-generated-changelog](https://raw.githubusercontent.com/YassinEldeeb/create-prisma-generator/main/dev.to/blogs/create-prisma-generator/assets/commit-change-log.png)
+
+WOW! I had a 0.01% chance that someone can read through all of that till the very end. I'm very proud of you, please mention or DM me on twitter to let me know you're one of the 0.01%
