@@ -1,6 +1,6 @@
 {
   "name": "@cpg-cli/template",
-  "version": "1.4.4",
+  "version": "1.4.5",
   "main": "bin.js",
   "license": "MIT",
   "bin": {
