@@ -29,8 +29,8 @@
     "@types/prettier": "2.4.2",
     "jest": "27.4.7",
     "prisma": "3.7.0",
-    "ts-jest": "27.1.2",
-    "typescript": "4.5.2"
+    "ts-jest": "27.1.3",
+    "typescript": "4.5.5"
   },
   "homepage": "Link to homepage or github readme here",
   "repository": {
