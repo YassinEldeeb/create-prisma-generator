@@ -19,16 +19,16 @@
   },
   "dependencies": {
     "@prisma/client": "3.7.0",
-    "@prisma/generator-helper": "3.7.0",
-    "@prisma/sdk": "3.7.0",
+    "@prisma/generator-helper": "3.8.1",
+    "@prisma/sdk": "3.8.1",
     "prettier": "2.5.0"
   },
   "devDependencies": {
     "@babel/cli": "7.16.0",
     "@babel/core": "7.16.12",
-    "@babel/node": "7.16.5",
+    "@babel/node": "7.16.8",
     "@babel/preset-env": "7.16.5",
-    "babel-jest": "27.4.5",
+    "babel-jest": "27.4.6",
     "jest": "27.4.3",
     "prisma": "3.7.0"
   },
