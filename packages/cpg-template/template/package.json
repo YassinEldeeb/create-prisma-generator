@@ -29,7 +29,7 @@
     "@babel/node": "7.16.8",
     "@babel/preset-env": "7.16.5",
     "babel-jest": "27.4.6",
-    "jest": "27.4.3",
+    "jest": "27.4.7",
     "prisma": "3.7.0"
   },
   "homepage": "Link to homepage or github readme here",
