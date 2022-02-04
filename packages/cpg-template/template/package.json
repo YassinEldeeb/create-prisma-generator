@@ -21,7 +21,7 @@
     "@prisma/client": "3.9.0",
     "@prisma/generator-helper": "3.9.1",
     "@prisma/sdk": "3.9.1",
-    "prettier": "2.5.0"
+    "prettier": "2.5.1"
   },
   "devDependencies": {
     "@babel/cli": "7.16.8",
