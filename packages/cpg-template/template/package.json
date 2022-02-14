@@ -28,7 +28,7 @@
     "@babel/core": "7.16.12",
     "@babel/node": "7.16.8",
     "@babel/preset-env": "7.16.5",
-    "babel-jest": "27.4.6",
+    "babel-jest": "27.5.1",
     "jest": "27.4.7",
     "prisma": "3.9.1"
   },
