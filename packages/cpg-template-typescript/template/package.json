@@ -30,7 +30,7 @@
     "jest": "27.4.7",
     "prisma": "3.9.2",
     "ts-jest": "27.1.2",
-    "typescript": "4.5.5"
+    "typescript": "4.6.2"
   },
   "homepage": "Link to homepage or github readme here",
   "repository": {
