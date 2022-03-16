@@ -48,7 +48,7 @@ const semanticRules = [
   {
     group: 'Fixes & improvements',
     releaseType: 'patch',
-    prefixes: ['fix', 'perf', 'refactor', 'docs'],
+    prefixes: ['fix', 'perf', 'refactor', 'docs', 'chore'],
   },
   {
     group: 'BREAKING CHANGES',
