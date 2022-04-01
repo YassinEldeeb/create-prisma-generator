@@ -1,6 +1,6 @@
 {
   "name": "@cpg-cli/github-actions",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "main": "bin.js",
   "license": "MIT",
   "bin": {
