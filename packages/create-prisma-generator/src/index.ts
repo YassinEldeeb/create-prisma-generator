@@ -2,7 +2,7 @@ import { execSync, spawnSync } from 'child_process'
 import chalk from 'chalk'
 import fs from 'fs'
 import path from 'path'
-import { runBlockingCommand } from './utils/runBlockingCommand'
+import { runBlockingCommand } from './utils/getRunBlockingCommand'
 import { promptQuestions } from './utils/inquirer/promptQuestions'
 import { replacePlaceholders } from './utils/replacePlaceholders'
 import { yarnWorkspaceJSON } from './config/yarn-workspace'
@@ -11,6 +11,8 @@ import { huskyCommitMsgHook } from './config/husky-commit-msg-hook'
 import { CLIs } from './tinyClis'
 import { getInstallCommand } from './utils/getInstallCommands'
 import { transformScopedName } from './utils/transformScopedName'
+import { getPkgManagerLockFile } from './utils/getPkgManagerLockFile'
+import { getRunWithFrozenLockCMD } from './utils/runWithFrozenLockCMD'
 
 export const main = async () => {
   const answers = await promptQuestions()
@@ -78,6 +80,11 @@ export const main = async () => {
 
     // Replace placeholders
     const workflowPath = path.join(projectWorkdir, '.github/workflows/CI.yml')
+
+    let pkgManagerLockFile = getPkgManagerLockFile(pkgManager)
+    let runWithFrozenLockCMD = getRunWithFrozenLockCMD(pkgManager)
+    let runCMD = `${pkgManager} run`
+
     fs.writeFileSync(
       workflowPath,
       fs
@@ -85,7 +92,19 @@ export const main = async () => {
         .replace(
           /\$WORKING_DIR/g,
           usingWorkspaces ? './packages/generator' : '.',
-        ),
+        )
+        .replace(
+          /\$SETUP_PNPM/,
+          pkgManager == 'pnpm'
+            ? `- name: Setup PNPM
+        uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.23.6`
+            : '',
+        )
+        .replace(/\$PKG_MANAGER_LOCK/g, pkgManagerLockFile)
+        .replace(/\$INSTALL_CMD_WITH_FROZEN_LOCK/g, runWithFrozenLockCMD)
+        .replace(/\$PKG_MANAGER_RUN_CMD/g, runCMD),
     )
     const dependabotPath = path.join(projectWorkdir, '.github/dependabot.yml')
     fs.writeFileSync(
