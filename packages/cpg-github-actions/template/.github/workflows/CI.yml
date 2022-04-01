@@ -30,7 +30,6 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('**/$PKG_MANAGER_LOCK') }}
 
       - name: Install dependencies
-        working-directory: $WORKING_DIR
         run: $INSTALL_CMD_WITH_FROZEN_LOCK
 
       - name: Run Tests 🧪
@@ -56,7 +55,6 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('**/$PKG_MANAGER_LOCK') }}
 
       - name: Install dependencies
-        working-directory: $WORKING_DIR
         run: $INSTALL_CMD_WITH_FROZEN_LOCK
 
       - name: Publish 🚀
