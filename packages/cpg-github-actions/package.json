@@ -19,6 +19,7 @@
   },
   "author": "Yassin Eldeeb <yassineldeeb94@gmail.com>",
   "keywords": [
-    "create-prisma-generator"
+    "create-prisma-generator",
+    "prisma"
   ]
 }
