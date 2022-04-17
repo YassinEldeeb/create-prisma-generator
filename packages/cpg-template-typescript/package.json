@@ -1,6 +1,6 @@
 {
   "name": "@cpg-cli/template-typescript",
-  "version": "1.4.7",
+  "version": "1.4.8",
   "main": "bin.js",
   "license": "MIT",
   "bin": {
