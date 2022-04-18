@@ -18,9 +18,9 @@
     "test": "jest"
   },
   "dependencies": {
-    "@prisma/client": "3.9.1",
+    "@prisma/client": "3.12.0",
     "@prisma/generator-helper": "3.12.0",
-    "@prisma/sdk": "3.10.0",
+    "@prisma/sdk": "3.12.0",
     "prettier": "2.5.1"
   },
   "devDependencies": {
@@ -30,7 +30,7 @@
     "@babel/preset-env": "7.16.5",
     "babel-jest": "27.5.1",
     "jest": "27.4.7",
-    "prisma": "3.10.0"
+    "prisma": "3.12.0"
   },
   "homepage": "Link to homepage or github readme here",
   "repository": {
