@@ -25,7 +25,7 @@
     "fs-extra": "^10.0.0",
     "inquirer": "^8.2.0",
     "rimraf": "^3.0.2",
-    "validate-npm-package-name": "^3.0.0"
+    "validate-npm-package-name": "^4.0.0"
   },
   "devDependencies": {
     "@alex_neo/jest-expect-message": "^1.0.5",
