@@ -27,7 +27,7 @@
     "@babel/cli": "7.17.6",
     "@babel/core": "7.16.12",
     "@babel/node": "7.16.8",
-    "@babel/preset-env": "7.16.5",
+    "@babel/preset-env": "7.19.4",
     "babel-jest": "27.5.1",
     "jest": "28.0.0",
     "prisma": "3.12.0"
