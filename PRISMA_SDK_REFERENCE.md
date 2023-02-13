@@ -31,7 +31,7 @@ this is a very great utility function that comes in handy especially when writti
 @prisma/cli -> @prisma/sdk -> Spawns Generators -> Send DMMF through RPCs
 ```
 
-a better approuch is to cut this cycle and just get the utility function in `@prisma/sdk` that's responsible for generating the DMMF from a prisma definitions string.
+a better approach is to cut this cycle and just get the utility function in `@prisma/sdk` that's responsible for generating the DMMF from a prisma definitions string.
 
 This function calls a rust binary that introspects the prisma definations in the string and gives back a nice AST([Abstract Syntax Tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree)) for the defined definations in prisma modelling language.
 
