@@ -16,6 +16,10 @@
   <hr />
 </div>
 
+## Warning
+
+`create-prisma-generator` doesn't support Prisma 4 yet, it works with Prisma 3.
+
 ## Prisma
 
 > [Prisma](https://www.prisma.io/) is Database ORM Library for Node.js, Typescript.
